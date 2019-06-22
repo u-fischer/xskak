@@ -1,0 +1,3468 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+% -*- mode: TeX -*- -*- coding: UTF-8 -*-
+\def\UFcurrentpackage{xskak}
+\newcommand\UFcurrentversion{1.4}
+
+\RequirePackage{fix-cm}
+
+\documentclass[pagesize,parskip=half-,fontsize=12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+%% xskak specific commands
+\usepackage[LSB1,LSB2, LSB3,LSBC2,LSBC3,LSBC4,LSBC5, T1]{fontenc}
+\usepackage{xskak}
+%\usepackage{eqparbox}
+\usepackage{tabularx}
+
+\usepackage{framed}
+\colorlet{shadecolor}{lightgray!25}
+
+
+\makeatletter
+\newcommand\Describefillkey[4][]{\par\index{#2  (\textbackslash chessboard key)}%
+\makebox[0pt][r]{\tiny #1\hspace{1em}}%
+ \colorbox{green!25}{\makebox[\dimexpr\textwidth-2\fboxsep\relax]{\ttfamily%
+    \eqparbox{fillkey}{#2=\meta{#3}}\hfill
+    \eqparbox{fillexample}{%
+     \ifthenelse{\equal{#4}{}}%
+     {#2}
+     {#2={#4}}}}}%
+    \par\nobreak\@afterheading}
+\makeatother
+
+\usepackage{filecontents}
+\usepackage{UF-xskak-documentation}
+
+\setchessboard{smallboard, showmover=false}
+\xskakset{style=UF}
+
+\usepackage{showexpl}
+%\input{I:/Z-test/showexpl-corr}
+%\newcounter{showexpl}
+%\renewcommand*\LTXinputExample[2][]{%
+%  \stepcounter{showexpl}%
+%  \g@addto@macro\SX@@explpreset{#1,codefile=#2}%
+%  \SX@put@code@result}%
+%
+%\AtBeginDocument{%
+%    \def\theHlstnumber{\ifx\lst@@caption\@empty \lst@neglisting
+%                                          \else \thelstlisting \fi
+%                       .\thelstnumber.\theshowexpl}}
+\makeatletter
+\renewcommand\board@pgf@extractangle[2]{%#1 command, #2 pgfpoint
+   \pgfextracty{\len@board@tempy}{#2}%
+   \pgfextractx{\len@board@tempx}{#2}%
+  \ifdim\len@board@tempx=0pt\relax
+  %\len@board@tempy= 1 or unchanged?
+  \else
+   %\divide \len@board@tempy by \strip@pt\len@board@tempx\relax
+   \pgfmathsetlength{\len@board@tempy}{\len@board@tempy/\len@board@tempx}%
+  \fi
+   \ifdim\len@board@tempx=0pt\relax
+     \ifdim\len@board@tempy=0pt\relax
+      \def#1{0}%
+     \else
+      \ifdim\len@board@tempy>0pt\relax
+       \def#1{90}%
+      \else
+       \def#1{-90}%
+      \fi
+     \fi
+   \fi
+   \ifdim\len@board@tempy=0pt\relax
+    \ifdim\len@board@tempx=0pt\relax
+      \def#1{0}%
+    \else
+      \ifdim\len@board@tempx>0pt\relax
+       \def#1{0}%
+      \else
+       \def#1{180}%
+      \fi
+    \fi
+   \fi
+   \ifdim\len@board@tempx>0pt\relax
+    \ifdim\len@board@tempy>0pt\relax
+     \pgfmathatan{\len@board@tempy}%
+     \edef#1{\pgfmathresult}%
+    \fi
+    \ifdim\len@board@tempy<0pt\relax
+     \pgfmathatan{\len@board@tempy}%
+     \edef#1{\pgfmathresult}%
+    \fi
+  \fi
+  \ifdim\len@board@tempx<0pt\relax
+    \ifdim\len@board@tempy>0pt\relax
+     \pgfmathatan{-\len@board@tempy}%
+     \pgfmathadd{-\pgfmathresult}{180}%
+     \edef#1{\pgfmathresult}%
+    \fi
+    \ifdim\len@board@tempy<0pt\relax
+     \pgfmathatan{\len@board@tempy}%
+     \pgfmathadd{\pgfmathresult}{180}%
+     \edef#1{\pgfmathresult}%
+    \fi
+  \fi
+   }
+
+\makeatother
+
+\begin{document}
+
+\title{\packagename{xskak}: An extension to \skaksty}
+\author{Ulrike Fischer}
+\maketitle
+
+\tableofcontents
+
+\section{Changes}
+\begin{description}
+\item[2015-01-02] (Version 1.4)] Corrected a bug: After a promotion the promotionpiece and the fen position were wrong.
+\item[2014-04-19] (Version 1.3)] Corrected a bug: enpassant test didn't check the piece and so other figures than a pawn could make an enpassant move.
+\item[2012-08-24 (Version 1.2b)]
+Corrected a small bug -- \cs{printchessgame} doesn't wrap around a wrapfigure.
+
+
+\item[2012-08-24 (Version 1.2a)]
+Corrected a small bug -- \cs{hidemoves} printed comment signs.
+
+\item[2008-10-10 (Version 1.2)]
+Made some changes to make \xskak compatible to the version 1.5 of
+\skaksty. See below for details.
+
+Changed Code: As \cs{longmoves} doesn't work with \cs{variation}
+anyway \cs{variation} now use always \cs{shortmoves}.
+
+Bug correction: \skaksty forgets to store comments after castling
+moves. Code to correct this has been added to \xskak.
+
+Bug correction: \xskak didn't print check and mate symbol after
+castling moves due to wrong position of braces.
+
+\item[2008-07-28 (Version 1.1)]
+Bug correction: Added the code for the promotion piece to the SAN and
+LAN notation.
+
+Bug correction: Remove some spurious spaces.
+
+\end{description}
+
+%\section{Features}
+%
+%
+
+\section{Introduction}
+
+\Xskak\footnote{License: \LaTeX\ Project Public License} is an extension for \skaksty -- and as \xskak is an extension
+(and not a replacement) the main work is still done by \skaksty so
+please read first the documentation of \skaksty as I'm not explaining
+the \packagename{skak} commands in this documentation.
+
+
+\Skaksty is a package from Torben Hoffmann which can parse and print
+chess games given in (a subset of) the PGN notation.
+
+The main features of \packagename{xskak} are:
+
+\begin{itemize}
+\item \packagename{xskak} can handle an extended set of PGN.
+
+\item \packagename{xskak}
+can parse and store an arbitrary number of chess games in PGN. The
+games can be exported and imported and all positions and moves can be
+retrieved at anytime.
+
+\item \packagename{xskak} can
+handle an arbitrary number of printing styles to distinguish
+the different variations levels.
+
+
+\end{itemize}
+
+
+
+
+
+\minisec{Extended PGN handling}
+
+When handling a PGN chess parsers at first have to split the notation
+in different chunks. I will call this step the \emph{PGN parser}.
+As an example\\[1ex]\mbox{}\quad {\ttfamily 15.Ne5!+
+\$3 \{This breaks the black defense\} (15.Re1? Kg8!)}\\[1ex] contains as
+chunks a \emph{move number} (\texttt{15.}), a \emph{move}
+(\texttt{Ne5}), \emph{short move comments} (\texttt{!+}), a
+\emph{NAG} (\texttt{\$3}), a \emph{comment} (\texttt{\{This breaks
+the black defense\}}) and a \emph{variation} (\texttt{(15.Re1?
+Kg8!)}).
+
+Neither \packagename{skak} nor \packagename{xskak} can handle all
+legal PGN's. \Skaksty can only handle PGN's which contains move
+numbers, moves and short comments. \packagename{xskak} can
+additionally handle NAG's and a special form of comments. None of the
+packages can currently parse PGN's with variations.
+
+
+\minisec{Storing moves}
+
+After the splitting of the PGN the chunks are processed further.
+Depending on the type of the chunk different actions are taken. The
+most important subprocess is the \emph{move parser}. It takes the
+move, retrieves from somewhere the current (FEN-)position of the game
+and tries to figure out what the move is exactly doing.
+
+In \packagename{xskak} only the commands \cs{mainline} and
+\cs{hidemoves} calls the move parser, \cs{variation} uses only the
+PGN parser.
+
+
+
+
+The main difference between \packagename{xskak} and
+\packagename{skak} is how they handle the information gathered by
+the move parser: \Skaksty uses the results of the move parser mainly
+to update the board and after the move throws almost all other
+information away -- including previous positions. \xskak saves all
+information about the moves for later use. Here a simple example:
+
+\begin{LTXexample}
+ \newchessgame
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6}
+
+ \xskakset{moveid=2w}%
+ \chessboard[setfen=\xskakget{nextfen}]\\[1ex]
+ Position after 2.\,\xskakget{lan}
+\end{LTXexample}
+
+So in short you start a game with \cs{newchessgame}, you enter moves
+with \cs{mainline} (or \cs{hidemoves}), you set the move for which
+you want to retrieve data with \cs{xskakset}, and then you retrieve
+the data with \cs{xskakget}.
+
+
+The storing of the moves and positions is not restricted to the main
+game. You can store and retrieve as much variation levels you want.
+
+
+\minisec{Printing styles}
+
+The following example shows how to use different styles for different
+variation levels. But it also shows the problems: It can be quite
+tiresome to get a good printing result. You must pay attention to the
+levels and the spaces after commands, and for each variation you have
+to start a new game and resume older games if you go back to them.
+
+\begin{LTXexample}
+\longmoves \xskakset{style=UF}
+\newchessgame[id=main]
+\mainline{1.e4 e5}
+%
+ (Alternatives are
+ \newchessgame[newvar=main,id=var1]%
+ \mainline[invar]{1... d5} which is answered by
+ \mainline{2. exd5 Qxd5}
+  %
+   \newchessgame[newvar=var1,id=var1-1]
+   (\mainline[invar]{2... Nf6})
+   %
+ or
+ \newchessgame[newvar=main,id=var2]
+ \mainline[outvar]{1... e6 2. d4})
+%
+\resumechessgame[id=main]%
+\mainline[outvar]{2.Nf3}
+
+\chessboard
+\end{LTXexample}
+
+
+
+\bigskip
+
+In the following sections I will describe the finer points. This
+includes
+\begin{itemize}
+\item how to handle more than one game at a time,
+\item how to retrieve the data faster,
+\item what data you can retrieve,
+\item how to loop through a game,
+\item how to export the data,
+\item how to improve the printing of the games,
+\item and some other changes/additions I made to \packagename{skak}.
+\end{itemize}
+
+
+\subsection{Warnings}
+
+\minisec{\packagename{xskak} and \packagename{skak}}
+
+\Xskak doesn't only define some new commands, it also changes some
+quite central internal commands of \skaksty. This means
+\begin{itemize}
+    \item it can break standard commands of \skaksty,
+
+    \item it will possibly not work together with future versions of
+    \skaksty,
+
+    \item loading \packagename{xskak.sty} can lead to problems with
+    packages like \packagename{texmate} which use internally
+    \packagename{skak}.
+\end{itemize}
+
+\minisec{Local and global commands}
+
+In the package \packagename{chessboard} almost every setting is local
+to the board. This was a quite natural decision as a board is a
+confined space. In \packagename{xskak} the situation is quite
+different: As a start \packagename{skak} already sets and saves some
+information globally and the data saved by \packagename{xskak}
+during the parsing must be saved globally or they wouldn't never
+escape the \cs{mainline}. And secondly, as I wanted to use
+\packagename{beamer} and \packagename{animate} a lot of data
+must be preserved from one frame/picture to the next. So I decided to
+use in most cases global commands unless -- like in the cases of
+styles -- I could see a real advantage in keeping a setting local.
+
+So please be aware that settings made e.g. in a figure environment
+can affect the following text.
+
+
+\subsection{Some history}
+
+While the commands \cs{mainline} and \cs{hidemoves} parse a chess
+game \skaksty updates an internal board and so can always show the
+current position. Sadly a lot of the data gathered during the
+parsing are thrown away after \packagename{skak} has updated the
+board and  has go on to the next move and so can not be used by the
+user. E.g. there is no way to get the field a piece came from or to
+store easily all positions of a game.
+
+Some years ago I tried to find out how to print a game in long
+algebraic notation and I realized quite fast that I need some of
+these lost data to be able to do it, and that it would be necessary
+to patch some internal commands of \skaksty to save the data. At the
+same time I also tried to insert some code that allows the parsing of
+standard PGN-comment signs. Due to lack of time the whole project
+didn't got very far but I had a working beta. Then a new version of
+\skaksty came. It had even a -- sadly not fully working (as can be
+seen in example~\ref{ex:longmoves}) -- command \cs{longmoves}%
+    \index{longmoves=\verb!*+\longmoves+>}%
+    \index{shortmoves=\verb!*+\shortmoves+>}
+(and the counterpart \cs{shortmoves}) to switch to the long algebraic
+notation. But I hadn't the time to test and adjust my package.
+
+    \index{longmoves=\verb!*+\longmoves+>}%
+    \index{shortmoves=\verb!*+\shortmoves+>}%
+\LTXinputExample[label=ex:longmoves,
+                   graphic={[trim=3cm 24cm 9cm
+                   4cm,clip]{skak-longmoves-test}},
+                   caption={Wrong pawn moves in the
+                            longmoves implementation of \skaksty version 1.4}]{skak-longmoves-test}
+
+
+
+
+Then in 2006 I wrote \pchessboard and during the tests also tried to
+make animated pdf's which show all positions of a game. That worked
+fine but the input was so tiresome that I restarted the
+\packagename{xskak}-project: Like in the case of the long algebraic
+notation the main problem was the loss of previous positions.
+
+
+\subsection{Bugs and errors}
+
+I'm quite sure that they are bugs and errors in the package.
+
+If you have questions ask them in the newsgroups
+\nolinkurl{comp.text.tex}, \nolinkurl{de.comp.text.tex} or
+\nolinkurl{fr.comp.text.tex} or at \url{http://tex.stackexchange.com/}. I'm reading these groups regularly and
+I'm much better in answering there than in answering e-mails.
+
+If you find errors in this text (this includes wrong english) or in
+the package, you can write me a bugreport at
+\nolinkurl{chess@nililand.de}. A bugreport should contain a complete,
+running, \emph{minimal} example and the log-file of the pdf\LaTeX\
+run (that means the engine that makes a pdf!).
+
+
+\subsection{Requirements}
+
+\Xskak uses some primitives of e\TeX. It needs version 1.4 or version
+1.5 of \skaksty, a recent version of \chessfss (chess font selection)
+and \packagename{xkeyval} (\textit{key=value}-syntax), version 1.5 of
+\packagename{chessboard} (which in turns needs \packagename{pgf}) and
+\packagename{xifthen}.
+
+
+\subsection{Installation}
+
+Run \filetype{xskak.ins} through \LaTeX\ and then put the
+\filetype{*.sty} where \LaTeX\ finds them.
+(\path{<texmf>/tex/latex/xskak/} is a good place.) Update the
+filename database.
+
+
+\subsection{Loading and package options}
+
+Loading of the package is done with \verb+\usepackage{xskak}+.
+Currently the package has only one option: \texttt{nopdfmatch}.%
+    \index{nopdfmatch (package option)}
+The option will disable the use of the experimental \cs{pdfmatch}
+used in the  processing of the style levels (see section
+\ref{sec:usestyles}). \packagename{xskak} will load \skaksty without
+option (and won't pass options to it). So, if you want to load
+\packagename{skak} with options, you must do it before loading
+\xskak.
+
+\subsection{Adaption to \skaksty version 1.5}
+
+Above I warned that \xskak can break with newer versions of \skaksty.
+Some days ago the version 1.5 of \packagename{skak} appeared and
+promptly a lot of things broke so I had to adapt and change my code.
+Version 1.2 of \xskak will hopefully work with both versions of
+\skaksty.
+
+In version 1.5 of \skaksty some fundamental things have changed. At
+first \cs{longmoves} works now correctly, even as you can see for the
+\cs{variation} command:
+
+
+\LTXinputExample[label=ex:longmovesnew,
+                   graphic={[trim=3cm 24cm 9cm
+                   4cm,clip]{skak-longmoves-test-new}},
+                   caption={The new
+                            longmoves implementation of
+                            \skaksty}]{skak-longmoves-test-new}
+
+
+The more important change (from the point of my package) is that
+\cs{variation} now parse the moves too (that's why it can show the
+long algebraic notation). To achieve this the author of \skaksty,
+Torben Hoffman, stores now the position before a move so that he can
+go back to this position and start the variation from there.
+
+The main problem with this approach is that it imposes restrictions
+on the move numbers of variations: All variations must start with the
+move number of the last move in a \cs{mainline} command. So
+separating two moves of a variation by some text is no longer
+possible:
+
+\begin{lstlisting}
+ \documentclass{article}
+ \usepackage{skak15}  %=skak version 1.5
+ \begin{document}
+ \newgame
+ \mainline{1.e4 e5 2. Nf3}
+ \variation{2. d3 d6} %works
+ \variation{2. c3}    %works
+ and then
+ \variation{2...c6}   %error
+ \end{document}
+\end{lstlisting}
+
+To tell the truth, I'm not sure that this a very good idea. In any
+case: \xskak overwrites the responsable definitions of \skaksty. With
+\xskak \cs{variation} currently doesn't parse games (and so also
+can't show moves in long algebraic notation -- if you want this you
+will have to start with the commands described later in this
+documentation a new game with another id). So the above example works
+fine with \xskak.
+
+
+
+
+
+\subsection{The example}
+
+Almost all examples use as starting point  a new game. But in some
+cases the following position is used, which allows to show almost all
+special cases (like enpassant, promotion, capture, castling,
+ambiguous moves). The position is stored under the name «example» and
+so can be retrieved e.g. with the key \key{restorefen=example} from
+\packagename{chessboard} or the command
+\lstinline+\restoregame{example}+ of the package
+\packagename{skak}\footnote{One could also use  key \key{tag} to
+store the position and key \key{reffen} to retrieve it.}:
+
+\begin{LTXexample}[caption={The standard example position},width=.7\textwidth]
+ \newchessgame[id=example,
+   castling=Q,
+   setwhite={pa2,pc7,pg5,ph2,pe4,
+             ke1,ra1,bg4},
+   addblack={pb4,ph7,pd5,
+             ke8,rh8,bh3,nf6,ne5},
+   storefen=example]%
+
+ \mbox{\Xskakexampleinitfen}
+
+ \chessboard
+\end{LTXexample}
+
+
+\section{Improved parsing of comments}\label{sec:diagrams}
+
+ \Skaksty can handle comments in the input if they follow
+directly the move, if the commands are robust and if the spaces that
+separate moves and numbers are not swallowed by a command.
+
+\LTXinputExample[label=ex:comments,
+                   graphic={[trim=3cm 24cm 9cm
+                   4cm,clip]{skak-comment-test}},
+                   caption={comments in \skaksty}]{skak-comment-test}
+
+
+This is quite okay for a few small comments in a small number of
+games, but a bit tiresome if you want to handle a lot of games that
+you have annotated with a chess application.  The PGN export of such
+games uses NAG's for short comments and curly braces for longer
+comments.
+
+
+With \xskak the commands \cs{mainline}, \cs{hidemoves} and
+\cs{variation} now can parse NAG's and longer comments if the input
+meet the following conditions:
+%\end{document}
+\begin{itemize}
+     \item There must be  spaces between the moves, each NAG and the
+     comments.
+
+     \item Text comments must be written as
+     \verb+\xskakcomment{+\meta{Text}\verb+}+%
+      \footnote{Braces are so frequent in \TeX\ that is simply not
+      possible to identify the comments simply by looking for a brace
+      -- at least not without a lot of complicated hacks.}
+
+\end{itemize}
+
+While parsing the comments the spaces before and between them will be
+swallowed.  If you want a space you must add it to the text. The
+NAG's (\$1, \$2 etc) are translated  following the definitions in
+\filetype{xskak-nagdef.sty}. The list there is neither complete nor
+definite. For quite a lot NAG's I hadn't the faintest idea what do.
+I'm open for suggestions/corrections.
+
+There exist two «fake» NAG's: \$d and \$D. If used in a \cs{mainline}
+or \cs{hidemoves} both will save the identification of the current
+move in an internal list and print whatever they have been defined
+to.  (Currently \$D will print \cs{chessdiagramname} which is defined
+as \verb+\ (Diagram)\ +, \$d is
+empty). This can be used to refer to diagrams printed later.%
+  \footnote{It is not a accidental that there is a similar command
+  «\cs{toD}» in \packagename{texmate}. That's where I got the idea
+  from.}
+
+
+
+\begin{LTXexample}[caption={NAG's, comments and diagram references in the input}]
+ \newchessgame[id=GameA]
+ \mainline{1.e4! $2 e5  $D 2.Nf3 Nf6 \xskakcomment{ What's that? }}
+
+ \renewcommand\xskakcomment[1]{{\itshape #1}}%
+ \mainline{3. Nxe5
+   \xskakcomment{ I took a pawn! } $D }
+ \variation[invar]{3. Nc3 $4
+   \xskakcomment{ (boring) }}
+
+ \makeatletter
+ \@for\mymoveid:=\XskakGameAdiagramlist\do{%
+  \xskakset{moveid=\mymoveid}%
+  \begin{tabular}{c}
+  \chessboard[tinyboard,
+      setfen=\xskakget{nextfen}]\\
+  After move \xskakget{opennr}\xskakget{lan}
+  \end{tabular} }
+\end{LTXexample}
+
+
+\section{The core of \xskak: Saving games.}
+
+\Xskak redefines some internal commands of \skaksty to enable
+\cs{mainline} and \cs{hidemoves} to store quite a lot%
+ \footnote{\textbf{Attention:} When I say «a lot» I really mean it. Currently
+  about 30 commands for each halfmove is saved plus about 30 commands
+  for each game.  A lot of games with individual game identifications
+  can use a lot of memory. But in practice that shouldn't be a problem
+  as it is seldom necessary to use a lot of different game
+ identifications.}
+data about the moves and the state of the game while parsing
+the game.
+
+There are two sorts of data:  Information related to the game as a
+whole (e.g. the names of the players and the start position) and
+information related to the moves. Both type of information use a
+\meta{GameId} in the names of the commands to identify the game they
+are referring to, the move data use additionally a \meta{MoveId}.
+
+\begin{shaded}
+\minisec{Exkurs 1}
+
+It is important to understand one difference between the use of
+\meta{GameId} and \meta{MoveId}: There is only \emph{one} command
+that holds the current \meta{GameId}. The \meta{GameId} is a concept
+specific to \xskak. The current value \meta{GameId} is stored in a
+command and will be used (and can be changed) by all the commands
+that store information \emph{and} by all the commands that retrieve
+information. So if you are parsing a game in bits you should be
+careful to use the same \meta{GameId} for each part.
+
+On the other sides there are \emph{three} different places where move
+data are set or used: \skaksty uses in \cs{mainline} and
+\cs{hidemoves} a counter called «\texttt{move}» and a boolean to keep
+track of the current move and player. \Xskak has two internal
+commands which are used to set up the start moves of games and to
+retrieve the stored move data, and \cs{chessboard} has two keys that
+set move data in FEN's. This can be sometimes a bit
+confusing. \Skaksty will not like it if its move counter is changed
+while parsing a game, but it is  normally not a problem to change the
+\packagename{xskak} move commands e.g. to retrieve data about
+previous moves -- as long as you don't use commands like
+\cs{newchessgame} that affects also the \packagename{skak} move
+counter.
+\end{shaded}
+
+
+\begin{shaded}
+\minisec{Exkurs 2}
+
+In chess we speak quite as often about the last move and the last
+position than about the next move and the next position: A position
+can be described as the one \emph{after} the \emph{last} move, the
+result of a move. But it can also be described as the one
+\emph{before} the \emph{next} move.
+
+The keys and commands described later reflect this: Given a move
+number you can access e.g. the position \emph{before} the move
+through the key word \key{pastfen} and the position \emph{after} the
+move through the key word \key{nextfen}. Given a \emph{tag} -- that
+is a label between two moves, you can refer to the move
+\textit{before} the tag through keys with the prefix \key{past} and
+to the move \emph{after} the tag through keys with the prefix
+\key{next}.
+
+In short: \key{past} looks back and \key{next} looks forward.
+
+The first position of a game and the first move have the prefix
+\key{init}. The last position (after the last move) and the last move
+have the prefix \key{last}.
+
+\end{shaded}
+
+
+\subsection{Initialization of the game}
+
+\DescribeMacro{\newchessgame}%
+When using \xskak you should start a new game with
+\cs{newchessgame}\keyoarg{} instead of \cs{newgame}. It will set the
+identification \meta{GameId} of the game, the start position, start
+move and quite a lot of other variables to sensible values.
+
+In the optional argument you can use the following keys:
+
+\begin{description}
+\item[\key{id=}\meta{GameId}]
+    \index{newchessgame=\verb!*+\newchessgame+>id (key)}%
+    \index{id (\texttt{\textbackslash newchessgame} key)}%
+    This key sets the string that identifies the game and is used in
+    the following parsing commands to store the data.
+    It is possible to use commands and counters e.g. for automatic numbering of
+    the games.
+    If you don't use the key or if you use the key without
+    argument (\verb+\newchessgame[id]+) a default is used.
+    The initial value of this default is \texttt{game}, but it can be changed with
+    \cs{xskakset}.
+    You can use the key \key{id} in each \cs{newchessgame} only once.
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame[white=Bob]%
+ \mainline{1. e4 e5}
+
+ \newchessgame[id=MY,white=Bill]%
+ \mainline{1. e4 e5}
+
+ \newcounter{gamecounter}%
+ \stepcounter{gamecounter}%
+ \xskakset{defaultid=Game\Alph{gamecounter}}%
+
+ \newchessgame[white=Harry]%
+ \mainline{1. e4 e5}
+
+ \stepcounter{gamecounter}%
+ \newchessgame[white=Thomas]%
+ \mainline{1. d4 d5}
+
+ \Xskakgamewhite,  \XskakMYwhite,
+ \XskakGameAwhite, \XskakGameBwhite%
+\end{LTXexample}
+
+\item[\key{movenr=}\meta{number}, \key{player=}\meta{«w» or «b»}, \key{moveid=}\meta{number + «w» or «b»}]
+    \index{newchessgame=\verb!*+\newchessgame+>movenr (key)}%
+    \index{movenr (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>player (key)}%
+    \index{player (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>moveid (key)}%
+    \index{moveid (\texttt{\textbackslash newchessgame} key)}%
+     With this keys you can change the start move for the parsing
+     commands \cs{mainline} and \cs{hidemoves}.
+     Setting this keys will change the counter and boolean
+     of \packagename{skak} \emph{and} the internal commands of
+     \packagename{xskak}.
+     The changes are global.
+     Default is \texttt{moveid=1w}, this default can be changed with
+     \cs{xskakset}.
+     Move number and player given through one of the FEN-keys of \cs{chessboard}
+     will not affect the move counter of \packagename{skak}!
+
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame
+ \mainline{1. e4}
+
+ \newchessgame[moveid=4w]
+ \mainline{4. e4 e5}
+
+ \xskakset{defaultmoveid=5b}
+ \newchessgame
+ \mainline{5... c4}
+ \xskakset{defaultmoveid=1w} %back to normal
+\end{LTXexample}
+
+\item[\key{newvar=}\meta{GameId}]
+    \index{newchessgame=\verb!*+\newchessgame+>newvar (key)}%
+    \index{newvar (\texttt{\textbackslash newchessgame} key)}%
+
+     If you use this key \cs{newchessgame} will use the position
+     and the \meta{moveid} \emph{before} the last
+     move of the game \meta{GameId} as start position. If you don't
+     give a value the current meaning of \meta{GameId} is used. This
+     can be used to start variations. The new game inherits only the
+     start position of the reference game!
+
+
+\item[\key{ref\ldots=}\meta{tag}]
+
+The \meta{GameId} and the start move can also be set with keys which
+use values saved with a \key{tag}. The keys are described in section
+\ref{sec:labeling}.
+
+
+\item[keys to set PGN-infos]
+    \index{newchessgame=\verb!*+\newchessgame+>result (key)}%
+    \index{result (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>white (key)}%
+    \index{white (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>black (key)}%
+    \index{black (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>whiteelo (key)}%
+    \index{whiteelo (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>blackelo (key)}%
+    \index{blackelo (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>site (key)}%
+    \index{site (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>date (key)}%
+    \index{date (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>event (key)}%
+    \index{event (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>round (key)}%
+    \index{round (\texttt{\textbackslash newchessgame} key)}%
+    \index{PGN-infos |see (\texttt{\textbackslash newchessgame} keys)}%
+    With the keys \key{result}, \key{white}, \key{black},
+    \key{whiteelo}, \key{blackelo}, \key{site}, \key{date},
+    \key{event} and \key{round} you can store the content of the
+    PGN-infos. Unused keys are set to default values. These defaults
+    can be changed with \cs{xskakset}.
+
+    \DescribeMacro{\xskaknewpgninfo}%
+    With \cs{xskaknewpgninfo}\oarg{default value}\marg{keyname} you can define a own PGN-info key. This
+    will also define a key \key{default\meta{name}} to change the default value later.
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \xskaknewpgninfo[Tom]{commentary}
+
+ \newchessgame[white=Harry,date=2007]
+ \xskakgetgame{white}, \xskakgetgame{date},
+ \xskakgetgame{event},
+ \xskakgetgame{commentary}
+
+ \xskakset{defaultevent=My open}
+
+ \newchessgame[commentary=Müller]
+ \xskakgetgame{commentary},
+ \xskakgetgame{event}
+
+\end{LTXexample}
+
+
+\item[using chessboard keys]
+    \index{newchessgame=\verb!*+\newchessgame+>using chessboard keys}%
+    You can use any key that can be used in the optional argument of
+    \cs{chessboard} from the package \packagename{chessboard}.
+    \cs{newchessgame} will pass all keys to an internal
+    \cs{chessboard}%
+     \footnote{That's why you will get an error from \cs{chessboard} if you use an unknown key.}.
+    \cs{chessboard} will set a position and give it back as the start position for the
+    game.
+    All \packagename{chessboard} keys are processed normally.
+    You can even print directly the board by using the key \key{print}.
+    The only exceptions\footnote{They don't gives
+    error but they will have no effect.} are the keys \key{maxfield}
+    and \key{zero} that change the size of the board --
+    \packagename{skak} doesn't like unusual sizes of the board --
+    and the keys \key{mover} and \key{fullmove} which are overwritten
+    by the (eventually default) value of key \key{moveid}. The castling
+    possibilities and the enpassant field are set accordingly the
+    values in the default fen, you only need to set them if you want
+    to use other values.
+    Read the documentation of \packagename{chessboard} for more information.
+
+
+\begin{LTXexample}
+\newchessgame[
+  moveid=4b,print,
+  showmover,
+  mover=w,% has no effect
+  castling=Q,enpassant=a3,
+  setwhite={pa4,pc7,pg5,ph2,pe4,ke1,ra1,bg4},
+  addblack={pb4,ph7,pd5,ke8,rh8,bh3,nf6,ne5}]%
+
+\mainline{4...  bxa3}
+\chessboard
+\end{LTXexample}
+\end{description}
+
+    To use a position of another game as a start position you can use
+    e.g. this sequence of keys
+    (a shorter method that use a label/ref-method will
+    be described in the section \ref{sec:labeling}):
+
+    \cs{newchessgame}\verb+[id=+\meta{old id}%
+    \verb+, moveid=+\meta{old move id}%
+    \verb+,+\\\phantom{(newchessgame[}%
+    \verb+setfen=\xskakget{+\meta{\ttfamily\upshape nextfen|pastfen}\verb+}+%
+    \verb+,+\\\phantom{(newchessgame[}%
+    \verb+id=+\meta{new id}\verb+, moveid=+\meta{new initmove id}%
+    \verb+]+
+
+    \textbf{Attention:} A new game is a \emph{new} game. It doesn't inherit moves of
+    another game -- it only reuses a position.
+    So if the new and the old game have identical \meta{GameId}
+    then the old game will be more or less lost.
+
+   In case that you want to go one half move back and start a new
+   game from there you can use the key \key{newvar}:
+
+   \cs{newchessgame}\verb+[newvar=+\meta{old id}%
+                    \verb+, id=+\meta{new id}\verb+]+
+
+
+\begin{LTXexample}
+ \newchessgame[id=A]%
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O}
+
+ \newchessgame[
+     id=A,moveid=3w,print,
+     setfen=\xskakget{nextfen},
+        %fen after move 3w
+     id=B,moveid=1b]
+
+ \mainline{1... Nf6}
+
+ \newchessgame[id=C]
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O}
+
+ \newchessgame[print,
+       id=C,
+  % we retrieve the number of the last move
+  % of game C and set it as first number
+  % of the new game B at the same time:
+       moveid=\xskakgetgame{lastmoveid},
+       setfen=\xskakget{pastfen},
+       id=B]
+
+ \mainline{5. d3}
+\end{LTXexample}
+
+
+\subsection{Continuing a game}
+
+\DescribeMacro{\resumechessgame}%
+    \Skaksty doesn't have a problem if you split a game in pieces.
+    You can use as many \cs{mainline} commands as you want. It even
+    doesn't matter if you started the game in another group. But if
+    you mix two games you must first reset the
+    position and the move counter to the end position of the old game
+    before you can continue it. This is possible with
+    \cs{resumechessgame}\keyoarg. You can use
+    \cs{chessboard}-keys in the optional argument but all the keys
+    that tries to change the position will have no effect. It is also
+    not possible to store the new moves under a new game identification or
+    to renumber the moves.
+
+    The command accepts the following additional keys in the optional
+    argument:
+
+\begin{description}
+\item[\key{id=}\meta{GameId}]
+    \index{resumechessgame=\verb!*+\resumechessgame+>id (key)}%
+    \index{id (\texttt{\textbackslash resumechessgame} key)}%
+    This key identifies the game that should be continued (as a
+    default the currently active identification is used). The key
+    changes \meta{GameId} globally!
+
+
+\item[\key{movenr=}\meta{number}, \key{player=}\meta{«w» or «b»}, \key{moveid}\meta{number + «w» or «b»}]
+    \index{resumechessgame=\verb!*+\resumechessgame+>movenr (key)}%
+    \index{movenr (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>player (key)}%
+    \index{player (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>moveid (key)}%
+    \index{moveid (\texttt{\textbackslash resumechessgame} key)}%
+    This keys set the move from which on the game should be
+    restarted. With the keys it is possible to go back and then
+    continue the game along another variation (in this case the moves
+    of the first variation will be lost).
+    The values describes the \emph{next} move that means the position \emph{before} the move is
+    used.
+    As a default \cs{resumechessgame} continues the game.
+
+\begin{LTXexample}[width=0.5\textwidth,preset=\parskip1ex]
+ \newchessgame[id=main]
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5}
+
+ That reminds me another game
+ some years ago where I played
+ \newchessgame[id=exkurs]
+ \mainline{1. d4 Nf6 2. c4 e6}
+ \ldots\ lots of text \ldots\
+
+ Let's continue the second game with --
+ as a reminder -- the last move of
+ black
+ \resumechessgame[id=exkurs,moveid=2b]%
+ \mainline{2... e6 3. Nc3}
+
+ Let us now go back to the first game\\
+ \resumechessgame[id=main,print,
+                 tinyboard,showmover]%
+ \mainline{3... a6}
+\end{LTXexample}
+
+\item[\key{newvar=}\meta{GameId}]
+    \index{resumechessgame=\verb!*+\resumechessgame+>newvar (key)}%
+    \index{newvar (\texttt{\textbackslash resumechessgame} key)}%
+
+     This key moves you one halfmove back.
+     This can be used to write down a lot of variations. With the
+     (optional) value of the key you set the \meta{GameId}. If you don't
+     give a value the current meaning of \meta{GameId} is used.
+
+\begin{LTXexample}[width=0.5\textwidth,preset=\parskip1ex]
+ \newchessgame[id=main]
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5}
+
+
+ \newchessgame[id=exkurs]
+ \mainline{1. d4 Nf6 2. c4 e6}
+
+ \resumechessgame[newvar=main]
+ \mainline{3. Bc4}
+
+
+ \resumechessgame[newvar]
+ \mainline{3. Nc3}
+ \chessboard
+
+ \xskakset{id=exkurs}
+ \resumechessgame[newvar]
+ \mainline{2... c5}
+ \chessboard
+
+\end{LTXexample}
+
+\item[\key{ref\ldots=}\meta{tag}]
+The \meta{GameId} and start move can also be set with this keys which
+use values saved with a \key{tag}. The keys are described in section
+\ref{sec:labeling}.
+
+\end{description}
+
+\subsection{The stored information}
+
+The following lists describes all the types of information stored
+during the parsing of a game. As you will see some data are stored
+more than once with only slight differences. I did it because it is
+easier to store the redundant data than to have to convert them
+later.
+
+There are also commands which contains the \meta{GameId} and the
+\meta{MoveId}. That looks a bit senseless as you need to know this
+values to be able to retrieve them but they allow easy access to the
+values without having to know or use the internal command names.
+
+
+\subsubsection{Essential game related information}
+
+\begin{description}
+
+\item[\textbackslash Xskak\meta{GameId}initfen]%
+    \index{game data >Xskakinitfen=\textbackslash Xskak\meta{GameId}initfen}%
+    \index{Xskakinitfen=\textbackslash Xskak\meta{GameId}initfen}%
+    The position before the first move. Set by \cs{newchessgame}.
+
+
+\item[\textbackslash Xskak\meta{GameId}initplayer]%
+    \index{game data >Xskakinitplayer=\textbackslash Xskak\meta{GameId}initplayer}%
+    \index{Xskakinitplayer=\textbackslash Xskak\meta{GameId}initplayer}%
+     «w» or «b». The color of the next (first) player, (must be identical
+     to the color in the initfen). Also set by \cs{newchessgame}.
+
+\item[\textbackslash Xskak\meta{GameId}initmovenr]%
+    \index{game data >Xskakinitmovenr=\textbackslash Xskak\meta{GameId}initmovenr}%
+    \index{Xskakinitmovenr=\textbackslash Xskak\meta{GameId}initmovenr}%
+     The number of the first move (must be identical to the fullmove
+     number in the initfen). Also set by \cs{newchessgame}.
+
+\item[\textbackslash Xskak\meta{GameId}initmoveid]%
+   \index{game data >Xskakinitmoveid=\textbackslash Xskak\meta{GameId}initmoveid}%
+   \index{Xskakinitmoveid=\textbackslash Xskak\meta{GameId}initmoveid}%
+   Combination of \key{initmovenr} and \key{initplayer}.
+
+\begin{LTXexample}
+ \newchessgame[id=show,
+               setfen=2K/k/7R,
+               moveid=10b,
+               print]
+
+ \mbox{\xskakgetgame{initfen}},\\
+ \xskakgetgame{initplayer},
+ \xskakgetgame{initmovenr},
+ \xskakgetgame{initmoveid}
+\end{LTXexample}
+
+
+
+\item[\textbackslash Xskak\meta{GameId}lastfen]%
+   \index{game data >Xskaklastfen=\textbackslash Xskak\meta{GameId}lastfen}%
+   \index{Xskaklastfen=\textbackslash Xskak\meta{GameId}lastfen}%
+   The fen \emph{after} the last move, set during parsing.
+
+\item[\textbackslash Xskak\meta{GameId}lastplayer]%
+   \index{game data >Xskaklastplayer=\textbackslash Xskak\meta{GameId}lastplayer}%
+   \index{Xskaklastplayer=\textbackslash Xskak\meta{GameId}lastplayer}%
+    «w» or «b». The player which made the last move, set by
+    \cs{newchessgame}, by \cs{resumechessgame} and during
+    parsing. Identical to color in the fen \emph{before} the last
+    move! \emph{Not} identical to the color in {\texttt\textbackslash
+    Xskak\meta{GameId}lastfen}!
+
+\item[\textbackslash Xskak\meta{GameId}lastmovenr]%
+   \index{game data >Xskaklastmovenr=\textbackslash Xskak\meta{GameId}lastmovenr}%
+   \index{Xskaklastmovenr=\textbackslash Xskak\meta{GameId}lastmovenr}%
+   The number of the last move, set during parsing. Identical to
+   fullmove in the fen \emph{before} the last move! \emph{Not}
+   necessarily identical to the number in {\texttt\textbackslash
+   Xskak\meta{GameId}lastfen}!
+
+\item[\textbackslash Xskak\meta{GameId}lastmoveid]%
+   \index{game data >Xskaklastmoveid=\textbackslash Xskak\meta{GameId}lastmoveid}%
+   \index{Xskaklastmoveid=\textbackslash Xskak\meta{GameId}lastmoveid}%
+   Combination of \key{lastmovenr} and \key{lastplayer}.
+
+\begin{LTXexample}
+ \newchessgame[id=show,
+               setfen=2K/k/7R,
+               castling={},
+               % sets correct castling in the FEN
+               moveid=10b]
+ \mainline{10... Ka8}
+
+ \chessboard
+
+ \mbox{\xskakgetgame{lastfen}},\\
+ \xskakgetgame{lastplayer},
+ \xskakgetgame{lastmovenr},
+ \xskakgetgame{lastmoveid}
+\end{LTXexample}
+
+
+\item[\textbackslash Xskak\meta{GameId}nextplayer]%
+   \index{game data >Xskaknextplayer=\textbackslash Xskak\meta{GameId}nextplayer}%
+   \index{Xskaknextplayer=\textbackslash Xskak\meta{GameId}nextplayer}%
+   «w» or «b». The player which will make the next move, set by
+   \cs{newchessgame}, by \cs{resumechessgame} and during parsing.
+   Identical to the color in {\texttt\textbackslash Xskak\meta{GameId}lastfen}.
+
+\item[\textbackslash Xskak\meta{GameId}nextmovenr]%
+   \index{game data >Xskaknextmovenr=\textbackslash Xskak\meta{GameId}nextmovenr}%
+   \index{Xskaknextmovenr=\textbackslash Xskak\meta{GameId}nextmovenr}%
+   The number of the next move, set during parsing. Identical to
+   fullmove in {\texttt\textbackslash Xskak\meta{GameId}lastfen}.
+
+\item[\textbackslash Xskak\meta{GameId}nextmoveid]%
+   \index{game data >Xskaknextmoveid=\textbackslash Xskak\meta{GameId}nextmoveid}%
+   \index{Xskaknextmoveid=\textbackslash Xskak\meta{GameId}nextmoveid}%
+   Combination of \key{nextmovenr} and \key{nextplayer}.
+
+\begin{LTXexample}[width=0.5\textwidth]
+ \newchessgame[id=show,
+               setfen=2K/k/7R,
+               moveid=10b]
+ \mainline{10... Ka8}
+
+ \chessboard
+
+ \xskakgetgame{nextplayer},
+ \xskakgetgame{nextmovenr},
+ \xskakgetgame{nextmoveid}
+\end{LTXexample}
+
+
+\item[\textbackslash Xskak\meta{GameId}diagramlist]%
+   \index{game data >Xskakdiagramlist=\textbackslash Xskak\meta{GameId}diagramlist}%
+   \index{Xskakdiagramlist=\textbackslash Xskak\meta{GameId}diagramlist}%
+    A comma separated list of moves (a combination of movenr and
+    player), (e.g. 3b,20w). Records the moves with an \$d or \$D
+    after the move. See section \ref{sec:diagrams}.
+
+
+\item[\textbackslash Xskak\meta{GameId}gameid]%
+    \index{game data >Xskakgameid=\textbackslash Xskak\meta{GameId}gameid}%
+    \index{Xskakgameid=\textbackslash Xskak\meta{GameId}gameid}%
+    This command holds the game identification (the value is equal to the value of \meta{GameId}).
+
+\begin{LTXexample}
+ \newchessgame[id=game\arabic{section}]
+ The id of the current game is \xskakgetgame{gameid}
+\end{LTXexample}
+
+
+\end{description}
+
+
+\subsubsection{Optional game information: PGN-infos}
+
+\DescribeMacro{\xskaknewpgninfo}%
+The following commands store various optional information which are
+normally stored in the so-called PGN-infos. You can set them in
+\cs{newchessgame} and retrieve them later. New PGN-infos can be
+defined with the \cs{xskaknewpgninfo}\oarg{default}\marg{name}. With
+the exception of  «result» all currently defined commands are empty
+by default.
+
+\begin{description}
+\item[\textbackslash Xskak\meta{GameId}result]%
+    \index{PGN-info data >Xskakresult=\textbackslash Xskak\meta{GameId}result}%
+    \index{Xskakresult=\textbackslash Xskak\meta{GameId}result}%
+      Default is \verb+*+, value should be 1-0, or 1/2-1/2, 0-1 or
+      something like that.
+
+\item[\textbackslash Xskak\meta{GameId}white]%
+    \index{PGN-info data >Xskakwhite=\textbackslash Xskak\meta{GameId}white}%
+    \index{Xskakwhite=\textbackslash Xskak\meta{GameId}white}%
+     The name of the white player.
+
+\item[\textbackslash Xskak\meta{GameId}black]%
+    \index{PGN-info data >Xskakblack=\textbackslash Xskak\meta{GameId}black}%
+    \index{Xskakblack=\textbackslash Xskak\meta{GameId}black}%
+     The name of the black player.
+
+
+\item[\textbackslash Xskak\meta{GameId}whiteelo]%
+    \index{PGN-info data >Xskakwhiteelo=\textbackslash Xskak\meta{GameId}whiteelo}%
+    \index{Xskakwhiteelo=\textbackslash Xskak\meta{GameId}whiteelo}%
+    The elo of the white player.
+
+\item[\textbackslash Xskak\meta{GameId}blackelo]%
+    \index{PGN-info data >Xskakblackelo=\textbackslash Xskak\meta{GameId}blackelo}%
+    \index{Xskakblackelo=\textbackslash Xskak\meta{GameId}blackelo}%
+    The elo of the black player.
+
+
+\item[\textbackslash Xskak\meta{GameId}site]%
+    \index{PGN-info data >Xskaksite=\textbackslash Xskak\meta{GameId}site}%
+    \index{Xskaksite=\textbackslash Xskak\meta{GameId}site}%
+   The site of the tournament.
+
+\item[\textbackslash Xskak\meta{GameId}event]%
+    \index{PGN-info data >Xskakevent=\textbackslash Xskak\meta{GameId}event}%
+    \index{Xskakevent=\textbackslash Xskak\meta{GameId}event}%
+The name of the tournament.
+
+
+
+\item[\textbackslash Xskak\meta{GameId}date]%
+    \index{PGN-info data >Xskakdate=\textbackslash Xskak\meta{GameId}date}%
+    \index{Xskakdate=\textbackslash Xskak\meta{GameId}date}%
+The date of the game.
+
+\item[\textbackslash Xskak\meta{GameId}round]%
+    \index{PGN-info data >Xskakround=\textbackslash Xskak\meta{GameId}round}%
+    \index{Xskakround=\textbackslash Xskak\meta{GameId}round}%
+The round of game.
+
+\end{description}
+
+\subsubsection{The move related data}\label{sec:movedata}
+
+The move data are stored during the parsing of a game with
+\cs{mainline} and/or \cs{hidemoves}. You can split the game in as
+much pieces as you want but {\bfseries you must start a game with
+\cs{newchessgame} and you must use the same game identification for
+each piece} if you don't want to end with broken games.
+
+All values depends on the parsing from \skaksty which in turn depends
+heavily on the correct input: \skaksty knows a bit about the position
+of the game (it needs it e.g. to find out where a piece came from)
+but doesn't analyze it thoroughly. The main work is done by analyzing
+the \emph{notation} e.g.  \skaksty will recognize a check by the
++-sign. Quite often \skaksty doesn't recognize illegal moves or wrong
+input syntax (e.g. \texttt{0-0} for casting instead the correct
+\texttt{O-O})  but fails some moves later or shows a wrong position:
+
+\begin{LTXexample}
+   \newchessgame
+   \mainline{1.d4 e5  2.Bc4}
+   \chessboard
+\end{LTXexample}
+
+\paragraph{Piece data}
+
+The following types store the piece which was moved and the piece
+that was perhaps captured. The variants differ in the storing of
+black pieces and pawns:
+
+\begin{description}
+\item[pgnpiece]
+    \index{Move data >pgnpiece}%
+    \index{pgnpiece (move data type)}%
+     K,Q,R,B or N. Is empty for pawn and
+     castling moves.
+
+\item[piecechar]
+    \index{Move data >piecechar}%
+    \index{piecechar (move data type)}%
+     K,Q,R,B,N or p. Is empty for castling.
+
+
+\item[piece]
+    \index{Move data >piece}%
+    \index{piece (move data type)}%
+     K,Q,R,B,N or P or k,q,r,b,n or p (for black). Is empty for castling.
+
+
+\item[pgnlostpiece]
+    \index{Move data >pgnlostpiece}%
+    \index{pgnlostpiece (move data type)}%
+    In case of a capture move: K,Q,R,B, or N.
+
+\item[lostpiecechar]
+    \index{Move data >lostpiecechar}%
+    \index{lostpiecechar (move data type)}%
+     In case of a capture move: K,Q,R,B,N or p, empty
+     else.
+
+
+\item[lostpiece]
+    \index{Move data >lostpiece}%
+    \index{lostpiece (move data type)}%
+     In case of a capture move it stores the lost piece as K,Q,R,B,N or P or
+     k,q,r,b,n or p.
+
+\end{description}
+
+
+\paragraph{Move data}
+
+\begin{description}
+\item[movefrom]
+    \index{Move data >movefrom}%
+    \index{movefrom (move data type)}%
+    The field were the piece came from. Two fields in case of castling moves e.g. «e1,h1».
+
+\item[pgnmovefrom]
+    \index{Move data >pgnmovefrom}%
+    \index{pgnmovefrom (move data type)}%
+    This contains the additional «movefrom» information in the PGN
+    for ambiguous moves or pawn captures.
+    E.g. In case of \wmove{exd5} the value is
+    «e», in case of \wmove{Nbd2} it is «b».
+
+\item[moveto]
+    \index{Move data >moveto}%
+    \index{moveto (move data type)}%
+     The field were the piece move to. Two fields in case of castling moves e.g. «g1,f1».
+
+\item[enpassant]
+    \index{Move data >enpassant}%
+    \index{enpassant (move data type)}%
+    Sets the boolean \texttt{xskakboolenpassant} to true if the move
+    was an enpassant capture.
+
+\item[enpassantsquare]
+    \index{Move data >enpassantsquare}%
+    \index{enpassantsquare (move data type)}%
+    A field, after e.g. e4 the value is e3. Indicates if the next
+    pawn move can be an enpassant capture.
+
+\begin{LTXexample}
+ \newchessgame[restorefen=example]
+ \mainline{1. a4 h5}
+ \chessboard[lastmoveid,
+             pgfstyle=border,
+             color=red,
+             markfield=\xskakget{enpassantsquare},
+             moveid=1w, color=blue,
+             markfield=\xskakget{enpassantsquare}]
+\end{LTXexample}
+
+\item[castling]
+    \index{Move data >castling}%
+    \index{castling (move data type)}%
+    Sets the boolean \texttt{xskakboolcastling}, is true for short
+    *and* long castling!
+
+
+\item[longcastling]
+    \index{Move data >longcastling}%
+    \index{longcastling (move data type)}%
+    Sets the boolean \texttt{xskakboollongcastling}.
+
+\item[capture]
+    \index{Move data >capture}%
+    \index{capture (move data type)}%
+    Sets the boolean \texttt{xskakboolcapture}.
+
+
+\item[promotion]
+    \index{Move data >promotion}%
+    \index{promotion (move data type)}%
+    Sets the boolean \texttt{xskakboolpromotion}.
+
+
+\item[promotionpiece]
+    \index{Move data >promotionpiece}%
+    \index{promotionpiece (move data type)}%
+    Q,R,B or N or q,r,b or n or empty.
+
+\item[promotionpiecechar]
+    \index{Move data >promotionpiecechar}%
+    \index{promotionpiecechar (move data type)}%
+    Q,R,B or N  or empty.
+
+\begin{LTXexample}
+ \newcommand\testpromotion{%
+   \xskakget{promotion}%
+   \ifthenelse{\boolean{xskakboolpromotion}}
+    {A pawn promoted to
+    \figsymbol{\xskakget{promotionpiecechar}}}
+    {No promotion in this move}}
+ \newchessgame[restorefen=example]
+ \mainline{1. c8=Q+ Ke7}
+
+ \xskakset{moveid=1w}
+ \testpromotion
+
+ \xskakset{moveid=1b}
+ \testpromotion
+\end{LTXexample}
+
+
+\end{description}
+
+\paragraph{Other data/combinations}
+
+\begin{description}
+\item[addpieces]
+    \index{Move data >addpieces}%
+    \index{addpieces (move data type)}%
+       contains the (list of) piece(s) that should be put on the
+       board.\\ E.g. \verb+{kg8,rf8}+ in case of black short castling.
+
+\item[clearfields]
+    \index{Move data >clearfields}%
+    \index{clearfields (move data type)}%
+       The list of fields that should be emptied on the board (equal
+       to the movefrom field with the exception of enpassant moves).
+
+\item[nextfen]
+    \index{Move data >nextfen}%
+    \index{nextfen (move data type)}%
+       The fen position \emph{after} the current move.
+
+\item[pastfen]
+    \index{Move data >pastfen}%
+    \index{pastfen (move data type)}%
+       The fen position \emph{before} the current move (identical to
+       the fen \emph{after} the previous move).
+
+\item[san]
+    \index{Move data >san}%
+    \index{san (move data type)}%
+      The  standard algebraic notation of the move. It use chess
+      commands: E.g.
+      \\\verb+\textsymfigsymbol{R}a2+ for \textsymfigsymbol{R}a2
+      \\\verb+e\capturesymbol d5+ for e\capturesymbol d5,
+      \\\verb+\castlingchar\castlinghyphen\castlingchar+ for
+      \castlingchar\castlinghyphen\castlingchar\\
+      It contains also the signs for chess and mate, but not the
+      comments.
+
+\item[lan]
+    \index{Move data >lan}%
+    \index{lan (move data type)}%
+    Long algebraic notation of the move, similar to \texttt{san}.
+
+\medskip
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame
+ \mainline{1.f3 e5 2. g4?? Qh4+#!}
+
+ \xskakset{moveid=2w}%
+ \xskakget{san}, \xskakget{lan}
+
+ \xskakset{moveid=2b}%
+  \xskakget{san}, \xskakget{lan}
+\end{LTXexample}
+
+
+
+\item[opennr]
+    \index{Move data >opennr}%
+    \index{opennr (move data type)}%
+    This contains the code to print the number like \skaksty would do
+    it if you start or continue a game  with this move. The style must be set independantly either with
+    a \cs{styleX} of \packagename{skak} or -- if you use the new interface of
+    \packagename{xskak} to set a style -- with \cs{xskakset} and \cs{mainlinestyle} or \cs{variationstyle}.
+
+\medskip
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame
+ \mainline{1.e4 e5}
+
+ \xskakset{moveid=1w}%
+ \xskakget{opennr}\xskakget{lan},
+ {\styleB\mainlinestyle
+  \xskakget{opennr}\xskakget{lan}}
+
+
+ \xskakset{moveid=1b}%
+ \xskakget{opennr}\xskakget{lan}
+ \xskakset{style=styleA,level=1}
+ {\mainlinestyle
+  \xskakget{opennr}\xskakget{lan}}
+
+ \xskakset{style=UF}%return to my style
+\end{LTXexample}
+
+\item[comments]%
+    \index{Move data >comments}%
+    \index{comments (move data type)}%
+   contains the short comments after a move (!,? \withattack{} etc)
+
+\medskip
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame
+ \mainline{1.f3 e5 2. g4?? Qh4+#!}
+
+ \xskakset{moveid=2w}%
+ \xskakget{comments}
+
+ \xskakset{moveid=2b}%
+ \xskakget{comments}
+\end{LTXexample}
+
+
+\item[nag]
+    \index{Move data >nag}%
+    \index{nag (move data type)}
+   NAG's and comments inputed with \cs{xskakcomment}.
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \newchessgame
+ \mainline{1.f3 e5 2. g4
+          $4 \xskakcomment{ Why this? } Qh4+#!}
+
+ \xskakset{moveid=2w}%
+ \xskakget{nag}
+\end{LTXexample}
+
+\end{description}
+
+\subsection{Exporting the games}
+
+\DescribeMacro{\xskakexportgames}%
+With \cs{xskakexportgames}\keyoarg{} you can export games to a file.
+As default the command exports the game data of the game with the
+default \meta{GameId} to the file \texttt{xskakgames.xsk}\footnote{I
+didn't find any other application that use this extension. So I think
+it is quite safe.}.
+
+The command accept the following keys:
+\begin{description}
+\item[\key{file=}\meta{string}]
+   \index{xskakexportgames=\verb!*+\xskakexportgames+>file (key)}%
+   \index{file (\texttt{\textbackslash xskakexportgames} key)}
+   This changes the name of the file. The extension can not be changed.
+\item[\key{games=\{}\meta{comma separated list of games}\texttt{\}}]
+   \index{xskakexportgames=\verb!*+\xskakexportgames+>games (key)}%
+   \index{games (\texttt{\textbackslash xskakexportgames} key)}%
+   With this key you can chose the games that should be exported.
+\end{description}
+
+
+You can then input the games in other document and use there the game
+data without have to do all the parsing with \cs{mainline} again
+(which can be quite slow). The export file is also quite handy to
+debug the game parsing and saving.
+
+As an example I exported  in another document the following two games
+which I will use later in this documentation:
+
+\begin{lstlisting}
+ \newchessgame[id=export,white=Deep Blue, black=Kasparov,result=1-0]
+ \mainline{1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Ng5 Ngf6 6.Bd3 e6
+ 7.N1f3 h6 8.Nxe6 Qe7 9.O-O fxe6 10.Bg6+ Kd8 \xskakcomment{Kasparov
+ schüttelt kurz den Kopf} 11.Bf4 b5 12.a4 Bb7 13.Re1 Nd5 14.Bg3 Kc8
+ 15.axb5 cxb5 16.Qd3 Bc6 17.Bf5 exf5 18.Rxe7 Bxe7 19.c4}
+
+ \newchessgame[white=none,black=none,id=exportb]
+ \mainline{1. e4 e5}
+
+ \xskakexportgames[games={export,exportb}]
+\end{lstlisting}
+
+\DescribeMacro{\xskakendgamedata}%
+\DescribeMacro{\xskakcurrentgameid}%
+The export consists more or less of a long list of definitions with
+one notable exception: At the end of each game there is the command
+\cs{xskakendgamedata}. As a default the command does nothing but if
+you redefine it e.g. to \cs{printchessgame} (see section
+\ref{sec:print}), it can be used to print all games during the input.
+\cs{xskakcurrentgameid} holds the \meta{GameId} of the previous game.
+
+\begin{LTXexample}
+ \renewcommand\xskakendgamedata
+  {\xskakset{id=\xskakcurrentgameid}%
+   \xskakgetgame{white}--\xskakgetgame{black}:
+   \printchessgame[style=styleB,level=1]
+  \par\bigskip}
+ \input{xskakgames.xsk}
+\end{LTXexample}
+
+
+
+\subsection{The inner technique: how the data are stored}
+
+The game related data are stored in commands with names of
+the following structure:\\[0.5ex]
+%
+\indent{\ttfamily Xskak\meta{GameId}\meta{type of Information}}\\[0.5ex]
+%
+If \meta{GameId} is a simple string of characters you can use the
+command by putting a backslash before the name, in other case you
+will have to use \cs{csname}\ldots\cs{endcsname}.
+
+The move related data are stored in commands with names that
+have the following structure:\\[0.5ex]
+{\ttfamily Xskak.\meta{GameId}.\meta{movenr}.\meta{player}.\meta{type
+of Information}}\\[0.5ex]
+As the names contain points and a number it is not possible to
+execute the commands  by putting a backslash before the name. If you
+want to use them you will have to surround the name by
+\cs{csname}\ldots\cs{endcsname}
+ -- something that probably will not be necessary in normal cases as
+there are  user commands that allows «normal» access.
+
+During storing the data \meta{movenr} and \meta{player} are taken
+from the current move as processed by \skaksty, that is
+\verb+\mainline{15... Nf3}+ will store the data in \\{\ttfamily
+Xskak.\meta{GameId}.15.b.\meta{type of Information}}. \\Renumbering
+the moves during storing is not possible\footnote{But it would be
+probably not difficult to implement. So if you need it badly, sent me
+a feature request.}.
+
+Example \ref{ex:internal} on page \pageref{ex:internal} shows an
+example that use the internal commands. As you can see, the
+\cs{csname}--\cs{endcsname}-input is quite powerful: You can
+construct a command with the help of other (expandable) commands or
+use the value of counters.
+
+\minisec{Warning!} \verb+\csname whatever\endcsname+ doesn't give an
+error if the command isn't defined. It simply defines \cs{whatever}
+as \cs{relax} and then executes it. So it is easy to overlook typing
+errors -- and then to wonder why one doesn't get the expected output.
+
+
+\begin{LTXexample}[pos=t,
+                   width=\textwidth,
+                   float,caption=Using the internal commands,
+                   label=ex:internal,
+                   language=TeX,
+                   texcs={mainline,figsymbol,xskakgameAlastmovenr,
+                          xskakgameinitmovenr,xskakgameinitmovenr,
+                          newchessgame,xskakgameinitmovenr,chessboard},
+                   texcsstyle=*\color{blue},
+                   texcs={[2]{ifthenelse,boolean,csname,endcsname,the,value,numexpr,relax}},
+                   texcsstyle={*[2]{\color{red}}}]
+ \begin{multicols}{2}
+ \minisec{Game 1}\newchessgame[id=gameA]%
+ \mainline{1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5.Bxc6 bxc6}
+
+ \minisec{Game 2}\newchessgame[id=game,restorefen=example,moveid=15w]%
+ \mainline{15. c8=Q+ Ke7 16. Rd1}
+
+ \minisec{Comments}\setcounter{enumi}{1}%
+ In the first game, white moved at first a
+ \figsymbol{\csname Xskak.gameA.\the\value{enumi}.w.piecechar\endcsname},
+ then a \figsymbol{%
+  \csname Xskak.gameA.\the\numexpr\the\value{enumi}+1\relax.w.piecechar\endcsname}
+ and a \figsymbol{%
+  \csname Xskak.gameA.\the\numexpr\the\value{enumi}+2\relax.w.piecechar\endcsname}.
+ In his last move black took a
+ \figsymbol{\csname Xskak.gameA.\XskakgameAlastmovenr.b.lostpiecechar\endcsname},
+ white took a \figsymbol{\csname
+ Xskak.gameA.5.w.lostpiecechar\endcsname}.
+
+ In the second game the second move of white was
+ \figsymbol{%
+  \csname Xskak.game.\the\numexpr \Xskakgameinitmovenr +1\relax.w.piece\endcsname}%
+ \csname Xskak.game.16.w.movefrom\endcsname--%
+ \csname Xskak.game.16.w.moveto\endcsname.
+
+ The position in the first game after the third move of black was:
+
+ \chessboard[tinyboard, setfen=\csname Xskak.gameA.3.b.nextfen\endcsname]
+ The fourth move of white was\csname
+ Xskak.gameA.4.w.castling\endcsname
+ \ifthenelse{\boolean{xskakboolcastling}}{}{not} a castling move.
+ \end{multicols}
+\end{LTXexample}
+
+\clearpage
+
+
+\section{Retrieving the stored information}
+
+\subsection{Setting the variables}
+
+\DescribeMacro{\xskakset}%
+It should be clear that to retrieve the information you must tell
+\packagename{xskak} the game and the move for which you want to get
+data. This is done with \cs{xskakset}\keymarg{} which will set the
+variables \meta{GameId} and/or \meta{MoveId} to the values listed in
+the \keylist.
+
+Some possible\footnote{More keys are described later.} keys are:
+\begin{description}
+\item[\key{id=}\meta{name}]
+    \index{xskakset=\verb!*+\xskakset+>id (key)}%
+    \index{id (\texttt{\textbackslash xskakset} key)}%
+The key will set/change globally the active game identification, the
+\meta{GameId}. This will also affect the storing of the following
+moves! So if you change the \meta{GameId} in the middle of the
+parsing of a game, don't forget to reset it to the old value before
+continuing!
+
+
+\item[\key{movenr=}\meta{number}, \key{player=}\meta{«w» or «b»},
+\key{moveid=}\meta{number + «w» or «b»}]
+    \index{xskakset=\verb!*+\xskakset+>movenr (key)}%
+    \index{movenr (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>player (key)}%
+    \index{player (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>moveid (key)}%
+    \index{moveid (\texttt{\textbackslash xskakset} key)}%
+    The keys will set the move number and the player. The values are global but
+    the values of \key{movenr} and \key{player} are not expanded
+    directly while the value of \key{moveid} is. The keys change only
+    the internal commands that are used to retrieve information, the
+    move counter and the boolean of \cs{mainline} are not affected by this keys.
+
+\item[\key{stepmoveid=}\meta{number}]
+    \index{xskakset=\verb!*+\xskakset+>stepmoveid (key)}%
+    \index{stepmoveid (\texttt{\textbackslash xskakset} key)}%
+\key{stepmoveid} picks up the current value of the move variables of
+\packagename{xskak} and «adds» the given number of halfmoves. When no
+number is given the value 1 is used and this gives the next move.
+E.g. if the current move is \texttt{10w} and you use
+\texttt{stepmoveid=3} then you get \texttt{11b}. Negative numbers can
+be used, if this results in a move number smaller than 1, a warning
+is given but not an error: This gives you the possibility e.g. in
+loops to handle the case yourself.
+
+
+
+\item[\key{lastmoveid=}\meta{GameId}]
+    \index{xskakset=\verb!*+\xskakset+>lastmoveid (key)}%
+    \index{lastmoveid (\texttt{\textbackslash xskakset} key)}%
+    This key sets the \packagename{xskak} move identification
+    commands
+    to the number/color of the last move
+    of the game \meta{GameId}. \meta{GameId} is optional.
+    \texttt{lastmoveid=A} ist equivalent to
+    \texttt{id=A,lastmoveid}.
+
+
+
+
+\item[\key{tag=}\meta{name}, \key{ref\ldots=}\meta{name}]
+     \index{xskakset=\verb!*+\xskakset+>tag (key)}%
+     \index{tag (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refid (key)}%
+     \index{refid (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refnextmoveid(key)}%
+     \index{refnextmoveid (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refpastmoveid(key)}%
+     \index{refpastmoveid (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refpastmovenr (key)}%
+     \index{refpastmovenr (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refpastplayer (key)}%
+     \index{refpastplayer (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refnextmovenr (key)}%
+     \index{refnextmovenr (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refnextplayer (key)}%
+     \index{refnextplayer (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refpast (key)}%
+     \index{refpast (\texttt{\textbackslash xskakset} key)}%
+     \index{xskakset=\verb!*+\xskakset+>refnext (key)}%
+     \index{refnext (\texttt{\textbackslash xskakset} key)}%
+
+
+\key{tag} saves the current values of \meta{GameId} and the move in
+internal commands. They can then later be retrieved by the keys of
+type \key{ref}.
+
+For more information on the labeling and referencing see section
+\ref{sec:labeling}.
+
+\item[\key{defaultid=}\meta{name}]
+     \index{xskakset=\verb!*+\xskakset+>defaultid (key)}%
+     \index{defaultid (\texttt{\textbackslash xskakset} key)}%
+     With this key you can change the default game identification.
+     The change is global.
+
+\begin{LTXexample}
+ \setcounter{gamecounter}{4}
+ \xskakset{defaultid=game\Alph{gamecounter}}
+
+ \newchessgame[white=John]
+ \mainline{1. e4 e5}
+
+ \stepcounter{gamecounter}
+ \newchessgame[white=Jack]
+ \mainline{1. d4 d5}
+
+ The white players were \XskakgameDwhite\ and \XskakgameEwhite.
+\end{LTXexample}
+
+
+\item[\key{defaultmovenr=}\meta{number},
+      \key{defaultplayer=}\meta{«w» or «b»},]
+\item[\key{defaultmoveid=}\meta{number}\meta{«w» or «b»}]
+    \index{xskakset=\verb!*+\xskakset+>defaultmoveid (key)}%
+    \index{defaultmoveid (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>defaultmovenr (key)}%
+    \index{defaultmovenr (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>defaultplayer (key)}%
+    \index{defaultplayer (\texttt{\textbackslash xskakset} key)}%
+     With this keys you can change the default start move for the
+     subsequent games. The change is global.
+
+\item[\key{defaultfen=}\meta{FEN}]
+    \index{xskakset=\verb!*+\xskakset+>defaultfen (key)}%
+    \index{defaultfen (\texttt{\textbackslash xskakset} key)}%
+    As a default \cs{newchessgame} sets the start position to a new
+    game. You can change this default with this key. The change is
+    global.
+
+\end{description}
+
+
+
+\subsection{Getting the game information}
+
+\DescribeMacro{\xskakgetgame}%
+With \cs{xskakgetgame}\marg{type} you can retrieve game data
+for the currently active \meta{GameId} (which can be set/changed with
+the commands \cs{newchessgame}, \cs{resumechessgame} and
+\cs{xskakset}).
+
+\begin{LTXexample}[width=0.5\textwidth]
+ \newchessgame[id=A,white=John White,
+               black=Jack Black,
+               result=1--0]
+ \minisec{\xskakgetgame{white}--
+          \xskakgetgame{black}}
+ \mainline{1.e4 e5  2.Bc4 Nc6 3. Qh5 Nf6 4.Qxf7#}
+ \mbox{\xskakgetgame{result}}
+
+
+ \newchessgame[id=B,
+               white=Harry Red,
+               black=Tom Green,
+               result=0--1,
+               setwhite={kd1},
+               addblack={kd3,rc5}]
+ \chessboard[setfen={\xskakgetgame{initfen}}]
+ \minisec{\xskakgetgame{white} --
+          \xskakgetgame{black}}
+ \mainline{1. Ke1 Rf5 2. Kd1 Rf1#} \mbox{\xskakgetgame{result}}
+\end{LTXexample}
+
+It is also possible to get the stored information by simply calling
+the command\\ \cs{xskak}\meta{gameid}\meta{type} (if \meta{gameid}
+consists of letters).
+
+\begin{LTXexample}[width=0.5\textwidth]
+ \newchessgame[id=A,white=John White,
+               black=Jack Black, result=1--0]
+ \minisec{\XskakAwhite\ -- \XskakAblack}
+ \mainline{1.e4 e5  2.Bc4 Nc6 3. Qh5 Nf6 4.Qxf7#}
+ \mbox{\XskakAresult}
+ \newchessgame[id=B,white=Harry Red,
+               black=Tom Green, result=0--1]
+ \minisec{\XskakBwhite\ -- \XskakBblack}
+ \mainline{1.f3 e5  2.g4 Qh4#}
+ \mbox{\XskakBresult}
+
+ \minisec{List of Results}
+ \begin{tabular}[t]{l@{\,--\,}lr}
+ \XskakAwhite&\XskakAblack&\XskakAresult\\
+ \XskakBwhite&\XskakBblack&\XskakBresult
+ \end{tabular}
+
+ \minisec{Final positions}
+ \chessboard[tinyboard,lastmoveid=A,
+          setfen=\xskakget{nextfen}]
+ \chessboard[tinyboard,lastmoveid=B,
+          setfen=\xskakget{nextfen}]
+\end{LTXexample}
+
+%If \meta{gameid} contains non-letter chars (e.g. a number) you must
+%use\\
+%\cs{csname}\texttt{~xskak}\meta{gameid}\meta{type}\cs{endcsname}.
+%
+%If the \meta{gameid} or the \meta{type} are stored in commands you
+%can use this commands in \cs{csname}\texttt{\ldots}\cs{endcsname}:
+%\cs{csname}\texttt{~xskak}\cs{mygameid}\cs{mygametype}\cs{endcsname}
+
+
+
+\subsection{Getting the move information}
+
+Move data are bit more difficult as they depend on more
+variables.
+
+At first, you can naturally use  a
+\cs{csname}\texttt{\ldots}\cs{endcsname}:\\
+\cs{csname}\texttt{~xskak}.\meta{gameid}.\meta{movenr}.\meta{player}.\meta{type}\cs{endcsname}.
+
+
+But normally you should use a
+\cs{xskakset}/\cs{xskakget}-combination%
+\footnote{I had to implement the retrieving as a two-step-method to
+ be able to use the retrieving command in the \keylist of
+\cs{chessboard}. As the values are expanded during
+ the processing complicated commands which use internally \cs{def}
+ and \cs{setkeys} can not be used as values.}.
+
+
+\DescribeMacro{\xskakget}%
+\cs{xskakget}\marg{type} will pick up the current values of the
+variables for the \meta{GameId} and the \meta{MoveId} and then
+retrieve/print the content of  type \meta{type}.
+
+    \index{Move data >movenr (virtual type)}%
+    \index{movenr (virtual move data type)}%
+    \index{Move data >moveid (virtual type)}%
+    \index{moveid (virtual move data type)}%
+    \index{Move data >player (virtual type)}%
+    \index{player (virtual move data type)}%
+\meta{type} can be any of the types described in \ref{sec:movedata}
+and additionally the three virtual types \textsf{movenr},
+\textsf{player} and \textsf{moveid} can be used which will output the
+current move identification. This allows easier retrieving of the
+current value of the internal variables e.g. in loops and tests.
+
+\textbf{Attention:} The move variables are not changed by the parsing
+command of \skaksty. And they are not stored like the other types --
+you can't retrieve them with a
+\cs{csname}\texttt{\ldots}\cs{endcsname} construction.
+
+\begin{LTXexample}
+\newchessgame[moveid=10b]
+\mainline{10... e5}
+
+The game started with move \xskakget{moveid}.
+
+\xskakset{moveid=5w}
+Now the moveid has value \xskakget{movenr}\xskakget{player}.
+\end{LTXexample}
+
+
+
+\subsection{Using the data with \texttt{\textbackslash chessboard}}
+
+The move data can naturally be used with \cs{chessboard} e.g. to
+highlight the last move with an arrow. The  \meta{MoveId} you want to
+refer to can be set before the board with \cs{xskakset} but if this
+were the sole possibility this would mean that you couldn't get data
+from other moves. So I defined a bunch of new keys for
+\cs{chessboard} (and changed some existing keys) which allows to
+retrieve during building the board all available move datas. The most
+important ones are keys that tells \cs{chessboard} the \meta{GameId}
+and the \meta{MoveId} for which you want to retrieve datas:
+
+\begin{description}
+\item[\key{id=}\meta{name}]
+    \index{chessboard=\verb!*+\chessboard+>id (key)}%
+    \index{movenr (\texttt{\textbackslash chessboard} key)}%
+    Like the other \key{id}-keys this one sets the variable  that
+    identifies the game. But setting this key will \emph{not} affect
+    the value of the game identification outside the board, any
+    change is local to the board.
+
+\textbf{Attention:} Setting this key will \emph{not} change the
+default position shown by \cs{chessboard}. This is always the
+«current» game.
+
+\item[\key{movenr=}\meta{number}, \key{player=}\meta{«w» or «b»}, \key{moveid=}\meta{number + «w» or «b»}]
+    \index{chessboard=\verb!*+\chessboard+>movenr (key)}%
+    \index{movenr (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>player (key)}%
+    \index{player (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>moveid (key)}%
+    \index{moveid (\texttt{\textbackslash chessboard} key)}%
+    This keys stores the number and player for which you want to retrieve
+    move related information. Again any setting is local to the board.
+
+
+
+\item[\key{stepmoveid=}\meta{number}]
+    \index{xskakset=\verb!*+\chessboard+>stepmoveid (key)}%
+    \index{stepmoveid (\texttt{\textbackslash chessboard} key)}%
+Like the similar key of \cs{xskakset} \key{stepmoveid} picks up the
+current value of the move variables of \packagename{xskak} and «adds»
+the given number of halfmoves. But again when you use the key in the
+argument of \cs{chessboard} the change is local to the board.
+
+\textbf{Attention:} If you set the \meta{MoveId} with the above keys
+to a value «outside» the game and then try to retrieve a data you
+will probably get horrible errors.
+
+
+\item[\key{lastmoveid=}\meta{gameid}]
+   \index{chessboard=\verb!*+\chessboard+>lastmoveid (key)}%
+   \index{lastmoveid (\texttt{\textbackslash chessboard} key)}
+The usual case is probably that you want to use the (currently) last
+move of a game. This can be done with this key. The (optional) value
+lets you specify a game identification. \texttt{lastmoveid=A} ist
+equivalent to \texttt{id=A,lastmoveid}. Again the setting is local to
+the board.
+
+\end{description}
+
+    \index{xskakget=\verb!*+\xskakget+ (with \texttt{\textbackslash chessboard})}%
+After you have set the move variables, you can use the command
+\cs{xskakget}\marg{type} described above used without
+problems\footnote{I hope but I haven't tested any possible usage.}
+inside \cs{chessboard} as long as the value expands to something the
+keys can handle (\key{markmove} e.g. will not like it if you ask it
+to process a fen).
+
+\begin{LTXexample}[width=0.4\textwidth]
+ \newchessgame[id=A,white=John White,
+               black=Jack Black, result=1--0]
+ \mainline{1.e4 e5  2.Bc4 Nc6 3. Qh5 Nf6 4.Qxf7#}
+
+ \newchessgame % a game between A and the board
+ \mainline{1.e4}
+
+ \setchessboard{shortenend=5pt,color=red}%
+ \chessboard[lastmoveid=A,setfen=\xskakget{nextfen},
+  pgfstyle=border,color=red,
+  markfields={\xskakget{moveto},\xskakget{movefrom}},
+  pgfstyle=straightmove,
+  markmove=\xskakget{movefrom}-\xskakget{moveto}]
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=0.4\textwidth,escapechar=/]
+ \newchessgame[id=A]
+ \mainline{1.e4 e5  2.Bc4 Nc6 3. Qh5 Nf6 4.Qxf7#}
+
+ \xskakget{moveid}% to show /\meta{MoveId} is still 1w/
+
+ \setchessboard{shortenend=5pt,color=red}%
+ \chessboard[lastmoveid=A,setfen=\xskakget{nextfen},
+  moveid=1w,
+  pgfstyle=straightmove,
+  markmove=\xskakget{movefrom}-\xskakget{moveto},
+  stepmoveid=2,color=green,
+  markmove=\xskakget{movefrom}-\xskakget{moveto},
+  stepmoveid=2,color=blue,
+  markmove=\xskakget{movefrom}-\xskakget{moveto},
+  stepmoveid=2,color=yellow,
+  markmove=\xskakget{movefrom}-\xskakget{moveto}]
+
+\xskakget{moveid}% to show that /\meta{MoveId} is again 1w/
+\end{LTXexample}
+
+
+\subsection{Labeling a game}\label{sec:labeling}
+
+It is a bit tedious to have to remember the number and the color of
+the moves when you want to start or to continue a game, or for which
+you want to draw a diagram or retrieve another move information. So
+there is a sort of labeling system. In difference to the labeling in
+normal \LaTeX\ it doesn't write the values to auxiliary files. That
+means that you can't reference labels which come later in the
+document (at my opinion this would lead to chaos anyway).
+
+
+
+To set a label you use the command \cs{xskakset} with the key
+\key{tag}\footnote{The name «label» is used by \cs{chessboard} to set
+the labels of the boards.}.%
+   \index{xskakset=\verb!*+\xskakset+>tag (key)}%
+   \index{tag (\texttt{\textbackslash xskakset} key)}
+It saves the current value of the move counter (the
+\packagename{skak} counter!), the value of the (\packagename{skak}!)
+boolean that holds the player and the \meta{GameId}. If you haven't
+started any game yet (more precisely: if the move counter has value
+0) then  \xskak will issue a warning and do nothing.
+
+You can set the tag between two \cs{mainline} (or \cs{hidemoves})
+commands, but it works also if you put them directly in the argument
+of \cs{mainline}:
+
+\begin{LTXexample}
+ \newchessgame%
+ \mainline{1. e4 e5\xskakset{tag=A}
+           2. Nf3\xskakset{tag=B} Nc6
+           3. Bb5 Nf6
+           4. O-O Nxe4
+           5.Bxc6 bxc6}
+
+\end{LTXexample}
+
+
+The saved values can be retrieved with various keys of type \key{ref}
+(e.g. \key{refpastmoveid}, \key{refnextplayer}), or by the command
+\cs{xskakget}.
+
+The label is set in most cases between two moves. There probably will
+be cases when you need the \meta{MoveId} of the move \emph{before}
+the tag e.g. to show the position or to comment on the last move, and
+there will be cases when you will need the \meta{MoveId} of the move
+\emph{after} the tag e.g. to continue the game. So there are ref-keys
+for both cases.
+
+\subsubsection{Retrieving the tagged values with \texttt{\textbackslash
+xskakget}}
+
+Retrieving the \meta{GameId} and/or \meta{MoveId} values stored by a
+\key{tag} is again a more-than-one-step procedure: At first you must
+tell \packagename{xskak} the tag name you want to use, and then use a
+\cs{xskakget}\marg{list of ref types}, where \meta{ref type} is one
+of the following keywords: {\ttfamily refid, refpastmoveid,
+refnextmoveid, refpastmovenr, refnextmovenr, refpastplayer,
+refnextplayer}.
+
+
+    \index{resumechessgame=\verb!*+\resumechessgame+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash resumechessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash newchessgame} key)}%
+    \index{xskakset=\verb!*+\xskakset+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash xskakloop} key)}%
+    \index{printchessgame=\verb!*+\xskakloop+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash printchessgame} key)}%
+    \index{chessboard=\verb!*+\chessboard+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash chessboard} key)}%
+Setting the tag name is done with the key \key{reftag}, which you can
+use with all commands that accept the key \key{id}. If you use the
+key in the optional argument of \cs{chessboard} it will change the
+tag name locally for the board. In all other cases the tag name is
+set globally.
+
+\begin{LTXexample}[escapechar=/]
+ \newchessgame[id=new] % to set a new id
+ \chessboard[
+   reftag=B,%from previous example
+   id=\xskakget{refid},
+    %retrieves and sets the /\meta{Gameid}/ from tag B
+   moveid=\xskakget{refnextmoveid},
+    %retrieves and sets the /\meta{Moveid}/ from tag B
+   setfen=\xskakget{pastfen}]
+\end{LTXexample}
+
+
+\subsubsection{The \key{ref}-keys}
+
+As the more-step-procedure to use the tags is a bit longuish there
+exist keys that shorten the procedure. This keys too work in the
+arguments of all commands that can also handle the correspondant keys
+\key{id}, \key{moveid} etc. The effect will be identical to setting
+the values directly: Keys used in the optional argument of
+\cs{chessboard} will set their values only local to the board, in the
+other cases the values are set globally.
+
+\begin{description}
+\item[\key{refid=}\meta{tag}]
+    \index{resumechessgame=\verb!*+\resumechessgame+>refid (key)}%
+    \index{refid (\texttt{\textbackslash resumechessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refid (key)}%
+    \index{refid (\texttt{\textbackslash newchessgame} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refid (key)}%
+    \index{refid (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>refid (key)}%
+    \index{refid (\texttt{\textbackslash xskakloop} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refid (key)}%
+    \index{refid (\texttt{\textbackslash chessboard} key)}%
+
+This key will set the \meta{GameId} to the value stored in the tag.
+It is a shortcut for\\
+\key{reftag=}\meta{tag},\key{id=}\cs{xskakget}verb+{refid}+
+
+
+\item[\key{refpastmoveid=}\meta{tag}, \key{refpastmovenr=}\meta{tag}, \key{refpastplayer=}\meta{tag} ]
+    \index{resumechessgame=\verb!*+\resumechessgame+>refpastmoveid (key)}%
+    \index{refpastmoveid (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>refpastmovenr (key)}%
+    \index{refpastmovenr (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>refpastplayer (key)}%
+    \index{refpastplayer (\texttt{\textbackslash resumechessgame} key)}%
+  %
+    \index{newchessgame=\verb!*+\newchessgame+>refpastmovenr (key)}%
+    \index{refpastmovenr (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refpastmoveid (key)}%
+    \index{refpastmoveid (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refpastplayer (key)}%
+    \index{refpastplayer (\texttt{\textbackslash newchessgame} key)}%
+    %
+    \index{xskakset=\verb!*+\xskakset+>refpastmoveid (key)}%
+    \index{refpastmoveid (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refpastmovenr (key)}%
+    \index{refpastmovenr (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refpastplayer (key)}%
+    \index{refpastplayer (\texttt{\textbackslash xskakset} key)}%
+    %
+    \index{chessboard=\verb!*+\chessboard+>refpastmoveid (key)}%
+    \index{refpastmoveid (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refpastmovenr (key)}%
+    \index{refpastmovenr (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refpastplayer (key)}%
+    \index{refpastplayer (\texttt{\textbackslash chessboard} key)}%
+
+
+This keys will set the respective move information to the value of
+the move before the tag. If the tag is before the move 1w, then the
+value 0b is used.
+
+\item[\key{refnextmoveid=}\meta{tag}, \key{refnextmovenr=}\meta{tag}, \key{refnextplayer=}\meta{tag} ]
+    \index{resumechessgame=\verb!*+\resumechessgame+>refnextmoveid (key)}%
+    \index{refnextmoveid (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>refnextmovenr (key)}%
+    \index{refnextmovenr (\texttt{\textbackslash resumechessgame} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>refnextplayer (key)}%
+    \index{refnextplayer (\texttt{\textbackslash resumechessgame} key)}%
+  %
+    \index{newchessgame=\verb!*+\newchessgame+>refnextmovenr (key)}%
+    \index{refnextmovenr (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refnextmoveid (key)}%
+    \index{refnextmoveid (\texttt{\textbackslash newchessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refnextplayer (key)}%
+    \index{refnextplayer (\texttt{\textbackslash newchessgame} key)}%
+    %
+    \index{xskakset=\verb!*+\xskakset+>refnextmoveid (key)}%
+    \index{refnextmoveid (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refnextmovenr (key)}%
+    \index{refnextmovenr (\texttt{\textbackslash xskakset} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refnextplayer (key)}%
+    \index{refnextplayer (\texttt{\textbackslash xskakset} key)}%
+    %
+    \index{chessboard=\verb!*+\chessboard+>refnextmoveid (key)}%
+    \index{refnextmoveid (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refnextmovenr (key)}%
+    \index{refnextmovenr (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refnextplayer (key)}%
+    \index{refnextplayer (\texttt{\textbackslash chessboard} key)}%
+
+
+This keys will set the respective move information to the value of
+the move after the tag.
+
+\item[\key{refpast=}\meta{tag}, \key{refnext=}\meta{tag}]
+    \index{resumechessgame=\verb!*+\resumechessgame+>refpast (key)}%
+    \index{refpast (\texttt{\textbackslash resumechessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refpast (key)}%
+    \index{refpast (\texttt{\textbackslash newchessgame} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refpast (key)}%
+    \index{refpast (\texttt{\textbackslash xskakset} key)}%
+    \index{resumechessgame=\verb!*+\resumechessgame+>refnext (key)}%
+    \index{refnext (\texttt{\textbackslash resumechessgame} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>refnext (key)}%
+    \index{refnext (\texttt{\textbackslash newchessgame} key)}%
+    \index{xskakset=\verb!*+\xskakset+>refnext (key)}%
+    \index{refnext (\texttt{\textbackslash xskakset} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refpast (key)}%
+    \index{refpast (\texttt{\textbackslash chessboard} key)}%
+    \index{chessboard=\verb!*+\chessboard+>refnext (key)}%
+    \index{refnext (\texttt{\textbackslash chessboard} key)}%
+
+
+This keys will set the \meta{GameId} and the \meta{MoveId} in one go.
+E.g. \key{refpast} is a shortcut for\\
+\key{reftag=}\meta{tag},\key{id=}\cs{xskakget}verb+{refid}+,\key{moveid=}\cs{xskakget}verb+{refpastmoveid}+
+
+
+
+
+\item[\key{reffen=}\meta{tag}]
+    \index{chessboard=\verb!*+\chessboard+>reffen (key)}%
+    \index{reffen (\texttt{\textbackslash chessboard} key)}%
+    \index{newchessgame=\verb!*+\newchessgame+>reffen (key)}%
+    \index{reffen (\texttt{\textbackslash newchessgame} key)}%
+
+This is a \cs{chessboard} key. It will add the position at the tag on
+the board, its effect is  identical to using the key {\ttfamily
+addfen =}\meta{Position at tag} described in the documentation of
+\pchessboard. So be aware that it really only places  pieces on the
+board. It will not change the \meta{GameId} nor the \meta{MoveId} or
+the move counter of \packagename{skak}. So it is quite possible to
+use a position where black should move next to start a game with
+white to move.
+
+
+\begin{LTXexample}
+ \newchessgame[id=new]% to set a new id
+ \chessboard[reffen=B]
+\end{LTXexample}
+
+
+
+
+\begin{LTXexample}
+ \newchessgame[id=A]%
+ \mainline{1.e4 e5 2. Nf3\xskakset{tag=C} Nc6
+ 3. Bb5 Nf6 4. O-O Nxe4 5.Bxc6 bxc6}
+
+
+ \newchessgame[id=B,reffen=C]
+ \mainline{1. Nc3}
+
+ \chessboard
+
+ \chessboard[reffen=C,
+             markstyle=circle,
+             color=red,
+             %from game B:
+             markfield=\xskakget{movefrom},
+             refpast=C,
+             color=green,
+             %from game A:
+             markfield=\xskakget{movefrom}]
+\end{LTXexample}
+\end{description}
+
+\section{Looping}
+
+Looping with the \cs{whiledo} command of the package
+\packagename{ifthen} is not very difficult. But to adjust to the
+special numbering of chessmoves (1w, 1b, 2w, 2b, 3w \ldots) one needs
+some special commands to step through the moves and test for the end
+of the loop.
+
+\DescribeMacro{\xskaktestmoveid}%
+Stepping can be done with the key \key{stepmoveid} described
+earlier.\\ \cs{xskaktestmoveid}\marg{movenr}\marg{player} is a test
+(defined with the help of package \packagename{xifthen}) which you
+can use in the first argument of \cs{whiledo}. It will give true if
+the move is in the current game.
+
+\begin{LTXexample}
+ \newchessgame[id=A]
+ \mainline{1. e4 e5 2. Nf3 Nf6}
+
+ \newchessgame[id=B]
+ (a second game)
+
+ Reprinting the first game:
+ \xskakset{id=A,
+        moveid=\xskakgetgame{initmoveid}}
+ \whiledo{\xskaktestmoveid
+   {\xskakget{movenr}}{\xskakget{player}}}
+  {\ifthenelse%
+    {\equal{\xskakget{player}}{w}}
+    { \xskakget{movenr}.\,}
+    { }%
+    \xskakget{lan}%
+    \xskakset{stepmoveid}}
+
+ Reprinting only the black moves:
+ \xskakset{%
+   id=A,
+   moveid=\xskakgetgame{initmoveid},stepmoveid}
+ \whiledo{\xskaktestmoveid
+    {\xskakget{movenr}}{\xskakget{player}}}
+   { \xskakget{lan}%
+    \xskakset{stepmoveid=2}}
+\end{LTXexample}
+
+
+\DescribeMacro{\xskakloop}%
+\cs{xskakloop}\keyoarg\marg{code} is a wrapper command for such a
+\cs{whiledo} loop.
+
+The possible keys are:
+
+\begin{description}
+\item[\key{id=}\meta{string}]
+   \index{xskakloop=\verb!*+\xskakloop+>id (key)}%
+   \index{id (\texttt{\textbackslash xskakloop} key)}%
+   Which sets the game identification. The setting is global.
+
+\item[\key{initmovenr=}\meta{number}, \key{initplayer=}\meta{«w» or «b»},
+\key{initmoveid=}\meta{number + «w» or «b»}]
+    \index{xskakloop=\verb!*+\xskakloop+>initmovenr (key)}%
+    \index{initmovenr (\texttt{\textbackslash xskakloop} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>initplayer (key)}%
+    \index{initplayer (\texttt{\textbackslash xskakloop} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>initmoveid (key)}%
+    \index{initmoveid (\texttt{\textbackslash xskakloop} key)}%
+   This sets the move the loop should start with. Default is the
+   first move of the game.
+
+\item[\key{stopmovenr =}\meta{number}, \key{stopplayer =}\meta{«w» or «b»},
+\key{stopmoveid=}\meta{number + «w» or «b»}]
+    \index{xskakloop=\verb!*+\xskakloop+>stopmovenr (key)}%
+    \index{stopmovenr (\texttt{\textbackslash xskakloop} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>stopplayer (key)}%
+    \index{stopplayer (\texttt{\textbackslash xskakloop} key)}%
+    \index{xskakloop=\verb!*+\xskakloop+>stopmoveid (key)}%
+    \index{stopmoveid (\texttt{\textbackslash xskakloop} key)}%
+   This sets the move where the loop should stop. Default is the
+   last move of the game.
+
+\item[\key{step=}\meta{number}]
+   \index{xskakloop=\verb!*+\xskakloop+>step (key)}%
+   \index{step (\texttt{\textbackslash xskakloop} key)}%
+   This sets the length of the steps of the loop. The number gives the number of
+   halfmoves. Default is one.
+
+
+\item[\key{showlast=}\meta{true|false}]
+   \index{xskakloop=\verb!*+\xskakloop+>showlast (key)}%
+   \index{showlast (\texttt{\textbackslash xskakloop} key)}%
+   When you are using the key \key{step} with a number unequal to
+   one, it is possible that the last move (possibly set by
+   \key{stopmoveid}) is left out. With the key \key{showlast} you can force \cs{xskakloop} to process
+   the code for the last move.
+\end{description}
+
+
+\begin{LTXexample}[pos=t,width=\textwidth]
+ \newchessgame
+ \mainline{%
+ 1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nge2 O-O 6.Ng3 c6 7.Be2 a6 8.a4
+ a5 9.h4 h5 10.Be3 Na6 11.f3 e5 12.d5 Nd7 13.Nf1 Ndc5 14.Nd2 Qb6
+ 15.Qb1 Nb4 16.Nb3 Ncd3+ 17.Kd2 Qxe3+}
+
+ \xskakloop[step=6,showlast]{%
+  \begin{tabular}{c}
+   \chessboard[tinyboard,
+               setfen=\xskakget{nextfen}]
+   \\
+   \xskakget{opennr}\xskakget{lan}%
+  \end{tabular}\quad}%
+\end{LTXexample}
+
+With the help of the package \packagename{animate} and \cs{xskakloop}
+you can make animated boards:\mynobreakpar
+\begingroup
+ \setchessboard{boardfontsize=0.8cm,shortenend=5pt, margin=false}%
+ \setboardfontencoding{LSBC4}%
+ \newskaklanguage{german}{KDTLSB}\skaklanguage[german]%
+ %
+ \newcommand\getmovestyle[1]{%
+  \ifthenelse
+    {\equal{#1}{N}}%knight move
+    {\def\mymovestyle{[clockwise=false,style=knight]curvemove}}
+    {\ifthenelse
+      {\equal{#1}{}}% castling
+      {\def\mymovestyle{curvemove}}
+      {\def\mymovestyle{straightmove}}}}%
+ %
+ \newchessgame[white=Paethz,black=Dirr,result=0-1,id=anim]%
+ \hidemoves{%
+ 1.d4 Sf6 2.c4 g6 3.Sc3 Lg7 4.e4 d6 5.Sge2 O-O
+ 6.Sg3 c6 7.Le2 a6 8.a4 a5 9.h4 h5 10.Le3 Sa6
+ 11.f3 e5 12.d5 Sd7 13.Sf1 Sdc5 14.Sd2 Db6
+ 15.Db1 Sb4 16.Sb3 Scd3+ 17.Kd2 Dxe3+}%
+ %
+ \unitlength0.8cm\relax
+ \begin{animateinline}[autoplay,loop,controls]{0.5}%
+ \begin{picture}(11,11)
+ \put(1.5,1.5){\chessboard[setfen=\xskakgetgame{initfen}]}%
+ \end{picture}
+ \newframe
+ \xskakloop{%
+  \getmovestyle{\xskakget{piecechar}}%
+  \begin{picture}(11,11)
+  \put(1.5,1.5){%
+   \chessboard[pgfstyle=\mymovestyle, color=blue,
+               pgfshortenend=0.3em,arrow=to,
+               markmoves=\xskakget{move},
+               coloremph,piececolor=blue,
+               emphfields={\xskakget{moveto}},
+               setfen=\xskakget{nextfen}]}%
+  \end{picture}%
+   \newframe}%
+ \begin{picture}(11,11)
+ \put(1.5,1.5){\chessboard[setfen=\xskakgetgame{lastfen}]}%
+ \end{picture}
+ \end{animateinline}
+\endgroup
+
+\bigskip
+The  board was made with the following code:
+
+\begin{lstlisting}
+ \setchessboard{boardfontsize=0.8cm,shortenend=5pt, margin=false}%
+ \setboardfontencoding{LSBC4}%
+ \newskaklanguage{german}{KDTLSB}\skaklanguage[german]%
+ %
+ \newcommand\getmovestyle[1]{%
+  \ifthenelse
+    {\equal{#1}{N}}%knight move
+    {\def\mymovestyle{[clockwise=false,style=knight]curvemove}}
+    {\ifthenelse
+      {\equal{#1}{}}% castling
+      {\def\mymovestyle{curvemove}}
+      {\def\mymovestyle{straightmove}}}}%
+ %
+ \newchessgame[white=Paethz,black=Dirr,result=0-1,id=anim]%
+ \hidemoves{%
+ 1.d4 Sf6 2.c4 g6 3.Sc3 Lg7 4.e4 d6 5.Sge2 O-O
+ 6.Sg3 c6 7.Le2 a6 8.a4 a5 9.h4 h5 10.Le3 Sa6
+ 11.f3 e5 12.d5 Sd7 13.Sf1 Sdc5 14.Sd2 Db6
+ 15.Db1 Sb4 16.Sb3 Scd3+ 17.Kd2 Dxe3+}%
+ %
+ \unitlength0.8cm\relax
+ \begin{animateinline}[autoplay,loop,controls]{0.5}%
+ \begin{picture}(11,11)
+ \put(1.5,1.5){\chessboard[setfen=\xskakgetgame{initfen}]}%
+ \end{picture}
+ \newframe
+ \xskakloop{%
+  \getmovestyle{\xskakget{piecechar}}%
+  \begin{picture}(11,11)
+  \put(1.5,1.5){%
+   \chessboard[pgfstyle=\mymovestyle, color=blue,
+               pgfshortenend=0.3em,arrow=to,
+               markmoves=\xskakget{move},
+               coloremph,piececolor=blue,
+               emphfields={\xskakget{moveto}},
+               setfen=\xskakget{nextfen}]}%
+  \end{picture}%
+   \newframe}%
+ \begin{picture}(11,11)
+ \put(1.5,1.5){\chessboard[setfen=\xskakgetgame{lastfen}]}%
+ \end{picture}
+ \end{animateinline}
+\end{lstlisting}
+
+\section{Printing}
+\subsection{\texttt{\textbackslash longmoves} revisitated}\index{longmoves=\verb!*+\longmoves+>}%
+
+
+
+In the example on page \ref{ex:longmoves} I showed that the
+\cs{longmoves} of \skaksty doesn't work correctly. This is due to the
+asynchronous parsing and printing of the \packagename{skak}-engine
+(\packagename{skak} -- like \TeX~-- has sometimes to look a bit
+ahead). With \xskak the problem can be easily solved as it is now
+possible to retrieve information about previous moves. So \xskak
+redefines the internal commands to get \cs{longmoves} working.
+
+\textbf{Attention!} The new \cs{longmoves} command works only
+correctly if the internal engine parses the moves -- so {\em it
+doesn't work with \cs{variation}}. So starting with version 1.2
+\xskak forces \cs{variation} to use \cs{shortmoves}.
+
+
+The redefinition of \cs{longmoves} is done by first defining a
+printing command and then (re-)defining \cs{longmoves} such that the
+internal \cs{printmove} now use the new command. The listing below
+shows the code\footnote{The code doesn't show the complete truth. In
+the real code \cs{longmoves} also has to change the printing mode for
+\cs{printchessgame}. See \ref{sec:print}}. You can take it as a
+template for your own special printing commands.
+\cs{WhiteToMove}\marg{code for white}\marg{code for black} is a
+command of \skaksty that executes the first argument if white is to
+move and the second if its black turn. The main trick in the new
+printing command is to go back one halfmove. The new printing command
+defines only the printing format for the move itself as the number is
+printed by \skaksty at another place.
+
+\begin{lstlisting}
+\def\xskak@do@printmove@algebraic{%
+ \csname Xskak.\xskak@val@gameid.%
+        \WhiteToMove{\the\numexpr\the\c@move-1\relax}{\the\c@move}.%
+        \WhiteToMove{b}{w}.lan\endcsname
+ \csname Xskak.\xskak@val@gameid.%
+        \WhiteToMove{\the\numexpr\the\c@move-1\relax}{\the\c@move}.%
+        \WhiteToMove{b}{w}.comments\endcsname{}}
+
+\def\longmoves{%
+ \let\printmove=\xskak@do@printmove@algebraic}
+\end{lstlisting}
+
+\DescribeMacro{\xskakenpassanttext}%
+The new printing command inserts a test for enpassant moves. You can
+suppress it by redefining \cs{xskakenpassantext}.
+
+
+
+\begin{LTXexample}
+ \longmoves
+ \newchessgame
+ \mainline{1.e4 e5 2.Nf3 Nf6}
+
+ \newchessgame[restorefen=example]
+ \mainline{1. a4 bxa3!}
+
+ \renewcommand\xskakenpassanttext{}
+ \newchessgame[restorefen=example]
+ \mainline{1. a4 bxa3!}
+\end{LTXexample}
+
+
+
+\subsection{An user interface for styles}\label{sec:interface}
+
+To format a game \skaksty puts during parsing commands before and
+between the moves and the counter. You can see the names of this
+commands in the following example (the style \key{test} is a simple
+local style predefined by \packagename{xskak} which contains
+different tests. In level 1 and 2 it contains style items to show
+commands. The optional argument \texttt{[invar]} force \cs{variation}
+to use level 2).
+
+\begin{LTXexample}[pos=t,width=\textwidth,caption={The internal commands to format the output}]
+ \newchessgame
+ \xskakset{%
+  style=test,
+  level=1}
+ \color{blue}
+
+ \mainline{1.d4 Nf6 2.c4}
+
+ \mainline{2... g6 3.Nc3 Bg7 4.e4}
+
+ \mainline{4... O-O 5. Nf3 Re8}
+
+ \mainline{6. Be3 e6}
+
+ \variation[invar]{6... d6}
+\end{LTXexample}
+
+By judiciously (re-)definining the commands  \packagename{skak}
+inserts one can get almost every chess style one want.
+\packagename{skak} itself defines three examples that demonstrates
+the possibilities. These styles   can be chosen by the commands
+\cs{styleA}, \cs{styleB} and \cs{styleC}. The first two are inline
+styles, the third uses for \cs{mainline} a tabbing environment and
+switches to an inline style for \cs{variation}.  But this styles are
+really no more than examples. There is no user interface to change
+and define styles. And due to some dependencies between the
+predefined styles (\cs{styleB} is not only a stand-alone style but it
+is also used in the definition of \cs{styleC} for the variation
+level) adapting the styles is not easy.
+
+
+So I decided to define a real user interface to define styles and
+switch from one to another. The user interface supports an unlimited
+number of levels: Each style is a bundle of \emph{levels} where the
+look on each level is describe by a \emph{style item}\index{style
+item} and some optional  commands. Defining a style is therefore done
+in two steps:
+
+\begin{lstlisting}
+ % Define items:
+ \xskaknewstyleitem{A}{%
+  beforenumber={},
+  whiteopen={.\,},
+  ...}
+ \xskaknewstyleitem{B}{...}
+
+ %Define style
+ \xskaknewstyle[%
+  level=1,styleitem=A,
+    font=\bfseries, %add special command to level 1.
+  level=2,styleitem=A,
+  level=3,styleitem=B,
+  ...]{mystyle}
+ \end{lstlisting}
+
+
+\textbf{Attention!} The (almost) indefinite number of levels comes at
+a price: \cs{mainline}  and \cs{variation} no longer use
+automatically different styles. If a \cs{variation} should switch to
+a «variation style» you will have to use e.g. the option
+\texttt{[invar]} mentioned above (but you can define your own
+«variation» commands that do this switch). Please read section
+\ref{sec:usestyles} for more information.
+
+
+
+\subsubsection{Defining style items}
+
+\DescribeMacro{\xskaknewstyleitem}%
+With \cs{xskaknewstyleitem}\keyoarg\marg{item}  you define the style
+item \meta{item}. You can use the following keys:
+
+
+\begin{description}
+\item[\meta{command name}=\meta{commands}]
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>opencommands (key)}%
+   \index{opencommands (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>closecommands (key)}%
+   \index{closecommands (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>beforenumber (key)}%
+   \index{beforenumber (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>whiteopen (key)}%
+   \index{whiteopen (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>beforewhite (key)}%
+   \index{beforewhite (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>afterwhite (key)}%
+   \index{afterwhite (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>blackopen (key)}%
+   \index{blackopen (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>beforeblack (key)}%
+   \index{beforeblack (\texttt{\textbackslash xskaknewstyleitem} key)}%
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>afterblack (key)}%
+   \index{afterblack (\texttt{\textbackslash xskaknewstyleitem} key)}%
+
+{\raggedright where \meta{command name} is one of
+\\\texttt{opencommands}, \texttt{closecommands},
+\texttt{beforenumber}, \texttt{whiteopen}, \texttt{blackopen},
+\texttt{beforewhite}, \texttt{beforeblack}, \texttt{afterwhite},
+\texttt{afterblack}.\par}
+
+
+There are endless possibilities for the value \meta{commands} -- as
+there are endless possibilities to get more or less horrible errors.
+So I will give only some general advices for the definitions of style
+items:
+
+\begin{itemize}
+\item While processing \keylists\/ \packagename{xkeyval} strips spaces.
+So if you want to set one of the commands to a space use
+either commands like \verb+\ +, \verb+\space+ and \verb+~+, or
+protect the space by enough layers of braces.
+
+\item While processing \keylists\/ \packagename{xkeyval} strips also braces.
+If you need some grouping use \cs{begingroup} and \cs{endgroup} or
+protect the «real» braces by enough other braces.
+
+\item Use if possible switches (like \cs{bfseries}) instead of commands with arguments.
+
+\item Think about how you want to handle spaces at the start and the end of (bits of) a game
+or a variation. An input like
+ \verb+\mainline{1. e4}+\verb*+ \variation{1.e5}+ will already insert a
+ space so avoid to insert another one through e.g. \key{opencommands}.
+
+
+\item It is possible to open a group (with
+\cs{begingroup}) or a environment in one command  and close it in
+another command. If you do this check carefully that you have
+balanced groups in all four combinations of white/black opening and
+ending the game! Check also if everything works if you have only one
+move.
+
+\item You don't have to give a definition for all keys/commands.
+Unused keys are set to empty.
+
+\item If you want to force a style (or a style item) to use the long
+or the short algebraic notation you can add
+\cs{longmoves}/\hspace{0pt}\cs{shortmoves} to \key{opencommands}.
+    \index{longmoves=\verb!*+\longmoves+>}%
+    \index{shortmoves=\verb!*+\shortmoves+>}%
+\end{itemize}
+
+
+\item[\meta{beforeNAG}=\meta{commands}, \meta{beforecomment}=\meta{commands}]
+
+\packagename{xskak} puts around each NAG and comment given by
+\cs{xskakcomment} a group and before each NAG's and comment a
+formatting command. This commands are named \cs{xskak@beforeNAG} and
+\cs{xskak@beforecomment}. With the keys \key{beforeNAG} and
+\key{beforecomment} you can change this commands and so to some
+extend change the formatting of NAG and long comments (the styles of
+short comments like + or ! are not affected!). The last command in
+\meta{commands} can be a command that has one argument. NAG and the
+content of the comment will then be used as this argument. This makes
+is e.g. possible to gobble commands:
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \providecommand\gobble[1]{}
+ \xskaknewstyleitem[%
+   template=UF,%a predefined style item
+   beforeNAG=\gobble,
+   beforecomment=\gobble]{gobblecomments}
+
+ \xskakaddtostyle[%
+  level=gobble,
+  styleitem=gobblecomments]{test}
+
+ \variation[style=test,level=gobble]{1. e4! $1 \xskakcomment{expected} e5 $2}
+\end{LTXexample}
+
+
+
+
+
+
+\item[\key{template}=\meta{item}]
+   \index{xskaknewstyleitem=\verb!*+\xskaknewstyleitem+>template (key)}%
+   \index{template (\texttt{\textbackslash xskaknewstyleitem} key)}%
+
+With this key you can reuse the definitions from another style item.
+\end{description}
+
+
+\subsubsection{Defining style}
+
+
+\DescribeMacro{\xskaknewstyle}%
+\DescribeMacro{\xskakaddtostyle}%
+With \cs{xskaknewstyle}\keyoarg\marg{style}  you define the style
+\meta{style}. \\With \cs{xskakaddtostyle}\keyoarg\marg{style} you can
+add more levels (or overwrite existing ones) to a style. Both
+commands can handle four keys: \key{level}, \key{styleitem},
+\key{font} and \key{xfont}.
+
+
+\begin{description}
+\item[\key{level}=\meta{number}]
+   \index{xskaknewstyle=\verb!*+\xskaknewstyle+>level (key)}%
+   \index{level (\texttt{\textbackslash xskaknewstyle} key)}%
+
+With this key you set the number of the level for which you want to
+declared a «look» with the following keys. The «highest» level number
+is 1. Normally it should contain the description of the style for the
+main game. Variation styles should have larger numbers. But the
+\meta{number} don't need to be a number, strings are also possible.
+
+
+If you want to keep everything simple: Use only (positive) numbers
+with levels. Then the levels have a well-defined order which is easy
+to handle. Key \key{invar} will add 1 to a level number, key
+\key{outvar} will substract 1 and if you set the level to a number
+for which no style item as been declared \packagename{xskak} will
+simply substract 1 from this number until it finds a level with a
+style item it can use.
+
+But you can also use level names with chars e.g. to define variants
+for a specific variation level. So you could e.g. define levels
+\texttt{1open}, \texttt{1close}, \texttt{1middle},
+\texttt{1betteris}.
+
+In this case it depends on your compiler how the  keys \key{invar}
+and \key{outvar} and levels without declared style items are handled:
+
+\begin{description}
+\item[Case 1:] You have an old pdf\TeX\ where the (experimental) primitive
+\cs{pdfmatch} is not defined (or you did use the package option
+\texttt{nopdfmatch}).\mynobreakpar
+
+Then the keys \key{invar} and \key{outvar} will not work when the
+current level contains chars or other non-numerical tokens. They will
+issue more or less bewildering errors.
+
+Levels without a declared style item will issue errors too.
+
+\item[Case 2:] You have a recent pdf\TeX\ where the (experimental) primitive
+\cs{pdfmatch} is defined (and you didn't use the package option
+\texttt{nopdfmatch}).\mynobreakpar
+
+    \begin{description}
+    \item[Case a)] The level name doesn't contain any number, e.g. \texttt{level=gobble}:\mynobreakpar
+
+     Then you will get an error if you try to set the level and you haven't declared a style item for this level.
+
+     If the current level is \texttt{gobble} then the keys \key{invar} and \key{outvar} will issue a warning
+     and let the level unchanged.
+
+    \item[Case b)] The level name do contain numbers, e.g. \texttt{level=a12b567}:\mynobreakpar
+
+    Then \packagename{xskak} will use the following substituation if you try to set the level and there is no style
+    item  declared:
+    \packagename{xskak} will extract the
+    first number from the name (in this case «12»), substract one
+    from this number and try the name with the new number in it. If
+    the first number is 1, level 1 is used (it is always defined). If
+    the first number is 0 you will get an error.
+
+    In the example \packagename{xskak} will try the levels in the following order until it finds one that it can use:
+    {\ttfamily a12b567 $\rightarrow$ a11b567 $\rightarrow$ a10b567 $\rightarrow$ \ldots a2b567 $\rightarrow$ a1b567 $\rightarrow$ 1}
+    \end{description}
+
+\end{description}
+
+
+\item[\key{styleitem}=\meta{item}]
+   \index{xskaknewstyle=\verb!*+\xskaknewstyle+>styleitem (key)}%
+   \index{styleitem (\texttt{\textbackslash xskaknewstyle} key)}%
+
+With this key you set the style item used by the current level
+\emph{and all following levels} until another \key{styleitem} is set.
+
+
+\item[\key{font}=\meta{commands}]
+   \index{xskaknewstyle=\verb!*+\xskaknewstyle+>font (key)}%
+   \index{font (\texttt{\textbackslash xskaknewstyle} key)}%
+
+With this key you can add  some specific commands to the current
+level (\emph{and only to the current level}). While the key is meant
+to add font switches to a level it can also be used to overwrite some
+commands of a style item.
+
+
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+ \xskaknewstyleitem[%
+  template=UF,%a predefined style item
+  beforenumber=\color{red},%
+  whiteopen=.\,\color{black},
+  blackopen=\ldots\,\color{black}]{rednumbers}
+
+ %% add to existing style test
+ \xskakaddtostyle[%
+  level=10,styleitem=rednumbers,
+  level=12,
+  font=\def\beforenumber{\color{green}}\bfseries]
+   {test}
+
+
+ \newchessgame
+ \mainline[style=test,level=12]{1. Nf3 Nf6 2. d4}
+
+ \variation[level=10]{2. Nc3}
+
+
+ \mainline[level=11]{2... d5}
+ \end{LTXexample}
+
+\begin{LTXexample}[varwidth=false,width=0.3\textwidth]
+\xskakset{style=test}%
+ \xskaknewstyleitem[%
+  template=UF,%a predefined style item
+  beforeNAG=\color{blue},
+  beforecomment=\mdseries]{mycomments}
+
+ \xskakaddtostyle[level=13,styleitem=mycomments,
+                 font=\bfseries]{test}
+
+ \variation[level=13]{1. e4 $1 \xskakcomment{ as expected} e5}
+
+ \makeatletter
+ \xskakaddtostyle[%
+   level=gobbleB,styleitem=gobblecomments,
+   font=\renewcommand\xskak@beforeNAG{\color{red}}]%
+   {test}
+ \makeatother
+
+ \variation[level=gobbleB]{1. e4! $1 \xskakcomment{ I expected it} e5 $2}
+ \end{LTXexample}
+
+\item[\key{xfont}=\meta{commands}]
+   \index{xskaknewstyle=\verb!*+\xskaknewstyle+>xfont (key)}%
+   \index{xfont (\texttt{\textbackslash xskaknewstyle} key)}%
+
+With this key you can add  some specific commands to all levels with
+the same first number in their name. It needs a recent pdf\TeX\ with
+the command \cs{pdfmatch}.
+
+As an example lets add three levels to the test style used above: the
+first (main) level should use a bold font, the second \cs{mdseries}
+and the third an italic font. For each level we will define a variant
+which puts a \cs{betteris} (\betteris) before the first move.
+
+The example also demonstrates how to retrieve the current level.
+Please note the braces around some of the \cs{variations} which keep
+the level change local.
+
+\begin{LTXexample}[width=0.3\textwidth,varwidth=false,caption=«betteris» style,label=sty:betteris]
+ \xskaknewstyleitem[%
+  template=UF,
+  opencommands=(\betteris,
+  closecommands=)]{betteris}
+
+
+ \xskakaddtostyle
+ [level=20   ,styleitem=UF,xfont=\bfseries,
+  level=20bis,styleitem=betteris,
+  level=21   ,xfont=\mdseries,
+  level=22   ,xfont=\itshape]{test}
+
+ \xskakset{style=test}
+
+ \variation[level=20]{1. e4 e5}   (level \xskakget{level})
+ \variation[level=20bis]{1... e6} (level \xskakget{level})
+
+ \variation[level=21]{1. e4 e5}   (level \xskakget{level})
+ \variation[level=21bis]{1... e6} (level \xskakget{level})
+
+ \variation[level=22]{1. e4 e5}   (level \xskakget{level})
+ \variation[level=22bis]{1... e6} (level \xskakget{level})
+
+
+ \variation[level=20]{1. e4 e5}
+ {\variation[level=\xskakget{level}bis]{1... e6}
+  \variation[invar]{1... e6}  \variation[invar]{1... e6}}
+
+ \variation[invar]{1. e4 e5} %to level 21
+ {\variation[level=\xskakget{level}bis]{1... e6}}
+
+ \variation[invar]{1. e4 e5} %to level 22
+ {\variation[level=\xskakget{level}bis]{1... e6}}
+
+\end{LTXexample}
+
+
+\end{description}
+
+
+The previous examples demonstrate some important points to consider
+when defining styles:
+
+\begin{itemize}
+\item You can define as much levels as you want.
+
+\item The number of the levels don't have to be consecutive (they even need to be numbers). If there
+is no definition for a level (in the first example level 11), the
+style item of a previous level (in this case level 10) is used if
+\packagename{xskak} is able to figure out what the previous level
+could be.
+
+\item While it is often sensible to store the settings for the main level
+in level 1, and for the first variation level in level 2 and so on,
+you can also chose other orders or use more than one level for each
+logical variation level. If you e.g. want sometimes to add braces
+through \key{opencommands} you could define variants $n$a, $n$b etc
+of the involved variation level.
+
+
+
+\item While it is easy to define style items and styles it is not
+easy sort and bundle them in a sensible way.
+
+\end{itemize}
+
+
+\subsection{Using the styles}\label{sec:usestyles}
+
+The names of the commands \cs{mainline} and \cs{variation} give the
+impression that you should use the first for the main game and the
+second for the variations. But at my opinion this impression is
+wrong: You should use
+ \begin{itemize}
+ \item \cs{mainline} if you want to parse \emph{and} print chess moves,
+ \item \cs{variation} if you want only to print chess moves,
+ \item \cs{hidemoves} if you want only to parse moves and
+ \item \cs{printchessgame} (described later) if you want to
+  (re)print a previously parsed game.
+ \end{itemize}
+
+This means that each of the printing commands can be used for the
+main game and for variations. And so it should be possible for each
+of the printing commands to set and use every style level.
+
+In consequence this means that if you use the new interface -- you
+don't have to -- \cs{variation} will no longer switch to another
+style.
+
+You can set the style and the level either with \cs{xskakset} or in
+the optional argument of the three printing commands. The keys you
+can use in both cases are:
+
+
+
+\begin{description}
+\item[\key{style}=\meta{style name}]
+    \index{xskakset=\verb!*+\xskakset+>style (key)}%
+    \index{style (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>style (key)}%
+    \index{style (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>style (key)}%
+    \index{style (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>style (key)}%
+    \index{style (\texttt{\textbackslash printchessgame} key)}%
+
+This key sets the name of the style the following printing commands
+should use. The setting is always local to the current group (even
+with \cs{xskakset}\footnote{At first \cs{xskakset} did the settings
+globally. I changed it after the third time I had to correct the
+documentation because I forgot to reset a style after an example.}.
+
+
+\item[\key{gstyle}=\meta{style name}]
+    \index{xskakset=\verb!*+\xskakset+>gstyle (key)}%
+    \index{gstyle (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>gstyle (key)}%
+    \index{gstyle (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>gstyle (key)}%
+    \index{gstyle (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>gstyle (key)}%
+    \index{gstyle (\texttt{\textbackslash printchessgame} key)}%
+
+This key sets the name of the style globally.
+
+
+\item[\key{level}=\meta{number}]
+    \index{xskakset=\verb!*+\xskakset+>level (key)}%
+    \index{level (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>level (key)}%
+    \index{level (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>level (key)}%
+    \index{level (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>level (key)}%
+    \index{level (\texttt{\textbackslash printchessgame} key)}%
+
+This key sets the level the following printing commands should use.
+The setting is always local to the current group.
+
+\item[\key{glevel}=\meta{number}]
+    \index{xskakset=\verb!*+\xskakset+>glevel (key)}%
+    \index{glevel (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>glevel (key)}%
+    \index{glevel (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>glevel (key)}%
+    \index{glevel (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>glevel (key)}%
+    \index{glevel (\texttt{\textbackslash printchessgame} key)}%
+
+This key sets the level globally.
+
+\item[\key{invar}]
+    \index{xskakset=\verb!*+\xskakset+>invar (key)}%
+    \index{invar (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>invar (key)}%
+    \index{invar (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>invar (key)}%
+    \index{invar (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>invar (key)}%
+    \index{invar (\texttt{\textbackslash printchessgame} key)}%
+
+This will add 1 to the first number in the current level (so it goes
+towards «higher» (deeper) levels). Again the change is local to the
+group. This key can break if the current value of the level is not a
+number.
+
+\item[\key{ginvar}]
+    \index{xskakset=\verb!*+\xskakset+>ginvar (key)}%
+    \index{ginvar (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>ginvar (key)}%
+    \index{ginvar (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>ginvar (key)}%
+    \index{ginvar (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>ginvar (key)}%
+    \index{ginvar (\texttt{\textbackslash printchessgame} key)}%
+
+This is the global variant of \key{invar}.
+
+\item[\key{outvar}]
+    \index{xskakset=\verb!*+\xskakset+>outvar (key)}%
+    \index{outvar (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>outvar (key)}%
+    \index{outvar (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>outvar (key)}%
+    \index{outvar (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>outvar (key)}%
+    \index{outvar (\texttt{\textbackslash printchessgame} key)}%
+
+This will substract 1 to the first number in the current level (so it
+goes towards level 1 as the main level). This key can break if the
+current value of the level is not a number.
+
+\item[\key{goutvar}]
+    \index{xskakset=\verb!*+\xskakset+>goutvar (key)}%
+    \index{goutvar (\texttt{\textbackslash xskakset} key)}%
+    \index{mainline=\verb!*+\mainline+>goutvar (key)}%
+    \index{goutvar (\texttt{\textbackslash mainline} key)}%
+    \index{variation=\verb!*+\variation+>goutvar (key)}%
+    \index{goutvar (\texttt{\textbackslash variation} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>goutvar (key)}%
+    \index{goutvar (\texttt{\textbackslash printchessgame} key)}%
+
+This is the global variant of \key{outvar}.
+\end{description}
+
+
+\subsection{The predefined styles}
+
+\Xskak predefines five styles: \texttt{styleA}, \texttt{styleB} and
+\texttt{styleC} imitate the predefined styles of \packagename{skak}
+with the addition that they change to italic in the third level.
+Style \texttt{UF} is my style and style \texttt{test} is a large
+container for all sorts of tests.
+
+\begin{LTXexample}[width=0.4\textwidth,varwidth=false]
+\newchessgame
+ \mainline[style=styleC,level=1]{%
+  1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Qb6}
+  (\variation[invar]{4... Ne7 5. Nf3 Nec6}
+    (\variation[invar]{5... Nf5 6. h4 Be7
+      7. Bd3 cxd4 8. cxd4 Nc6 9. Bxf5 exf5 10. Bg5 $14})
+  \variation[outvar]{6. Bd3}
+    (\variation[invar]{6. h4 Nd7 7. h5 f6 $1 $132}))
+ \mainline[outvar,outvar]{ 5. Nf3 Bd7}
+
+\end{LTXexample}
+
+
+\subsection{The new \texorpdfstring{\texttt{xskak}}{xskak} printing
+command}\label{sec:print}
+
+\DescribeMacro{\printchessgame}%
+As one of the aims of \packagename{xskak} is to separate the parsing
+from the printing of a game there is naturally also a printing
+command. With \cs{printchessgame}\keyoarg{} you can print a
+previously parsed and saved game. Without any options
+\cs{printchessgame} will print the game with the currently active
+\meta{GameId} from start to end.
+
+
+
+As keys you can use
+\begin{description}
+\item[\key{id}=\meta{GameId}, \key{refid}=\meta{tag}]
+    \index{printchessgame=\verb!*+\printchessgame+>id (key)}%
+    \index{id (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>refid (key)}%
+    \index{refid (\texttt{\textbackslash printchessgame} key)}%
+
+This keys change only for the printing the current \meta{GameId}.
+Afterwards the old \meta{GameId} is restored.
+
+\item[\key{initmovenr=}\meta{number}, \key{initplayer=}\meta{«w» or «b»}, \key{initmoveid=}\meta{number + «w» or «b»}]\index{printchessgame=\verb!*+\printchessgame+>initmovenr (key)}%
+    \index{initmovenr (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>initplayer (key)}%
+    \index{initplayer (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>initmoveid (key)}%
+    \index{initmoveid (\texttt{\textbackslash printchessgame} key)}%
+~\\ This keys sets the move the printing should start with. If the
+move isn't in the game a warning is issued and the first move of the
+game is used instead.
+
+\item[\key{stopmovenr=}\meta{number}, \key{stopplayer=}\meta{«w» or «b»}, \key{stopmoveid=}\meta{number + «w» or «b»}]
+    \index{printchessgame=\verb!*+\printchessgame+>stopmovenr (key)}%
+    \index{stopmovenr (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>stopplayer (key)}%
+    \index{stopplayer (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>stopmoveid (key)}%
+    \index{stopmoveid (\texttt{\textbackslash printchessgame} key)}%
+~\\ This keys sets the move the printing should end with. If the move
+isn't in the game a warning is issued and the last move of the game
+is used instead.
+
+\item[\key{reftag}=\meta{tag}]
+    \index{printchessgame=\verb!*+\printchessgame+>reftag (key)}%
+    \index{reftag (\texttt{\textbackslash printchessgame} key)}%
+
+This sets the tag name in case that you want to use tagged moves as
+start or end of the printing. There are no keys like
+\key{initrefpastmoveid} (I thought so long names are no longer
+manageable), so you will have to use e.g. \texttt{reftag=}\meta{tag},
+\texttt{initmovenr=}\cs{xskakget}\verb+{refpast}+.
+
+
+\item[\key{style}, \key{level}, key{invar}  and \key{outvar}]%
+    \index{printchessgame=\verb!*+\printchessgame+>level (key)}%
+    \index{level (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>invar (key)}%
+    \index{invar (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>outvar (key)}%
+    \index{outvar (\texttt{\textbackslash printchessgame} key)}%
+    \index{printchessgame=\verb!*+\printchessgame+>style (key)}%
+    \index{style (\texttt{\textbackslash printchessgame} key)}%
+
+\cs{printchessgame} use the same formatting commands as
+\packagename{skak}, so the style can be change through the interface
+defined and described in section \ref{sec:interface}.
+
+
+To set the level and the style you can use the keys described in
+section \ref{sec:usestyles} in the optional argument of
+\cs{printchessgame}. Like with \cs{mainline} and \cs{variation} the
+keys sets the values locally for the current group.
+
+To print the actual moves, \cs{printchessgame} doesn't use the
+command \cs{printmove} from \packagename{skaksty} but an internal
+command named \cs{xskak@do@printmove}. So commands like
+\cs{longmoves} must set this command appropriately.
+
+
+\end{description}
+
+\begin{LTXexample}
+ \input{xskakgames.xsk}
+ \printchessgame[style=UF,level=1,id=export,
+                 initmoveid=7w,stopmoveid=12b]
+\end{LTXexample}
+
+
+\subsection{Game titles and chessboard captions}
+
+There are no pre-made commands. You will have to define them with the
+help of the stored game data/move data. For titles I advise you to
+use a sort of sectioning command -- this will prevent page breaks
+between the title and the game. Look e.g. at the definition of
+\cs{minisec} in one of the classes from the KOMA-bundle. For
+captions: look at the  package \packagename{caption}.
+
+
+
+
+\section{PGN2LTX or How to sort the input}
+
+While \packagename{skak}/\packagename{xskak} can handle games in
+PGN-notation they can't handle PGN-files: neither the PGN-infos
+(which is a small nuisances) nor the variations and the comments in
+the game notation (which makes it tedious to print large games with a
+lot of annotations).
+
+There exists a small number of perl scripts and applications to help
+to convert PGN to \LaTeX\ but none is really satisfactory. One of the
+problems that prevents better solutions is that there is no clear
+description what should be the result of a conversion from PGN to
+\LaTeX. In this section I will make some remarks about what I think
+would be a good output from such a converter for
+\packagename{xskak}\footnote{\packagename{texmate} needs another
+output.} and where I see problems. The description should also help
+you to enter or convert complicated games manually.
+
+
+\minisec{The PGN-infos}
+
+The «tag pair» section of a chess game in PGN shouldn't pose problems
+to a converter. The tags should be simply converted to the equivalent
+keys of a \cs{newchessgame}:
+
+\begin{lstlisting}
+ [Round "29"]
+ [White "Fischer, Robert J."]
+ [Black "Spassky, Boris V."]
+ [Result "1/2-1/2"]
+\end{lstlisting}
+%
+\begin{lstlisting}[escapechar=/]
+ \newchessgame[id=/\meta{GameId}/, %see below
+               round={29},
+               white={Fischer, Robert J.},
+               black={Spassky, Boris V.},
+               result={1/2-1/2}]
+\end{lstlisting}
+
+\xskakset{style=UF}%
+If the game use a \texttt{SetUp} and a \texttt{FEN} tag to set an
+alternative starting position, the converter will have to extract the
+start move from the FEN and set it with the key \key{moveid}.
+
+\minisec{The \meta{GameId}}
+
+While it is probably possible to give each game an unique
+\meta{GameId} I don't think that it is sensible or really necessary.
+I would suggest, that each game gets uses\\
+\verb+\newchessgame[id=main\xskakaddtoid,...]+ where
+\cs{xskakaddtoid} is empty by default but can be redefined to allow
+some automatic numbering.
+
+\minisec{The parsing command}
+
+As you will probably sometimes use \cs{mainline} and sometimes
+\cs{hidemoves} it is probably best if the converter use an general
+\cs{parsechessgame} which can be \cs{let} to both commands.
+
+\minisec{NAG's}
+
+Most NAG's don't need any special handling as \packagename{xskak} can
+parse them.
+
+But some chess applications seems to put NAG's \emph{after} a move to
+denote a symbol that should go \emph{before} the move. E.g.
+ \verb+1. e5 $142+
+%
+should become \betteris\variation{1. e5}.
+
+Putting such symbols before a move number is in most cases only
+possible at the start of a \cs{mainline} or \cs{variation} so the
+converter will have probably to split the input and add the symbol
+either directly or through a style. A converter will need a list of
+all this special cases and good rules how to handle them.
+
+
+
+
+\minisec{Long comments}
+
+Longer commands (in the PGN in curly braces) could be handled  either
+by adding a \cs{xskakcomment} at the begin of the comment or by
+ending the parsing and starting it again after the comment. The first
+method has the advantage that one can use styles to format to some
+extend the comments (or gobble them) but can cause problems if the
+comment contains something that isn't allowed in the argument of a
+command.
+
+I think some real examples are needed to decide what is the best way.
+
+
+\minisec{The content of long comments}
+
+I don't think that is possible to handle all possible contents
+automatically and get a  suitable result for \LaTeX. You will either
+have to follow some rules while inputing the comments or tidy them up
+later.
+
+But a converter will probably be able to identify moves like
+\texttt{4.\,\,Nf3} and to surround them by suitable
+\verb+\variation[style=...,level=...]{...}+.
+
+\minisec{Diagrams}
+
+Some chess applications let you put markers at places where you would
+like to print a diagram. E.g. chessbase put
+\texttt{Diagramm~\#}\footnote{I don't know if «Diagramm» is language
+dependent. Probably yes.} in a comment.
+
+A converter should also be able to recognize such markers for
+diagrams. But it is not easy to decide what should be done with this
+markers. In some cases you would probably not want to print boards at
+all. Sometimes the game should be interrupted and the diagram printed
+directly. Sometimes it should float. And I recall that someone once
+tried to put all diagrams in the order there were mentioned in the
+margin. If such markers are used it is probably the best if the
+converter sets a tag and sets one of the fake NAG's \texttt{\$D} and
+\texttt{\$d}. Then \cs{printchessgame} and the list of diagrams could
+be used to print the moves and the diagrams in the intended order
+(but it will probably need some coding to get the right results). The
+tag and the NAG should be move outside of the comment as the comment
+isn't processed in all cases.
+
+\begin{lstlisting}[caption={Input and suggested output for diagram
+markers}]
+ 10. c3 e5 $1 {Diagramm # Die energische und konsequente
+ Fortsetzung, Schwarz öffnet das Zentrum, um seine Figuren zu
+ aktivieren.} 11. h3
+\end{lstlisting}
+
+\begin{lstlisting}
+ \mainline{10. c3 e5\xskakset{tag=dia1} $d $1
+  \xskakcomment{ Die energische und konsequente Fortsetzung,
+ Schwarz öffnet das Zentrum, um seine Figuren zu aktivieren. }
+ 11. h3}
+\end{lstlisting}
+
+
+
+
+\minisec{Variations}
+
+Here starts the real problems. Even if we forget for the moment the
+parsing of moves and diagrams it is not easy to describe a suitable
+output. The main problems come from the fact that styles and good
+typesetting are involved: E.g. PGN code two variations in a row as
+\texttt{(1...~e5) (1...~e6)}. But you would probably print this as
+(\variation{1... e5}; \variation{1... e6}).
+
+So the converter will have to look ahead and use suitable «open»,
+«middle», «close» and «single» styles  in the different combinations.
+
+If you make long analyzes you will probably want to use numbered list
+for  the variations  -- but not every variation is so important that
+it need its own number. In this case there must be a marker that
+tells the converter to handle this variation differently.
+
+I haven't solved all this problems but I think that the following
+code could be used as starting point for further discussion about a
+\LaTeX-chess input\footnote{If one really wants to parse all
+variations a better  naming for the nodes is needed.}:
+
+\begin{lstlisting}
+ \newchessgame[id=main, ...]
+ \mainline{...}
+  %new var level
+  \newchessgame[newvar=main,id=var1a]%
+  \mainline[level=1open]{.....}
+  %same var level
+  \newchessgame[newvar=main,id=var1b]%
+  \mainline[level=1close]{....}
+    %new var level
+    \newchessgame[newvar=var1b,id=var2a]%
+    \mainline[level=2single]{....}
+  %% return to var1b:
+  \resumechessgame[id=var1b]
+  \mainline[level=1open]{....}
+\end{lstlisting}
+
+
+\minisec{Initialization and title}
+
+Until now I have only discussed the game itself. But you would
+probably want to print titles, make table of contents and other
+lists. So one should also add some generic commands or environments
+like \verb+\begin{chessgame}+/\hspace{0pt}\verb+\end{chessgame}+ and
+\verb+{\chessgameheader}+ to each game.
+
+
+
+
+
+
+\section{Compability issues}
+\subsection{\texorpdfstring{\packagename{xskak} and
+\packagename{texmate}}{xskak and texmate}}\index{texmate}
+
+It will probably work fine to use both packages in one document.
+
+\cs{newchessgame} and \cs{resumechessgame} will both internally issue
+a \cs{fenposition} command that will setup the games also for
+\packagename{texmate}. This naturally means in return that both
+commands interfere with \packagename{texmate}!
+
+You can't benefit of the extended input possibilities for NAG's and
+comments. \packagename{texmate} has its own parsing method.
+
+Btw: If you are using  \packagename{texmate} you should always indent
+your input as the package doesn't recognize new lines as spaces.
+
+\subsection{\texorpdfstring{\packagename{xskak} and
+\packagename{beamer}}{xskak and beamer}}\index{beamer}
+
+When making presentations with \packagename{beamer} you should
+remember two things: First you can't use verbatim material or other
+commands that relies on catcode changes in the
+\texttt{frame}-environment or -command. That means for \skaksty that
+you can't use \# in a \cs{mainline} but should replace it by
+\cs{mate}.
+
+Second, if you are using overlays the content of the frame is
+processed more than once. That means that you should be careful to
+reset counters if you don't want to run into never ending loops.
+
+The following listing shows an example how to print a chessgame with
+beamer. If your pdf-reader can handle annotations you can see the
+result in the attached file: \attachfile{xskak_and_beamer.pdf} It
+uses overlays (which worked fine) and also shows how you can handle
+games in another language:
+
+\lstinputlisting{xskak_and_beamer.tex}
+
+\phantomsection
+\makeatletter\def\index@prologue{\section*{Index}\addcontentsline{toc}{section}{Index}}\makeatother
+\printindex
+\end{document}
+
+\end{document}

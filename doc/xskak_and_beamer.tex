@@ -1,0 +1,63 @@
+\documentclass{beamer}
+\usepackage[LSBC4,T1]{fontenc}
+\usepackage{chessboard}
+\usepackage{xskak}
+
+\newcommand\getmovestyle[1]{%
+ \ifthenelse
+   {\equal{#1}{N}}%knight move
+   {\def\mymovestyle{[clockwise=false,style=knight]curvemove}}
+   {\ifthenelse
+     {\equal{#1}{}}% castling
+     {\def\mymovestyle{curvemove}}
+     {\def\mymovestyle{straightmove}}}}
+
+
+\setboardfontencoding{LSBC4}
+\newskaklanguage{german}{KDTLSB}
+\skaklanguage[german]
+
+\begin{document}
+\newchessgame[white=Paethz,black=Dirr,result=0-1]
+\hidemoves{%
+1.d4 Sf6 2.c4 g6 3.Sc3 Lg7 4.e4 d6 5.Sge2 O-O 6.Sg3 c6 7.Le2 a6 8.a4
+a5 9.h4 h5 10.Le3 Sa6 11.f3 e5 12.d5 Sd7 13.Sf1 Sdc5 14.Sd2 Db6
+15.Db1 Sb4 16.Sb3 Scd3+ 17.Kd2 Dxe3+}
+
+\newcounter{chessmoves}
+
+
+\begin{frame}{\xskakgetgame{white} -- \xskakgetgame{black}}
+
+\begin{columns}[T]
+\column[T]{0.5\textwidth}
+\setcounter{chessmoves}{0}%
+\xskakloop{%
+ \getmovestyle{\xskakget{piecechar}}%
+ \refstepcounter{chessmoves}%
+ \only<\arabic{chessmoves}>{%
+  \chessboard[%
+   margin=false,showmover=false,inverse,
+   pgfstyle=\mymovestyle,color=blue,
+   linewidth=0.1em, pgfshortenend=0.4em,
+   arrow=to, markmoves=\xskakget{move},
+   setfen=\xskakget{nextfen},
+   coloremph,piececolor=blue,
+   emphfields={\xskakget{moveto}}
+]\par
+   }%
+   }
+
+\column[T]{0.45\textwidth}%
+\renewcommand\baselinestretch{1.2}\footnotesize
+\setcounter{chessmoves}{0}%
+\xskakloop{%
+ \refstepcounter{chessmoves}%
+ { \color<\arabic{chessmoves}>{blue}%
+   \uncover<\arabic{chessmoves}->{%
+   \ifthenelse{\equal{\xskakget{player}}{w}}
+    {\xskakget{opennr}}{}\xskakget{lan}}}}
+\xskakgetgame{result}
+\end{columns}
+\end{frame}
+\end{document}

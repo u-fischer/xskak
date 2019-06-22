@@ -1,0 +1,1303 @@
+%This are games exported with xskak.sty
+%The options were: games={export,exportb} 
+%17.10.2008
+%
+%Start of game export
+%
+\expandafter \def \csname Xskakexportinitfen\endcsname {rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1}\relax 
+\expandafter \def \csname Xskakexportinitplayer\endcsname {w}\relax 
+\expandafter \def \csname Xskakexportinitmovenr\endcsname {1}\relax 
+\expandafter \def \csname Xskakexportinitmoveid\endcsname {1w}\relax 
+\expandafter \def \csname Xskakexportlastfen\endcsname {r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1 b - c3 0 19}\relax 
+\expandafter \def \csname Xskakexportlastplayer\endcsname {w}\relax 
+\expandafter \def \csname Xskakexportlastmovenr\endcsname {19}\relax 
+\expandafter \def \csname Xskakexportlastmoveid\endcsname {19w}\relax 
+\expandafter \def \csname Xskakexportnextplayer\endcsname {b}\relax 
+\expandafter \def \csname Xskakexportnextmovenr\endcsname {19}\relax 
+\expandafter \def \csname Xskakexportnextmoveid\endcsname {19b}\relax 
+\expandafter \def \csname Xskakexportdiagramlist\endcsname {}\relax 
+\expandafter \def \csname Xskakexportgameid\endcsname {export}\relax 
+\expandafter \def \csname Xskakexportresult\endcsname {1-0}\relax 
+\expandafter \def \csname Xskakexportsite\endcsname {}\relax 
+\expandafter \def \csname Xskakexportevent\endcsname {}\relax 
+\expandafter \def \csname Xskakexportdate\endcsname {}\relax 
+\expandafter \def \csname Xskakexportround\endcsname {}\relax 
+\expandafter \def \csname Xskakexportwhite\endcsname {Deep Blue}\relax 
+\expandafter \def \csname Xskakexportblack\endcsname {Kasparov}\relax 
+\expandafter \def \csname Xskakexportblackelo\endcsname {}\relax 
+\expandafter \def \csname Xskakexportwhiteelo\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.movenr\endcsname {\Xskak.export.1.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.1.w.player\endcsname {\Xskak.export.1.w.player }\relax 
+\expandafter \def \csname Xskak.export.1.w.moveid\endcsname {\Xskak.export.1.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.1.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.1.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.1.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.movefrom\endcsname {e2}\relax 
+\expandafter \def \csname Xskak.export.1.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.moveto\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.1.w.move\endcsname {e2-e4}\relax 
+\expandafter \def \csname Xskak.export.1.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.enpassantsquare\endcsname {e3}\relax 
+\expandafter \def \csname Xskak.export.1.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.addpieces\endcsname {Pe4}\relax 
+\expandafter \def \csname Xskak.export.1.w.clearfields\endcsname {e2}\relax 
+\expandafter \def \csname Xskak.export.1.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.nextfen\endcsname {rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1}\relax 
+\expandafter \def \csname Xskak.export.1.w.pastfen\endcsname {rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1}\relax 
+\expandafter \def \csname Xskak.export.1.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.w.san\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.1.w.lan\endcsname {e2\xskakmovehyphen e4}\relax 
+\expandafter \def \csname Xskak.export.1.w.opennr\endcsname {1\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.1.b.movenr\endcsname {\Xskak.export.1.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.1.b.player\endcsname {\Xskak.export.1.b.player }\relax 
+\expandafter \def \csname Xskak.export.1.b.moveid\endcsname {\Xskak.export.1.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.1.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.1.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.1.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.movefrom\endcsname {c7}\relax 
+\expandafter \def \csname Xskak.export.1.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.moveto\endcsname {c6}\relax 
+\expandafter \def \csname Xskak.export.1.b.move\endcsname {c7-c6}\relax 
+\expandafter \def \csname Xskak.export.1.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.1.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.1.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.addpieces\endcsname {pc6}\relax 
+\expandafter \def \csname Xskak.export.1.b.clearfields\endcsname {c7}\relax 
+\expandafter \def \csname Xskak.export.1.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.nextfen\endcsname {rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2}\relax 
+\expandafter \def \csname Xskak.export.1.b.pastfen\endcsname {rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1}\relax 
+\expandafter \def \csname Xskak.export.1.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.1.b.san\endcsname {c6}\relax 
+\expandafter \def \csname Xskak.export.1.b.lan\endcsname {c7\xskakmovehyphen c6}\relax 
+\expandafter \def \csname Xskak.export.1.b.opennr\endcsname {1\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.2.w.movenr\endcsname {\Xskak.export.2.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.2.w.player\endcsname {\Xskak.export.2.w.player }\relax 
+\expandafter \def \csname Xskak.export.2.w.moveid\endcsname {\Xskak.export.2.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.2.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.2.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.2.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.movefrom\endcsname {d2}\relax 
+\expandafter \def \csname Xskak.export.2.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.moveto\endcsname {d4}\relax 
+\expandafter \def \csname Xskak.export.2.w.move\endcsname {d2-d4}\relax 
+\expandafter \def \csname Xskak.export.2.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.enpassantsquare\endcsname {d3}\relax 
+\expandafter \def \csname Xskak.export.2.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.addpieces\endcsname {Pd4}\relax 
+\expandafter \def \csname Xskak.export.2.w.clearfields\endcsname {d2}\relax 
+\expandafter \def \csname Xskak.export.2.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.nextfen\endcsname {rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3 0 2}\relax 
+\expandafter \def \csname Xskak.export.2.w.pastfen\endcsname {rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2}\relax 
+\expandafter \def \csname Xskak.export.2.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.w.san\endcsname {d4}\relax 
+\expandafter \def \csname Xskak.export.2.w.lan\endcsname {d2\xskakmovehyphen d4}\relax 
+\expandafter \def \csname Xskak.export.2.w.opennr\endcsname {2\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.2.b.movenr\endcsname {\Xskak.export.2.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.2.b.player\endcsname {\Xskak.export.2.b.player }\relax 
+\expandafter \def \csname Xskak.export.2.b.moveid\endcsname {\Xskak.export.2.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.2.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.2.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.2.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.movefrom\endcsname {d7}\relax 
+\expandafter \def \csname Xskak.export.2.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.moveto\endcsname {d5}\relax 
+\expandafter \def \csname Xskak.export.2.b.move\endcsname {d7-d5}\relax 
+\expandafter \def \csname Xskak.export.2.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.enpassantsquare\endcsname {d6}\relax 
+\expandafter \def \csname Xskak.export.2.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.2.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.addpieces\endcsname {pd5}\relax 
+\expandafter \def \csname Xskak.export.2.b.clearfields\endcsname {d7}\relax 
+\expandafter \def \csname Xskak.export.2.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.nextfen\endcsname {rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6 0 3}\relax 
+\expandafter \def \csname Xskak.export.2.b.pastfen\endcsname {rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3 0 2}\relax 
+\expandafter \def \csname Xskak.export.2.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.2.b.san\endcsname {d5}\relax 
+\expandafter \def \csname Xskak.export.2.b.lan\endcsname {d7\xskakmovehyphen d5}\relax 
+\expandafter \def \csname Xskak.export.2.b.opennr\endcsname {2\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.3.w.movenr\endcsname {\Xskak.export.3.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.3.w.player\endcsname {\Xskak.export.3.w.player }\relax 
+\expandafter \def \csname Xskak.export.3.w.moveid\endcsname {\Xskak.export.3.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.3.w.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.3.w.piece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.3.w.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.3.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.movefrom\endcsname {b1}\relax 
+\expandafter \def \csname Xskak.export.3.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.moveto\endcsname {c3}\relax 
+\expandafter \def \csname Xskak.export.3.w.move\endcsname {b1-c3}\relax 
+\expandafter \def \csname Xskak.export.3.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.3.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.addpieces\endcsname {Nc3}\relax 
+\expandafter \def \csname Xskak.export.3.w.clearfields\endcsname {b1}\relax 
+\expandafter \def \csname Xskak.export.3.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.nextfen\endcsname {rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 3}\relax 
+\expandafter \def \csname Xskak.export.3.w.pastfen\endcsname {rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6 0 3}\relax 
+\expandafter \def \csname Xskak.export.3.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.w.san\endcsname {\textsymfigsymbol {N}c3}\relax 
+\expandafter \def \csname Xskak.export.3.w.lan\endcsname {\textsymfigsymbol {N}b1\xskakmovehyphen c3}\relax 
+\expandafter \def \csname Xskak.export.3.w.opennr\endcsname {3\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.3.b.movenr\endcsname {\Xskak.export.3.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.3.b.player\endcsname {\Xskak.export.3.b.player }\relax 
+\expandafter \def \csname Xskak.export.3.b.moveid\endcsname {\Xskak.export.3.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.3.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.3.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.3.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.3.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.lostpiece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.3.b.lostpiecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.3.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.movefrom\endcsname {d5}\relax 
+\expandafter \def \csname Xskak.export.3.b.pgnmovefrom\endcsname {d}\relax 
+\expandafter \def \csname Xskak.export.3.b.moveto\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.3.b.move\endcsname {d5-e4}\relax 
+\expandafter \def \csname Xskak.export.3.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.3.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.3.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.addpieces\endcsname {pe4}\relax 
+\expandafter \def \csname Xskak.export.3.b.clearfields\endcsname {d5}\relax 
+\expandafter \def \csname Xskak.export.3.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.nextfen\endcsname {rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4}\relax 
+\expandafter \def \csname Xskak.export.3.b.pastfen\endcsname {rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 3}\relax 
+\expandafter \def \csname Xskak.export.3.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.3.b.san\endcsname {d\capturesymbol e4}\relax 
+\expandafter \def \csname Xskak.export.3.b.lan\endcsname {d5\capturesymbol e4}\relax 
+\expandafter \def \csname Xskak.export.3.b.opennr\endcsname {3\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.4.w.movenr\endcsname {\Xskak.export.4.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.4.w.player\endcsname {\Xskak.export.4.w.player }\relax 
+\expandafter \def \csname Xskak.export.4.w.moveid\endcsname {\Xskak.export.4.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.4.w.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.4.w.piece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.4.w.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.4.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.4.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.lostpiece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.4.w.lostpiecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.4.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.movefrom\endcsname {c3}\relax 
+\expandafter \def \csname Xskak.export.4.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.moveto\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.4.w.move\endcsname {c3-e4}\relax 
+\expandafter \def \csname Xskak.export.4.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.4.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.addpieces\endcsname {Ne4}\relax 
+\expandafter \def \csname Xskak.export.4.w.clearfields\endcsname {c3}\relax 
+\expandafter \def \csname Xskak.export.4.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.nextfen\endcsname {rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4}\relax 
+\expandafter \def \csname Xskak.export.4.w.pastfen\endcsname {rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4}\relax 
+\expandafter \def \csname Xskak.export.4.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.w.san\endcsname {\textsymfigsymbol {N}\capturesymbol e4}\relax 
+\expandafter \def \csname Xskak.export.4.w.lan\endcsname {\textsymfigsymbol {N}c3\capturesymbol e4}\relax 
+\expandafter \def \csname Xskak.export.4.w.opennr\endcsname {4\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.4.b.movenr\endcsname {\Xskak.export.4.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.4.b.player\endcsname {\Xskak.export.4.b.player }\relax 
+\expandafter \def \csname Xskak.export.4.b.moveid\endcsname {\Xskak.export.4.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.4.b.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.4.b.piece\endcsname {n}\relax 
+\expandafter \def \csname Xskak.export.4.b.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.4.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.movefrom\endcsname {b8}\relax 
+\expandafter \def \csname Xskak.export.4.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.moveto\endcsname {d7}\relax 
+\expandafter \def \csname Xskak.export.4.b.move\endcsname {b8-d7}\relax 
+\expandafter \def \csname Xskak.export.4.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.4.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.4.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.addpieces\endcsname {nd7}\relax 
+\expandafter \def \csname Xskak.export.4.b.clearfields\endcsname {b8}\relax 
+\expandafter \def \csname Xskak.export.4.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.nextfen\endcsname {r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5}\relax 
+\expandafter \def \csname Xskak.export.4.b.pastfen\endcsname {rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4}\relax 
+\expandafter \def \csname Xskak.export.4.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.4.b.san\endcsname {\textsymfigsymbol {N}d7}\relax 
+\expandafter \def \csname Xskak.export.4.b.lan\endcsname {\textsymfigsymbol {N}b8\xskakmovehyphen d7}\relax 
+\expandafter \def \csname Xskak.export.4.b.opennr\endcsname {4\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.5.w.movenr\endcsname {\Xskak.export.5.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.5.w.player\endcsname {\Xskak.export.5.w.player }\relax 
+\expandafter \def \csname Xskak.export.5.w.moveid\endcsname {\Xskak.export.5.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.5.w.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.5.w.piece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.5.w.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.5.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.movefrom\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.5.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.moveto\endcsname {g5}\relax 
+\expandafter \def \csname Xskak.export.5.w.move\endcsname {e4-g5}\relax 
+\expandafter \def \csname Xskak.export.5.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.5.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.addpieces\endcsname {Ng5}\relax 
+\expandafter \def \csname Xskak.export.5.w.clearfields\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.export.5.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.nextfen\endcsname {r1bqkbnr/pp1npppp/2p5/6N1/3P4/8/PPP2PPP/R1BQKBNR b KQkq - 2 5}\relax 
+\expandafter \def \csname Xskak.export.5.w.pastfen\endcsname {r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5}\relax 
+\expandafter \def \csname Xskak.export.5.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.w.san\endcsname {\textsymfigsymbol {N}g5}\relax 
+\expandafter \def \csname Xskak.export.5.w.lan\endcsname {\textsymfigsymbol {N}e4\xskakmovehyphen g5}\relax 
+\expandafter \def \csname Xskak.export.5.w.opennr\endcsname {5\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.5.b.movenr\endcsname {\Xskak.export.5.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.5.b.player\endcsname {\Xskak.export.5.b.player }\relax 
+\expandafter \def \csname Xskak.export.5.b.moveid\endcsname {\Xskak.export.5.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.5.b.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.5.b.piece\endcsname {n}\relax 
+\expandafter \def \csname Xskak.export.5.b.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.5.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.movefrom\endcsname {g8}\relax 
+\expandafter \def \csname Xskak.export.5.b.pgnmovefrom\endcsname {g}\relax 
+\expandafter \def \csname Xskak.export.5.b.moveto\endcsname {f6}\relax 
+\expandafter \def \csname Xskak.export.5.b.move\endcsname {g8-f6}\relax 
+\expandafter \def \csname Xskak.export.5.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.5.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.5.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.addpieces\endcsname {nf6}\relax 
+\expandafter \def \csname Xskak.export.5.b.clearfields\endcsname {g8}\relax 
+\expandafter \def \csname Xskak.export.5.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.nextfen\endcsname {r1bqkb1r/pp1npppp/2p2n2/6N1/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 3 6}\relax 
+\expandafter \def \csname Xskak.export.5.b.pastfen\endcsname {r1bqkbnr/pp1npppp/2p5/6N1/3P4/8/PPP2PPP/R1BQKBNR b KQkq - 2 5}\relax 
+\expandafter \def \csname Xskak.export.5.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.5.b.san\endcsname {\textsymfigsymbol {N}gf6}\relax 
+\expandafter \def \csname Xskak.export.5.b.lan\endcsname {\textsymfigsymbol {N}g8\xskakmovehyphen f6}\relax 
+\expandafter \def \csname Xskak.export.5.b.opennr\endcsname {5\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.6.w.movenr\endcsname {\Xskak.export.6.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.6.w.player\endcsname {\Xskak.export.6.w.player }\relax 
+\expandafter \def \csname Xskak.export.6.w.moveid\endcsname {\Xskak.export.6.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.6.w.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.6.w.piece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.6.w.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.6.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.movefrom\endcsname {f1}\relax 
+\expandafter \def \csname Xskak.export.6.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.moveto\endcsname {d3}\relax 
+\expandafter \def \csname Xskak.export.6.w.move\endcsname {f1-d3}\relax 
+\expandafter \def \csname Xskak.export.6.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.6.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.addpieces\endcsname {Bd3}\relax 
+\expandafter \def \csname Xskak.export.6.w.clearfields\endcsname {f1}\relax 
+\expandafter \def \csname Xskak.export.6.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.nextfen\endcsname {r1bqkb1r/pp1npppp/2p2n2/6N1/3P4/3B4/PPP2PPP/R1BQK1NR b KQkq - 4 6}\relax 
+\expandafter \def \csname Xskak.export.6.w.pastfen\endcsname {r1bqkb1r/pp1npppp/2p2n2/6N1/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 3 6}\relax 
+\expandafter \def \csname Xskak.export.6.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.w.san\endcsname {\textsymfigsymbol {B}d3}\relax 
+\expandafter \def \csname Xskak.export.6.w.lan\endcsname {\textsymfigsymbol {B}f1\xskakmovehyphen d3}\relax 
+\expandafter \def \csname Xskak.export.6.w.opennr\endcsname {6\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.6.b.movenr\endcsname {\Xskak.export.6.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.6.b.player\endcsname {\Xskak.export.6.b.player }\relax 
+\expandafter \def \csname Xskak.export.6.b.moveid\endcsname {\Xskak.export.6.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.6.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.6.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.6.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.movefrom\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.export.6.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.moveto\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.6.b.move\endcsname {e7-e6}\relax 
+\expandafter \def \csname Xskak.export.6.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.6.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.6.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.addpieces\endcsname {pe6}\relax 
+\expandafter \def \csname Xskak.export.6.b.clearfields\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.export.6.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.nextfen\endcsname {r1bqkb1r/pp1n1ppp/2p1pn2/6N1/3P4/3B4/PPP2PPP/R1BQK1NR w KQkq - 0 7}\relax 
+\expandafter \def \csname Xskak.export.6.b.pastfen\endcsname {r1bqkb1r/pp1npppp/2p2n2/6N1/3P4/3B4/PPP2PPP/R1BQK1NR b KQkq - 4 6}\relax 
+\expandafter \def \csname Xskak.export.6.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.6.b.san\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.6.b.lan\endcsname {e7\xskakmovehyphen e6}\relax 
+\expandafter \def \csname Xskak.export.6.b.opennr\endcsname {6\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.7.w.movenr\endcsname {\Xskak.export.7.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.7.w.player\endcsname {\Xskak.export.7.w.player }\relax 
+\expandafter \def \csname Xskak.export.7.w.moveid\endcsname {\Xskak.export.7.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.7.w.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.7.w.piece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.7.w.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.7.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.movefrom\endcsname {g1}\relax 
+\expandafter \def \csname Xskak.export.7.w.pgnmovefrom\endcsname {1}\relax 
+\expandafter \def \csname Xskak.export.7.w.moveto\endcsname {f3}\relax 
+\expandafter \def \csname Xskak.export.7.w.move\endcsname {g1-f3}\relax 
+\expandafter \def \csname Xskak.export.7.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.7.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.addpieces\endcsname {Nf3}\relax 
+\expandafter \def \csname Xskak.export.7.w.clearfields\endcsname {g1}\relax 
+\expandafter \def \csname Xskak.export.7.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.nextfen\endcsname {r1bqkb1r/pp1n1ppp/2p1pn2/6N1/3P4/3B1N2/PPP2PPP/R1BQK2R b KQkq - 1 7}\relax 
+\expandafter \def \csname Xskak.export.7.w.pastfen\endcsname {r1bqkb1r/pp1n1ppp/2p1pn2/6N1/3P4/3B4/PPP2PPP/R1BQK1NR w KQkq - 0 7}\relax 
+\expandafter \def \csname Xskak.export.7.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.w.san\endcsname {\textsymfigsymbol {N}1f3}\relax 
+\expandafter \def \csname Xskak.export.7.w.lan\endcsname {\textsymfigsymbol {N}g1\xskakmovehyphen f3}\relax 
+\expandafter \def \csname Xskak.export.7.w.opennr\endcsname {7\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.7.b.movenr\endcsname {\Xskak.export.7.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.7.b.player\endcsname {\Xskak.export.7.b.player }\relax 
+\expandafter \def \csname Xskak.export.7.b.moveid\endcsname {\Xskak.export.7.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.7.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.7.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.7.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.movefrom\endcsname {h7}\relax 
+\expandafter \def \csname Xskak.export.7.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.moveto\endcsname {h6}\relax 
+\expandafter \def \csname Xskak.export.7.b.move\endcsname {h7-h6}\relax 
+\expandafter \def \csname Xskak.export.7.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.7.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.7.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.addpieces\endcsname {ph6}\relax 
+\expandafter \def \csname Xskak.export.7.b.clearfields\endcsname {h7}\relax 
+\expandafter \def \csname Xskak.export.7.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.nextfen\endcsname {r1bqkb1r/pp1n1pp1/2p1pn1p/6N1/3P4/3B1N2/PPP2PPP/R1BQK2R w KQkq - 0 8}\relax 
+\expandafter \def \csname Xskak.export.7.b.pastfen\endcsname {r1bqkb1r/pp1n1ppp/2p1pn2/6N1/3P4/3B1N2/PPP2PPP/R1BQK2R b KQkq - 1 7}\relax 
+\expandafter \def \csname Xskak.export.7.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.7.b.san\endcsname {h6}\relax 
+\expandafter \def \csname Xskak.export.7.b.lan\endcsname {h7\xskakmovehyphen h6}\relax 
+\expandafter \def \csname Xskak.export.7.b.opennr\endcsname {7\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.8.w.movenr\endcsname {\Xskak.export.8.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.8.w.player\endcsname {\Xskak.export.8.w.player }\relax 
+\expandafter \def \csname Xskak.export.8.w.moveid\endcsname {\Xskak.export.8.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.8.w.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.8.w.piece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.8.w.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.8.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.8.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.lostpiece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.8.w.lostpiecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.8.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.movefrom\endcsname {g5}\relax 
+\expandafter \def \csname Xskak.export.8.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.moveto\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.8.w.move\endcsname {g5-e6}\relax 
+\expandafter \def \csname Xskak.export.8.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.8.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.addpieces\endcsname {Ne6}\relax 
+\expandafter \def \csname Xskak.export.8.w.clearfields\endcsname {g5}\relax 
+\expandafter \def \csname Xskak.export.8.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.nextfen\endcsname {r1bqkb1r/pp1n1pp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQK2R b KQkq - 0 8}\relax 
+\expandafter \def \csname Xskak.export.8.w.pastfen\endcsname {r1bqkb1r/pp1n1pp1/2p1pn1p/6N1/3P4/3B1N2/PPP2PPP/R1BQK2R w KQkq - 0 8}\relax 
+\expandafter \def \csname Xskak.export.8.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.w.san\endcsname {\textsymfigsymbol {N}\capturesymbol e6}\relax 
+\expandafter \def \csname Xskak.export.8.w.lan\endcsname {\textsymfigsymbol {N}g5\capturesymbol e6}\relax 
+\expandafter \def \csname Xskak.export.8.w.opennr\endcsname {8\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.8.b.movenr\endcsname {\Xskak.export.8.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.8.b.player\endcsname {\Xskak.export.8.b.player }\relax 
+\expandafter \def \csname Xskak.export.8.b.moveid\endcsname {\Xskak.export.8.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.8.b.pgnpiece\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.8.b.piece\endcsname {q}\relax 
+\expandafter \def \csname Xskak.export.8.b.piecechar\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.8.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.movefrom\endcsname {d8}\relax 
+\expandafter \def \csname Xskak.export.8.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.moveto\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.export.8.b.move\endcsname {d8-e7}\relax 
+\expandafter \def \csname Xskak.export.8.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.8.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.8.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.addpieces\endcsname {qe7}\relax 
+\expandafter \def \csname Xskak.export.8.b.clearfields\endcsname {d8}\relax 
+\expandafter \def \csname Xskak.export.8.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.nextfen\endcsname {r1b1kb1r/pp1nqpp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQK2R w KQkq - 1 9}\relax 
+\expandafter \def \csname Xskak.export.8.b.pastfen\endcsname {r1bqkb1r/pp1n1pp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQK2R b KQkq - 0 8}\relax 
+\expandafter \def \csname Xskak.export.8.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.8.b.san\endcsname {\textsymfigsymbol {Q}e7}\relax 
+\expandafter \def \csname Xskak.export.8.b.lan\endcsname {\textsymfigsymbol {Q}d8\xskakmovehyphen e7}\relax 
+\expandafter \def \csname Xskak.export.8.b.opennr\endcsname {8\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.9.w.movenr\endcsname {\Xskak.export.9.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.9.w.player\endcsname {\Xskak.export.9.w.player }\relax 
+\expandafter \def \csname Xskak.export.9.w.moveid\endcsname {\Xskak.export.9.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.9.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.piece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.piecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.castling\endcsname {\setboolean {xskakboolcastling}{true}}\relax 
+\expandafter \def \csname Xskak.export.9.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.movefrom\endcsname {e1,h1}\relax 
+\expandafter \def \csname Xskak.export.9.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.moveto\endcsname {g1,f1}\relax 
+\expandafter \def \csname Xskak.export.9.w.move\endcsname {e1-g1,h1-f1}\relax 
+\expandafter \def \csname Xskak.export.9.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.9.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.addpieces\endcsname {Kg1,Rf1}\relax 
+\expandafter \def \csname Xskak.export.9.w.clearfields\endcsname {e1,h1}\relax 
+\expandafter \def \csname Xskak.export.9.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.nextfen\endcsname {r1b1kb1r/pp1nqpp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQ1RK1 b kq - 2 9}\relax 
+\expandafter \def \csname Xskak.export.9.w.pastfen\endcsname {r1b1kb1r/pp1nqpp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQK2R w KQkq - 1 9}\relax 
+\expandafter \def \csname Xskak.export.9.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.w.san\endcsname {\castlingchar \castlinghyphen \castlingchar }\relax 
+\expandafter \def \csname Xskak.export.9.w.lan\endcsname {\castlingchar \castlinghyphen \castlingchar }\relax 
+\expandafter \def \csname Xskak.export.9.w.opennr\endcsname {9\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.9.b.movenr\endcsname {\Xskak.export.9.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.9.b.player\endcsname {\Xskak.export.9.b.player }\relax 
+\expandafter \def \csname Xskak.export.9.b.moveid\endcsname {\Xskak.export.9.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.9.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.9.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.9.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.9.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.lostpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.9.b.lostpiecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.9.b.pgnlostpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.9.b.movefrom\endcsname {f7}\relax 
+\expandafter \def \csname Xskak.export.9.b.pgnmovefrom\endcsname {f}\relax 
+\expandafter \def \csname Xskak.export.9.b.moveto\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.9.b.move\endcsname {f7-e6}\relax 
+\expandafter \def \csname Xskak.export.9.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.9.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.9.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.b.addpieces\endcsname {pe6}\relax 
+\expandafter \def \csname Xskak.export.9.b.clearfields\endcsname {f7}\relax 
+\expandafter \def \csname Xskak.export.9.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.b.nextfen\endcsname {r1b1kb1r/pp1nq1p1/2p1pn1p/8/3P4/3B1N2/PPP2PPP/R1BQ1RK1 w kq - 0 10}\relax 
+\expandafter \def \csname Xskak.export.9.b.pastfen\endcsname {r1b1kb1r/pp1nqpp1/2p1Nn1p/8/3P4/3B1N2/PPP2PPP/R1BQ1RK1 b kq - 2 9}\relax 
+\expandafter \def \csname Xskak.export.9.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.9.b.san\endcsname {f\capturesymbol e6}\relax 
+\expandafter \def \csname Xskak.export.9.b.lan\endcsname {f7\capturesymbol e6}\relax 
+\expandafter \def \csname Xskak.export.9.b.opennr\endcsname {9\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.10.w.movenr\endcsname {\Xskak.export.10.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.10.w.player\endcsname {\Xskak.export.10.w.player }\relax 
+\expandafter \def \csname Xskak.export.10.w.moveid\endcsname {\Xskak.export.10.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.10.w.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.10.w.piece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.10.w.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.10.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.check\endcsname {\setboolean {xskakboolcheck}{true}}\relax 
+\expandafter \def \csname Xskak.export.10.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.movefrom\endcsname {d3}\relax 
+\expandafter \def \csname Xskak.export.10.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.moveto\endcsname {g6}\relax 
+\expandafter \def \csname Xskak.export.10.w.move\endcsname {d3-g6}\relax 
+\expandafter \def \csname Xskak.export.10.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.10.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.addpieces\endcsname {Bg6}\relax 
+\expandafter \def \csname Xskak.export.10.w.clearfields\endcsname {d3}\relax 
+\expandafter \def \csname Xskak.export.10.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.nextfen\endcsname {r1b1kb1r/pp1nq1p1/2p1pnBp/8/3P4/5N2/PPP2PPP/R1BQ1RK1 b kq - 1 10}\relax 
+\expandafter \def \csname Xskak.export.10.w.pastfen\endcsname {r1b1kb1r/pp1nq1p1/2p1pn1p/8/3P4/3B1N2/PPP2PPP/R1BQ1RK1 w kq - 0 10}\relax 
+\expandafter \def \csname Xskak.export.10.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.w.san\endcsname {\textsymfigsymbol {B}g6\checksymbol }\relax 
+\expandafter \def \csname Xskak.export.10.w.lan\endcsname {\textsymfigsymbol {B}d3\xskakmovehyphen g6\checksymbol }\relax 
+\expandafter \def \csname Xskak.export.10.w.opennr\endcsname {10\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.10.b.movenr\endcsname {\Xskak.export.10.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.10.b.player\endcsname {\Xskak.export.10.b.player }\relax 
+\expandafter \def \csname Xskak.export.10.b.moveid\endcsname {\Xskak.export.10.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.10.b.pgnpiece\endcsname {K}\relax 
+\expandafter \def \csname Xskak.export.10.b.piece\endcsname {k}\relax 
+\expandafter \def \csname Xskak.export.10.b.piecechar\endcsname {K}\relax 
+\expandafter \def \csname Xskak.export.10.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.movefrom\endcsname {e8}\relax 
+\expandafter \def \csname Xskak.export.10.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.moveto\endcsname {d8}\relax 
+\expandafter \def \csname Xskak.export.10.b.move\endcsname {e8-d8}\relax 
+\expandafter \def \csname Xskak.export.10.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.10.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.10.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.addpieces\endcsname {kd8}\relax 
+\expandafter \def \csname Xskak.export.10.b.clearfields\endcsname {e8}\relax 
+\expandafter \def \csname Xskak.export.10.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.10.b.nextfen\endcsname {r1bk1b1r/pp1nq1p1/2p1pnBp/8/3P4/5N2/PPP2PPP/R1BQ1RK1 w kq - 2 11}\relax 
+\expandafter \def \csname Xskak.export.10.b.pastfen\endcsname {r1b1kb1r/pp1nq1p1/2p1pnBp/8/3P4/5N2/PPP2PPP/R1BQ1RK1 b kq - 1 10}\relax 
+\expandafter \def \csname Xskak.export.10.b.nag\endcsname {{\xskak@beforecomment {\xskakcomment {Kasparov schüttelt kurz den Kopf}}}}\relax 
+\expandafter \def \csname Xskak.export.10.b.san\endcsname {\textsymfigsymbol {K}d8}\relax 
+\expandafter \def \csname Xskak.export.10.b.lan\endcsname {\textsymfigsymbol {K}e8\xskakmovehyphen d8}\relax 
+\expandafter \def \csname Xskak.export.10.b.opennr\endcsname {10\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.11.w.movenr\endcsname {\Xskak.export.11.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.11.w.player\endcsname {\Xskak.export.11.w.player }\relax 
+\expandafter \def \csname Xskak.export.11.w.moveid\endcsname {\Xskak.export.11.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.11.w.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.11.w.piece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.11.w.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.11.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.movefrom\endcsname {c1}\relax 
+\expandafter \def \csname Xskak.export.11.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.moveto\endcsname {f4}\relax 
+\expandafter \def \csname Xskak.export.11.w.move\endcsname {c1-f4}\relax 
+\expandafter \def \csname Xskak.export.11.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.11.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.addpieces\endcsname {Bf4}\relax 
+\expandafter \def \csname Xskak.export.11.w.clearfields\endcsname {c1}\relax 
+\expandafter \def \csname Xskak.export.11.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.nextfen\endcsname {r1bk1b1r/pp1nq1p1/2p1pnBp/8/3P1B2/5N2/PPP2PPP/R2Q1RK1 b - - 3 11}\relax 
+\expandafter \def \csname Xskak.export.11.w.pastfen\endcsname {r1bk1b1r/pp1nq1p1/2p1pnBp/8/3P4/5N2/PPP2PPP/R1BQ1RK1 w kq - 2 11}\relax 
+\expandafter \def \csname Xskak.export.11.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.w.san\endcsname {\textsymfigsymbol {B}f4}\relax 
+\expandafter \def \csname Xskak.export.11.w.lan\endcsname {\textsymfigsymbol {B}c1\xskakmovehyphen f4}\relax 
+\expandafter \def \csname Xskak.export.11.w.opennr\endcsname {11\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.11.b.movenr\endcsname {\Xskak.export.11.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.11.b.player\endcsname {\Xskak.export.11.b.player }\relax 
+\expandafter \def \csname Xskak.export.11.b.moveid\endcsname {\Xskak.export.11.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.11.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.11.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.11.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.movefrom\endcsname {b7}\relax 
+\expandafter \def \csname Xskak.export.11.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.moveto\endcsname {b5}\relax 
+\expandafter \def \csname Xskak.export.11.b.move\endcsname {b7-b5}\relax 
+\expandafter \def \csname Xskak.export.11.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.enpassantsquare\endcsname {b6}\relax 
+\expandafter \def \csname Xskak.export.11.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.11.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.addpieces\endcsname {pb5}\relax 
+\expandafter \def \csname Xskak.export.11.b.clearfields\endcsname {b7}\relax 
+\expandafter \def \csname Xskak.export.11.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.nextfen\endcsname {r1bk1b1r/p2nq1p1/2p1pnBp/1p6/3P1B2/5N2/PPP2PPP/R2Q1RK1 w - b6 0 12}\relax 
+\expandafter \def \csname Xskak.export.11.b.pastfen\endcsname {r1bk1b1r/pp1nq1p1/2p1pnBp/8/3P1B2/5N2/PPP2PPP/R2Q1RK1 b - - 3 11}\relax 
+\expandafter \def \csname Xskak.export.11.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.11.b.san\endcsname {b5}\relax 
+\expandafter \def \csname Xskak.export.11.b.lan\endcsname {b7\xskakmovehyphen b5}\relax 
+\expandafter \def \csname Xskak.export.11.b.opennr\endcsname {11\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.12.w.movenr\endcsname {\Xskak.export.12.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.12.w.player\endcsname {\Xskak.export.12.w.player }\relax 
+\expandafter \def \csname Xskak.export.12.w.moveid\endcsname {\Xskak.export.12.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.12.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.12.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.12.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.movefrom\endcsname {a2}\relax 
+\expandafter \def \csname Xskak.export.12.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.moveto\endcsname {a4}\relax 
+\expandafter \def \csname Xskak.export.12.w.move\endcsname {a2-a4}\relax 
+\expandafter \def \csname Xskak.export.12.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.enpassantsquare\endcsname {a3}\relax 
+\expandafter \def \csname Xskak.export.12.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.addpieces\endcsname {Pa4}\relax 
+\expandafter \def \csname Xskak.export.12.w.clearfields\endcsname {a2}\relax 
+\expandafter \def \csname Xskak.export.12.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.nextfen\endcsname {r1bk1b1r/p2nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2Q1RK1 b - a3 0 12}\relax 
+\expandafter \def \csname Xskak.export.12.w.pastfen\endcsname {r1bk1b1r/p2nq1p1/2p1pnBp/1p6/3P1B2/5N2/PPP2PPP/R2Q1RK1 w - b6 0 12}\relax 
+\expandafter \def \csname Xskak.export.12.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.w.san\endcsname {a4}\relax 
+\expandafter \def \csname Xskak.export.12.w.lan\endcsname {a2\xskakmovehyphen a4}\relax 
+\expandafter \def \csname Xskak.export.12.w.opennr\endcsname {12\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.12.b.movenr\endcsname {\Xskak.export.12.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.12.b.player\endcsname {\Xskak.export.12.b.player }\relax 
+\expandafter \def \csname Xskak.export.12.b.moveid\endcsname {\Xskak.export.12.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.12.b.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.12.b.piece\endcsname {b}\relax 
+\expandafter \def \csname Xskak.export.12.b.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.12.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.movefrom\endcsname {c8}\relax 
+\expandafter \def \csname Xskak.export.12.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.moveto\endcsname {b7}\relax 
+\expandafter \def \csname Xskak.export.12.b.move\endcsname {c8-b7}\relax 
+\expandafter \def \csname Xskak.export.12.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.12.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.12.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.addpieces\endcsname {bb7}\relax 
+\expandafter \def \csname Xskak.export.12.b.clearfields\endcsname {c8}\relax 
+\expandafter \def \csname Xskak.export.12.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.nextfen\endcsname {r2k1b1r/pb1nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2Q1RK1 w - - 1 13}\relax 
+\expandafter \def \csname Xskak.export.12.b.pastfen\endcsname {r1bk1b1r/p2nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2Q1RK1 b - a3 0 12}\relax 
+\expandafter \def \csname Xskak.export.12.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.12.b.san\endcsname {\textsymfigsymbol {B}b7}\relax 
+\expandafter \def \csname Xskak.export.12.b.lan\endcsname {\textsymfigsymbol {B}c8\xskakmovehyphen b7}\relax 
+\expandafter \def \csname Xskak.export.12.b.opennr\endcsname {12\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.13.w.movenr\endcsname {\Xskak.export.13.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.13.w.player\endcsname {\Xskak.export.13.w.player }\relax 
+\expandafter \def \csname Xskak.export.13.w.moveid\endcsname {\Xskak.export.13.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.13.w.pgnpiece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.13.w.piece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.13.w.piecechar\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.13.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.movefrom\endcsname {f1}\relax 
+\expandafter \def \csname Xskak.export.13.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.moveto\endcsname {e1}\relax 
+\expandafter \def \csname Xskak.export.13.w.move\endcsname {f1-e1}\relax 
+\expandafter \def \csname Xskak.export.13.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.13.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.addpieces\endcsname {Re1}\relax 
+\expandafter \def \csname Xskak.export.13.w.clearfields\endcsname {f1}\relax 
+\expandafter \def \csname Xskak.export.13.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.nextfen\endcsname {r2k1b1r/pb1nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2QR1K1 b - - 2 13}\relax 
+\expandafter \def \csname Xskak.export.13.w.pastfen\endcsname {r2k1b1r/pb1nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2Q1RK1 w - - 1 13}\relax 
+\expandafter \def \csname Xskak.export.13.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.w.san\endcsname {\textsymfigsymbol {R}e1}\relax 
+\expandafter \def \csname Xskak.export.13.w.lan\endcsname {\textsymfigsymbol {R}f1\xskakmovehyphen e1}\relax 
+\expandafter \def \csname Xskak.export.13.w.opennr\endcsname {13\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.13.b.movenr\endcsname {\Xskak.export.13.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.13.b.player\endcsname {\Xskak.export.13.b.player }\relax 
+\expandafter \def \csname Xskak.export.13.b.moveid\endcsname {\Xskak.export.13.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.13.b.pgnpiece\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.13.b.piece\endcsname {n}\relax 
+\expandafter \def \csname Xskak.export.13.b.piecechar\endcsname {N}\relax 
+\expandafter \def \csname Xskak.export.13.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.movefrom\endcsname {f6}\relax 
+\expandafter \def \csname Xskak.export.13.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.moveto\endcsname {d5}\relax 
+\expandafter \def \csname Xskak.export.13.b.move\endcsname {f6-d5}\relax 
+\expandafter \def \csname Xskak.export.13.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.13.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.13.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.addpieces\endcsname {nd5}\relax 
+\expandafter \def \csname Xskak.export.13.b.clearfields\endcsname {f6}\relax 
+\expandafter \def \csname Xskak.export.13.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.nextfen\endcsname {r2k1b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P1B2/5N2/1PP2PPP/R2QR1K1 w - - 3 14}\relax 
+\expandafter \def \csname Xskak.export.13.b.pastfen\endcsname {r2k1b1r/pb1nq1p1/2p1pnBp/1p6/P2P1B2/5N2/1PP2PPP/R2QR1K1 b - - 2 13}\relax 
+\expandafter \def \csname Xskak.export.13.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.13.b.san\endcsname {\textsymfigsymbol {N}d5}\relax 
+\expandafter \def \csname Xskak.export.13.b.lan\endcsname {\textsymfigsymbol {N}f6\xskakmovehyphen d5}\relax 
+\expandafter \def \csname Xskak.export.13.b.opennr\endcsname {13\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.14.w.movenr\endcsname {\Xskak.export.14.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.14.w.player\endcsname {\Xskak.export.14.w.player }\relax 
+\expandafter \def \csname Xskak.export.14.w.moveid\endcsname {\Xskak.export.14.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.14.w.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.14.w.piece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.14.w.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.14.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.movefrom\endcsname {f4}\relax 
+\expandafter \def \csname Xskak.export.14.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.moveto\endcsname {g3}\relax 
+\expandafter \def \csname Xskak.export.14.w.move\endcsname {f4-g3}\relax 
+\expandafter \def \csname Xskak.export.14.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.14.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.addpieces\endcsname {Bg3}\relax 
+\expandafter \def \csname Xskak.export.14.w.clearfields\endcsname {f4}\relax 
+\expandafter \def \csname Xskak.export.14.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.nextfen\endcsname {r2k1b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P4/5NB1/1PP2PPP/R2QR1K1 b - - 4 14}\relax 
+\expandafter \def \csname Xskak.export.14.w.pastfen\endcsname {r2k1b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P1B2/5N2/1PP2PPP/R2QR1K1 w - - 3 14}\relax 
+\expandafter \def \csname Xskak.export.14.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.w.san\endcsname {\textsymfigsymbol {B}g3}\relax 
+\expandafter \def \csname Xskak.export.14.w.lan\endcsname {\textsymfigsymbol {B}f4\xskakmovehyphen g3}\relax 
+\expandafter \def \csname Xskak.export.14.w.opennr\endcsname {14\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.14.b.movenr\endcsname {\Xskak.export.14.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.14.b.player\endcsname {\Xskak.export.14.b.player }\relax 
+\expandafter \def \csname Xskak.export.14.b.moveid\endcsname {\Xskak.export.14.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.14.b.pgnpiece\endcsname {K}\relax 
+\expandafter \def \csname Xskak.export.14.b.piece\endcsname {k}\relax 
+\expandafter \def \csname Xskak.export.14.b.piecechar\endcsname {K}\relax 
+\expandafter \def \csname Xskak.export.14.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.movefrom\endcsname {d8}\relax 
+\expandafter \def \csname Xskak.export.14.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.moveto\endcsname {c8}\relax 
+\expandafter \def \csname Xskak.export.14.b.move\endcsname {d8-c8}\relax 
+\expandafter \def \csname Xskak.export.14.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.14.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.14.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.addpieces\endcsname {kc8}\relax 
+\expandafter \def \csname Xskak.export.14.b.clearfields\endcsname {d8}\relax 
+\expandafter \def \csname Xskak.export.14.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.nextfen\endcsname {r1k2b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P4/5NB1/1PP2PPP/R2QR1K1 w - - 5 15}\relax 
+\expandafter \def \csname Xskak.export.14.b.pastfen\endcsname {r2k1b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P4/5NB1/1PP2PPP/R2QR1K1 b - - 4 14}\relax 
+\expandafter \def \csname Xskak.export.14.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.14.b.san\endcsname {\textsymfigsymbol {K}c8}\relax 
+\expandafter \def \csname Xskak.export.14.b.lan\endcsname {\textsymfigsymbol {K}d8\xskakmovehyphen c8}\relax 
+\expandafter \def \csname Xskak.export.14.b.opennr\endcsname {14\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.15.w.movenr\endcsname {\Xskak.export.15.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.15.w.player\endcsname {\Xskak.export.15.w.player }\relax 
+\expandafter \def \csname Xskak.export.15.w.moveid\endcsname {\Xskak.export.15.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.15.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.15.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.15.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.lostpiece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.w.lostpiecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.movefrom\endcsname {a4}\relax 
+\expandafter \def \csname Xskak.export.15.w.pgnmovefrom\endcsname {a}\relax 
+\expandafter \def \csname Xskak.export.15.w.moveto\endcsname {b5}\relax 
+\expandafter \def \csname Xskak.export.15.w.move\endcsname {a4-b5}\relax 
+\expandafter \def \csname Xskak.export.15.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.15.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.addpieces\endcsname {Pb5}\relax 
+\expandafter \def \csname Xskak.export.15.w.clearfields\endcsname {a4}\relax 
+\expandafter \def \csname Xskak.export.15.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.nextfen\endcsname {r1k2b1r/pb1nq1p1/2p1p1Bp/1P1n4/3P4/5NB1/1PP2PPP/R2QR1K1 b - - 0 15}\relax 
+\expandafter \def \csname Xskak.export.15.w.pastfen\endcsname {r1k2b1r/pb1nq1p1/2p1p1Bp/1p1n4/P2P4/5NB1/1PP2PPP/R2QR1K1 w - - 5 15}\relax 
+\expandafter \def \csname Xskak.export.15.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.w.san\endcsname {a\capturesymbol b5}\relax 
+\expandafter \def \csname Xskak.export.15.w.lan\endcsname {a4\capturesymbol b5}\relax 
+\expandafter \def \csname Xskak.export.15.w.opennr\endcsname {15\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.15.b.movenr\endcsname {\Xskak.export.15.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.15.b.player\endcsname {\Xskak.export.15.b.player }\relax 
+\expandafter \def \csname Xskak.export.15.b.moveid\endcsname {\Xskak.export.15.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.15.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.15.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.lostpiece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.15.b.lostpiecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.15.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.movefrom\endcsname {c6}\relax 
+\expandafter \def \csname Xskak.export.15.b.pgnmovefrom\endcsname {c}\relax 
+\expandafter \def \csname Xskak.export.15.b.moveto\endcsname {b5}\relax 
+\expandafter \def \csname Xskak.export.15.b.move\endcsname {c6-b5}\relax 
+\expandafter \def \csname Xskak.export.15.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.15.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.15.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.addpieces\endcsname {pb5}\relax 
+\expandafter \def \csname Xskak.export.15.b.clearfields\endcsname {c6}\relax 
+\expandafter \def \csname Xskak.export.15.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.nextfen\endcsname {r1k2b1r/pb1nq1p1/4p1Bp/1p1n4/3P4/5NB1/1PP2PPP/R2QR1K1 w - - 0 16}\relax 
+\expandafter \def \csname Xskak.export.15.b.pastfen\endcsname {r1k2b1r/pb1nq1p1/2p1p1Bp/1P1n4/3P4/5NB1/1PP2PPP/R2QR1K1 b - - 0 15}\relax 
+\expandafter \def \csname Xskak.export.15.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.15.b.san\endcsname {c\capturesymbol b5}\relax 
+\expandafter \def \csname Xskak.export.15.b.lan\endcsname {c6\capturesymbol b5}\relax 
+\expandafter \def \csname Xskak.export.15.b.opennr\endcsname {15\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.16.w.movenr\endcsname {\Xskak.export.16.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.16.w.player\endcsname {\Xskak.export.16.w.player }\relax 
+\expandafter \def \csname Xskak.export.16.w.moveid\endcsname {\Xskak.export.16.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.16.w.pgnpiece\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.16.w.piece\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.16.w.piecechar\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.16.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.movefrom\endcsname {d1}\relax 
+\expandafter \def \csname Xskak.export.16.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.moveto\endcsname {d3}\relax 
+\expandafter \def \csname Xskak.export.16.w.move\endcsname {d1-d3}\relax 
+\expandafter \def \csname Xskak.export.16.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.16.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.addpieces\endcsname {Qd3}\relax 
+\expandafter \def \csname Xskak.export.16.w.clearfields\endcsname {d1}\relax 
+\expandafter \def \csname Xskak.export.16.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.nextfen\endcsname {r1k2b1r/pb1nq1p1/4p1Bp/1p1n4/3P4/3Q1NB1/1PP2PPP/R3R1K1 b - - 1 16}\relax 
+\expandafter \def \csname Xskak.export.16.w.pastfen\endcsname {r1k2b1r/pb1nq1p1/4p1Bp/1p1n4/3P4/5NB1/1PP2PPP/R2QR1K1 w - - 0 16}\relax 
+\expandafter \def \csname Xskak.export.16.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.w.san\endcsname {\textsymfigsymbol {Q}d3}\relax 
+\expandafter \def \csname Xskak.export.16.w.lan\endcsname {\textsymfigsymbol {Q}d1\xskakmovehyphen d3}\relax 
+\expandafter \def \csname Xskak.export.16.w.opennr\endcsname {16\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.16.b.movenr\endcsname {\Xskak.export.16.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.16.b.player\endcsname {\Xskak.export.16.b.player }\relax 
+\expandafter \def \csname Xskak.export.16.b.moveid\endcsname {\Xskak.export.16.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.16.b.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.16.b.piece\endcsname {b}\relax 
+\expandafter \def \csname Xskak.export.16.b.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.16.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.movefrom\endcsname {b7}\relax 
+\expandafter \def \csname Xskak.export.16.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.moveto\endcsname {c6}\relax 
+\expandafter \def \csname Xskak.export.16.b.move\endcsname {b7-c6}\relax 
+\expandafter \def \csname Xskak.export.16.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.16.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.16.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.addpieces\endcsname {bc6}\relax 
+\expandafter \def \csname Xskak.export.16.b.clearfields\endcsname {b7}\relax 
+\expandafter \def \csname Xskak.export.16.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.nextfen\endcsname {r1k2b1r/p2nq1p1/2b1p1Bp/1p1n4/3P4/3Q1NB1/1PP2PPP/R3R1K1 w - - 2 17}\relax 
+\expandafter \def \csname Xskak.export.16.b.pastfen\endcsname {r1k2b1r/pb1nq1p1/4p1Bp/1p1n4/3P4/3Q1NB1/1PP2PPP/R3R1K1 b - - 1 16}\relax 
+\expandafter \def \csname Xskak.export.16.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.16.b.san\endcsname {\textsymfigsymbol {B}c6}\relax 
+\expandafter \def \csname Xskak.export.16.b.lan\endcsname {\textsymfigsymbol {B}b7\xskakmovehyphen c6}\relax 
+\expandafter \def \csname Xskak.export.16.b.opennr\endcsname {16\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.17.w.movenr\endcsname {\Xskak.export.17.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.17.w.player\endcsname {\Xskak.export.17.w.player }\relax 
+\expandafter \def \csname Xskak.export.17.w.moveid\endcsname {\Xskak.export.17.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.17.w.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.w.piece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.w.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.movefrom\endcsname {g6}\relax 
+\expandafter \def \csname Xskak.export.17.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.moveto\endcsname {f5}\relax 
+\expandafter \def \csname Xskak.export.17.w.move\endcsname {g6-f5}\relax 
+\expandafter \def \csname Xskak.export.17.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.17.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.addpieces\endcsname {Bf5}\relax 
+\expandafter \def \csname Xskak.export.17.w.clearfields\endcsname {g6}\relax 
+\expandafter \def \csname Xskak.export.17.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.nextfen\endcsname {r1k2b1r/p2nq1p1/2b1p2p/1p1n1B2/3P4/3Q1NB1/1PP2PPP/R3R1K1 b - - 3 17}\relax 
+\expandafter \def \csname Xskak.export.17.w.pastfen\endcsname {r1k2b1r/p2nq1p1/2b1p1Bp/1p1n4/3P4/3Q1NB1/1PP2PPP/R3R1K1 w - - 2 17}\relax 
+\expandafter \def \csname Xskak.export.17.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.w.san\endcsname {\textsymfigsymbol {B}f5}\relax 
+\expandafter \def \csname Xskak.export.17.w.lan\endcsname {\textsymfigsymbol {B}g6\xskakmovehyphen f5}\relax 
+\expandafter \def \csname Xskak.export.17.w.opennr\endcsname {17\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.17.b.movenr\endcsname {\Xskak.export.17.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.17.b.player\endcsname {\Xskak.export.17.b.player }\relax 
+\expandafter \def \csname Xskak.export.17.b.moveid\endcsname {\Xskak.export.17.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.17.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.17.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.17.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.17.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.lostpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.b.lostpiecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.b.pgnlostpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.17.b.movefrom\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.17.b.pgnmovefrom\endcsname {e}\relax 
+\expandafter \def \csname Xskak.export.17.b.moveto\endcsname {f5}\relax 
+\expandafter \def \csname Xskak.export.17.b.move\endcsname {e6-f5}\relax 
+\expandafter \def \csname Xskak.export.17.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.17.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.17.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.b.addpieces\endcsname {pf5}\relax 
+\expandafter \def \csname Xskak.export.17.b.clearfields\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.export.17.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.b.nextfen\endcsname {r1k2b1r/p2nq1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R3R1K1 w - - 0 18}\relax 
+\expandafter \def \csname Xskak.export.17.b.pastfen\endcsname {r1k2b1r/p2nq1p1/2b1p2p/1p1n1B2/3P4/3Q1NB1/1PP2PPP/R3R1K1 b - - 3 17}\relax 
+\expandafter \def \csname Xskak.export.17.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.17.b.san\endcsname {e\capturesymbol f5}\relax 
+\expandafter \def \csname Xskak.export.17.b.lan\endcsname {e6\capturesymbol f5}\relax 
+\expandafter \def \csname Xskak.export.17.b.opennr\endcsname {17\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.18.w.movenr\endcsname {\Xskak.export.18.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.18.w.player\endcsname {\Xskak.export.18.w.player }\relax 
+\expandafter \def \csname Xskak.export.18.w.moveid\endcsname {\Xskak.export.18.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.18.w.pgnpiece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.w.piece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.w.piecechar\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.18.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.lostpiece\endcsname {q}\relax 
+\expandafter \def \csname Xskak.export.18.w.lostpiecechar\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.18.w.pgnlostpiece\endcsname {Q}\relax 
+\expandafter \def \csname Xskak.export.18.w.movefrom\endcsname {e1}\relax 
+\expandafter \def \csname Xskak.export.18.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.w.moveto\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.export.18.w.move\endcsname {e1-e7}\relax 
+\expandafter \def \csname Xskak.export.18.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.18.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.w.addpieces\endcsname {Re7}\relax 
+\expandafter \def \csname Xskak.export.18.w.clearfields\endcsname {e1}\relax 
+\expandafter \def \csname Xskak.export.18.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.w.nextfen\endcsname {r1k2b1r/p2nR1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R5K1 b - - 0 18}\relax 
+\expandafter \def \csname Xskak.export.18.w.pastfen\endcsname {r1k2b1r/p2nq1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R3R1K1 w - - 0 18}\relax 
+\expandafter \def \csname Xskak.export.18.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.w.san\endcsname {\textsymfigsymbol {R}\capturesymbol e7}\relax 
+\expandafter \def \csname Xskak.export.18.w.lan\endcsname {\textsymfigsymbol {R}e1\capturesymbol e7}\relax 
+\expandafter \def \csname Xskak.export.18.w.opennr\endcsname {18\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.export.18.b.movenr\endcsname {\Xskak.export.18.b.movenr }\relax 
+\expandafter \def \csname Xskak.export.18.b.player\endcsname {\Xskak.export.18.b.player }\relax 
+\expandafter \def \csname Xskak.export.18.b.moveid\endcsname {\Xskak.export.18.b.moveid }\relax 
+\expandafter \def \csname Xskak.export.18.b.pgnpiece\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.18.b.piece\endcsname {b}\relax 
+\expandafter \def \csname Xskak.export.18.b.piecechar\endcsname {B}\relax 
+\expandafter \def \csname Xskak.export.18.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.capture\endcsname {\setboolean {xskakboolcapture}{true}}\relax 
+\expandafter \def \csname Xskak.export.18.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.lostpiece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.b.lostpiecechar\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.b.pgnlostpiece\endcsname {R}\relax 
+\expandafter \def \csname Xskak.export.18.b.movefrom\endcsname {f8}\relax 
+\expandafter \def \csname Xskak.export.18.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.b.moveto\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.export.18.b.move\endcsname {f8-e7}\relax 
+\expandafter \def \csname Xskak.export.18.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.enpassantsquare\endcsname {-}\relax 
+\expandafter \def \csname Xskak.export.18.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.18.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.b.addpieces\endcsname {be7}\relax 
+\expandafter \def \csname Xskak.export.18.b.clearfields\endcsname {f8}\relax 
+\expandafter \def \csname Xskak.export.18.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.b.nextfen\endcsname {r1k4r/p2nb1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R5K1 w - - 0 19}\relax 
+\expandafter \def \csname Xskak.export.18.b.pastfen\endcsname {r1k2b1r/p2nR1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R5K1 b - - 0 18}\relax 
+\expandafter \def \csname Xskak.export.18.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.18.b.san\endcsname {\textsymfigsymbol {B}\capturesymbol e7}\relax 
+\expandafter \def \csname Xskak.export.18.b.lan\endcsname {\textsymfigsymbol {B}f8\capturesymbol e7}\relax 
+\expandafter \def \csname Xskak.export.18.b.opennr\endcsname {18\blackopen \beforeblack }\relax 
+\expandafter \def \csname Xskak.export.19.w.movenr\endcsname {\Xskak.export.19.w.movenr }\relax 
+\expandafter \def \csname Xskak.export.19.w.player\endcsname {\Xskak.export.19.w.player }\relax 
+\expandafter \def \csname Xskak.export.19.w.moveid\endcsname {\Xskak.export.19.w.moveid }\relax 
+\expandafter \def \csname Xskak.export.19.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.export.19.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.export.19.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.movefrom\endcsname {c2}\relax 
+\expandafter \def \csname Xskak.export.19.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.moveto\endcsname {c4}\relax 
+\expandafter \def \csname Xskak.export.19.w.move\endcsname {c2-c4}\relax 
+\expandafter \def \csname Xskak.export.19.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.enpassantsquare\endcsname {c3}\relax 
+\expandafter \def \csname Xskak.export.19.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.export.19.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.addpieces\endcsname {Pc4}\relax 
+\expandafter \def \csname Xskak.export.19.w.clearfields\endcsname {c2}\relax 
+\expandafter \def \csname Xskak.export.19.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.nextfen\endcsname {r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1 b - c3 0 19}\relax 
+\expandafter \def \csname Xskak.export.19.w.pastfen\endcsname {r1k4r/p2nb1p1/2b4p/1p1n1p2/3P4/3Q1NB1/1PP2PPP/R5K1 w - - 0 19}\relax 
+\expandafter \def \csname Xskak.export.19.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.export.19.w.san\endcsname {c4}\relax 
+\expandafter \def \csname Xskak.export.19.w.lan\endcsname {c2\xskakmovehyphen c4}\relax 
+\expandafter \def \csname Xskak.export.19.w.opennr\endcsname {19\whiteopen \beforewhite }\relax 
+\def \xskakcurrentgameid {export}\xskakendgamedata 
+%
+%Start of game exportb
+%
+\expandafter \def \csname Xskakexportbinitfen\endcsname {rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1}\relax 
+\expandafter \def \csname Xskakexportbinitplayer\endcsname {w}\relax 
+\expandafter \def \csname Xskakexportbinitmovenr\endcsname {1}\relax 
+\expandafter \def \csname Xskakexportbinitmoveid\endcsname {1w}\relax 
+\expandafter \def \csname Xskakexportblastfen\endcsname {rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2}\relax 
+\expandafter \def \csname Xskakexportblastplayer\endcsname {b}\relax 
+\expandafter \def \csname Xskakexportblastmovenr\endcsname {1}\relax 
+\expandafter \def \csname Xskakexportblastmoveid\endcsname {1b}\relax 
+\expandafter \def \csname Xskakexportbnextplayer\endcsname {w}\relax 
+\expandafter \def \csname Xskakexportbnextmovenr\endcsname {2}\relax 
+\expandafter \def \csname Xskakexportbnextmoveid\endcsname {2w}\relax 
+\expandafter \def \csname Xskakexportbdiagramlist\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbgameid\endcsname {exportb}\relax 
+\expandafter \def \csname Xskakexportbresult\endcsname {*}\relax 
+\expandafter \def \csname Xskakexportbsite\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbevent\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbdate\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbround\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbwhite\endcsname {none}\relax 
+\expandafter \def \csname Xskakexportbblack\endcsname {none}\relax 
+\expandafter \def \csname Xskakexportbblackelo\endcsname {}\relax 
+\expandafter \def \csname Xskakexportbwhiteelo\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.movenr\endcsname {\Xskak.exportb.1.w.movenr }\relax 
+\expandafter \def \csname Xskak.exportb.1.w.player\endcsname {\Xskak.exportb.1.w.player }\relax 
+\expandafter \def \csname Xskak.exportb.1.w.moveid\endcsname {\Xskak.exportb.1.w.moveid }\relax 
+\expandafter \def \csname Xskak.exportb.1.w.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.piece\endcsname {P}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.movefrom\endcsname {e2}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.moveto\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.move\endcsname {e2-e4}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.enpassantsquare\endcsname {e3}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.addpieces\endcsname {Pe4}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.clearfields\endcsname {e2}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.nextfen\endcsname {rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.pastfen\endcsname {rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.san\endcsname {e4}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.lan\endcsname {e2\xskakmovehyphen e4}\relax 
+\expandafter \def \csname Xskak.exportb.1.w.opennr\endcsname {1\whiteopen \beforewhite }\relax 
+\expandafter \def \csname Xskak.exportb.1.b.movenr\endcsname {\Xskak.exportb.1.b.movenr }\relax 
+\expandafter \def \csname Xskak.exportb.1.b.player\endcsname {\Xskak.exportb.1.b.player }\relax 
+\expandafter \def \csname Xskak.exportb.1.b.moveid\endcsname {\Xskak.exportb.1.b.moveid }\relax 
+\expandafter \def \csname Xskak.exportb.1.b.pgnpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.piece\endcsname {p}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.piecechar\endcsname {p}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.castling\endcsname {\setboolean {xskakboolcastling}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.longcastling\endcsname {\setboolean {xskakboollongcastling}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.capture\endcsname {\setboolean {xskakboolcapture}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.check\endcsname {\setboolean {xskakboolcheck}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.mate\endcsname {\setboolean {xskakboolmate}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.lostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.lostpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.pgnlostpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.movefrom\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.pgnmovefrom\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.moveto\endcsname {e5}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.move\endcsname {e7-e5}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.enpassant\endcsname {\setboolean {xskakboolenpassant}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.enpassantsquare\endcsname {e6}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.promotion\endcsname {\setboolean {xskakboolpromotion}{false}}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.promotionpiece\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.promotionpiecechar\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.addpieces\endcsname {pe5}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.clearfields\endcsname {e7}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.comments\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.nextfen\endcsname {rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.pastfen\endcsname {rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.nag\endcsname {}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.san\endcsname {e5}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.lan\endcsname {e7\xskakmovehyphen e5}\relax 
+\expandafter \def \csname Xskak.exportb.1.b.opennr\endcsname {1\blackopen \beforeblack }\relax 
+\def \xskakcurrentgameid {exportb}\xskakendgamedata 
