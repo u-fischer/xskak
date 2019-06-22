@@ -1,15 +1,19 @@
-xskak --- An extention to the package skak for chess typesetting
-Version 1.4 Ulrike Fischer 2006-2015
+# xskak --- An extention to the package skak for chess typesetting
 
-LICENSE
+Packageversion: 1.5 
+Packagedate: 2018-04-23
+Ulrike Fischer 2006-2019
+
+## LICENSE
 LaTeX Project Public License
 
-CONTENTS AND INSTALLATION
+## CONTENTS AND INSTALLATION
 
-- Readme (this file)
-- xskak-scr.dtx
+- README.md (this file)
+- xskak.dtx
 - xskak.ins
-- xskak.pdf
+- xskak.tex, xskak.pdf (the main documentation file)
+- some files needed to typeset the documentation
 
 Run TeX/LaTeX on xskak.ins to unpack the dtx.
 
@@ -18,17 +22,16 @@ Put the three extracted files in tex/latex/xskak/.
 The dtx-file doesn't contain any documentation.
 So running LaTeX on it makes no sense!
 
-Put xskak.pdf in
+Put the other files  in
  doc/latex/xskak/
 
 Update the filename database
 
-DOCUMENTATION
+## DOCUMENTATION
 
-xskak.pdf. There isn't a source for the documentation as it use some
-local fonts and styles.
+xskak.pdf. 
 
-DESCRIPTION
+## DESCRIPTION
 
 The main point of xskak is to save informations about a chess game
 for later use e.g. to loop through a game to make an animated board.
@@ -37,7 +40,7 @@ offer an interface to define and switch between indefinite levels
 of styles.
 
 
-REQUIREMENTS
+## REQUIREMENTS
 xskak uses some primitives of e\TeX. It needs version 1.4 of skak,
 a recent version of chessfss and xkeyval, version 1.5 of chessboard (which in turns
 needs xifthen and pgf).

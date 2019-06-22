@@ -3,8 +3,8 @@
 -- Build script for "xskak" bundle
 
 -- Identify the bundle and module
-packageversion= "1.4"
-packagedate   = "2015-01-02"
+packageversion= "1.5"
+packagedate   = "2019-06-23"
 
 module   = "xskak"
 ctanpkg  = "xskak"
@@ -41,11 +41,60 @@ uploadconfig = {
   announcement_file="ctan.ann"             
 }
 
+docfiles = {"doc/UF-xskak-documentation.sty","doc/*.tex"}
+textfiles= {"doc/CTANREADME.md"}
+ctanreadme= "CTANREADME.md"
 
+typesetexe = "pdflatex"
+packtdszip   = false
+installfiles = {
+                "**/*.sty",
+               }  
+               
+sourcefiles  = {
+                "*.dtx","*.ins"
+               }
+                            
+typesetfiles = {"xskak.tex"}
 
-installfiles = {"*.sty"}
-sourcefiles =  {"*.dtx","*.sty"}
+typesetruns = 4
 
 checkruns = 3
 checkengines = {"luatex","pdftex","xetex"}
+
+tagfiles = {"*.dtx",
+            "doc/xskak.tex",
+            "doc/ctanreadme.md",
+            "README.md"}
+
+-- \ProvidesFile{xskak-nagdef.sty}[2015/01/02 version v1.4 nag definitions for xskak.sty]
+function update_tag (file,content,tagname,tagdate)
+ tagdate = string.gsub (packagedate,"-", "/")
+ if string.match (file, "%.dtx$" ) then
+  content = string.gsub (content,  
+                         "\\ProvidesFile{(.-)}%[%d%d%d%d%/%d%d%/%d%d version v%d%.%d",
+                         "\\ProvidesFile{%1}[" .. tagdate.." version v"..packageversion)
+  content = string.gsub (content,  
+                         "\\ProvidesPackage{(.-)}%[%d%d%d%d%/%d%d%/%d%d version v%d%.%d",
+                         "\\ProvidesPackage{%1}[" .. tagdate.." version v"..packageversion)                       
+  return content                         
+  elseif string.match (file, "%.md$") then
+   content = string.gsub (content,  
+                         "Packageversion: %d%.%d+",
+                         "Packageversion: " .. packageversion )
+   content = string.gsub (content,  
+                         "Packagedate%: %d%d%d%d-%d%d-%d%d",
+                         "Packagedate: " .. packagedate )                      
+   return content                   
+ elseif string.match (file, "%.tex$" ) then
+   content = string.gsub (content,  
+                         "UFcurrentversion{%d%.%d+}",
+                         "UFcurrentversion{" .. packageversion .."}" )
+   content = string.gsub (content,  
+                         "UFcurrentversiondate{%d%d%d%d-%d%d-%d%d}",
+                         "UFcurrentversiondate{" .. packagedate .."}" )                      
+   return content   
+ end
+ return content
+ end
 
