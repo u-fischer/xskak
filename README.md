@@ -1,31 +1,21 @@
 # xskak --- An extention to the package skak for chess typesetting
 
-Packageversion: 1.5 
-Packagedate: 2019-06-23
 Ulrike Fischer 2006-2019
 
-## LICENSE
-LaTeX Project Public License
+![Version: 1.5](https://img.shields.io/badge/current_version-1.5-blue.svg?style=flat-square)
+![Date: 2019-06-23](https://img.shields.io/badge/date-2019--06--23-blue.svg?style=flat-square)
+[![License: LPPL1.3c ](https://img.shields.io/badge/license-LPPL1.3c-blue.svg?style=flat-square)](https://ctan.org/license/lppl1.3c)
 
-## CONTENTS AND INSTALLATION
 
-- README.md (this file)
-- xskak.dtx
-- xskak.ins
-- xskak.tex, xskak.pdf (the main documentation file)
-- some files needed to typeset the documentation
 
-Run TeX/LaTeX on xskak.ins to unpack the dtx.
+## INSTALLATION
 
-Put the three extracted files in tex/latex/xskak/.
+Get xskak with the package manager of your tex system. If you want to install manually
+download xskak.dtx and xskak.ins and TeX/LaTeX on xskak.ins to unpack the dtx.
+Put the three extracted files in tex/latex/xskak/ and update  the filename database.
 
 The dtx-file doesn't contain any documentation.
 So running LaTeX on it makes no sense!
-
-Put the other files  in
- doc/latex/xskak/
-
-Update the filename database
 
 ## DOCUMENTATION
 

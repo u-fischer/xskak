@@ -37,17 +37,6 @@
 \xskakset{style=UF}
 
 \usepackage{showexpl}
-%\input{I:/Z-test/showexpl-corr}
-%\newcounter{showexpl}
-%\renewcommand*\LTXinputExample[2][]{%
-%  \stepcounter{showexpl}%
-%  \g@addto@macro\SX@@explpreset{#1,codefile=#2}%
-%  \SX@put@code@result}%
-%
-%\AtBeginDocument{%
-%    \def\theHlstnumber{\ifx\lst@@caption\@empty \lst@neglisting
-%                                          \else \thelstlisting \fi
-%                       .\thelstnumber.\theshowexpl}}
 \makeatletter
 \renewcommand\board@pgf@extractangle[2]{%#1 command, #2 pgfpoint
    \pgfextracty{\len@board@tempy}{#2}%
@@ -116,6 +105,8 @@
 
 \section{Changes}
 \begin{description}
+\item[2019-06-23] (Version 1.5)] Corrected a bug: \cs{xskak@beforecomment}{} was not defined. styleA was missing a space. Improved the documentation and added the source to the ctan upload.
+    
 \item[2015-01-02] (Version 1.4)] Corrected a bug: After a promotion the promotionpiece and the fen position were wrong.
 \item[2014-04-19] (Version 1.3)] Corrected a bug: enpassant test didn't check the piece and so other figures than a pawn could make an enpassant move.
 \item[2012-08-24 (Version 1.2b)]
@@ -146,9 +137,6 @@ Bug correction: Remove some spurious spaces.
 
 \end{description}
 
-%\section{Features}
-%
-%
 
 \section{Introduction}
 
@@ -175,12 +163,7 @@ retrieved at anytime.
 handle an arbitrary number of printing styles to distinguish
 the different variations levels.
 
-
 \end{itemize}
-
-
-
-
 
 \minisec{Extended PGN handling}
 
@@ -212,9 +195,6 @@ and tries to figure out what the move is exactly doing.
 In \packagename{xskak} only the commands \cs{mainline} and
 \cs{hidemoves} calls the move parser, \cs{variation} uses only the
 PGN parser.
-
-
-
 
 The main difference between \packagename{xskak} and
 \packagename{skak} is how they handle the information gathered by
@@ -364,12 +344,14 @@ I'm quite sure that they are bugs and errors in the package.
 
 If you have questions ask them in the newsgroups
 \nolinkurl{comp.text.tex}, \nolinkurl{de.comp.text.tex} or
-\nolinkurl{fr.comp.text.tex} or at \url{http://tex.stackexchange.com/}. I'm reading these groups regularly and
+\nolinkurl{fr.comp.text.tex} or at \url{http://tex.stackexchange.com/}. 
+I'm reading these groups regularly and
 I'm much better in answering there than in answering e-mails.
 
 If you find errors in this text (this includes wrong english) or in
 the package, you can write me a bugreport at
-\nolinkurl{chess@nililand.de}. A bugreport should contain a complete,
+\nolinkurl{chess@nililand.de} or -- better -- add an issue to the github site
+\url{https://github.com/u-fischer/xskak/issues/}. A bugreport should contain a complete,
 running, \emph{minimal} example and the log-file of the pdf\LaTeX\
 run (that means the engine that makes a pdf!).
 

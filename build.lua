@@ -45,8 +45,8 @@ docfiledir="./doc"
 docfiles = {"UF-xskak-documentation.sty","xskakgames.xsk"}
 typesetdemofiles ={"skak-comment-test.tex","skak-longmoves-test-new.tex","xskak_and_beamer.tex"}
 
-textfiles= {"doc/CTANREADME.md"}
-ctanreadme= "CTANREADME.md"
+textfiles= {"doc/ctanreadme.md"}
+ctanreadme= "ctanreadme.md"
 
 typesetexe = "pdflatex"
 packtdszip   = false
@@ -70,7 +70,6 @@ tagfiles = {"*.dtx",
             "doc/ctanreadme.md",
             "README.md"}
 
--- \ProvidesFile{xskak-nagdef.sty}[2015/01/02 version v1.4 nag definitions for xskak.sty]
 function update_tag (file,content,tagname,tagdate)
  tagdate = string.gsub (packagedate,"-", "/")
  if string.match (file, "%.dtx$" ) then
@@ -80,7 +79,25 @@ function update_tag (file,content,tagname,tagdate)
   content = string.gsub (content,  
                          "\\ProvidesPackage{(.-)}%[%d%d%d%d%/%d%d%/%d%d version v%d%.%d",
                          "\\ProvidesPackage{%1}[" .. tagdate.." version v"..packageversion)                       
-  return content                         
+  return content  
+  elseif string.match (file, "^README.md$") then
+   content = string.gsub (content,  
+                         "Version: %d%.%d+",
+                         "Version: " .. packageversion )
+   content = string.gsub (content,  
+                         "version%-%d%.%d+",
+                         "version-" .. packageversion ) 
+   content = string.gsub (content,  
+                         "for %d%.%d+",
+                         "for " .. packageversion ) 
+   content = string.gsub (content,  
+                         "%d%d%d%d%-%d%d%-%d%d",
+                         packagedate )
+   local imgpackagedate = string.gsub (packagedate,"%-","--")                          
+   content = string.gsub (content,  
+                         "%d%d%d%d%-%-%d%d%-%-%d%d",
+                         imgpackagedate)                                                                                                     
+   return content                                                   
   elseif string.match (file, "%.md$") then
    content = string.gsub (content,  
                          "Packageversion: %d%.%d+",

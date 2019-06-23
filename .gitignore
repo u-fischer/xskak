@@ -1,5 +1,5 @@
 # .gitignore file for xskak
-
+*.curlopt
 *.bak
 # Temporary files in the tests directory
 tests/*.log
