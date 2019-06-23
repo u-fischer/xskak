@@ -2,6 +2,9 @@ In version 1.5
 - the source of the documentation has been added, so that it now can be included
   in texlive 
 - a missing command has been added
-- A missing space in a style has been added
+- A missing space in a style has been added (issue #2)
 - a few typos in the documentation has been corrected
+- examples for the predefined styles has been added (issue #3)
+- references to older skak versions have been removed (issue #3)
+- the code is now on github (issue #1)
 
