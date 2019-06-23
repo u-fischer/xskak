@@ -48,7 +48,7 @@ ctanreadme= "CTANREADME.md"
 typesetexe = "pdflatex"
 packtdszip   = false
 installfiles = {
-                "**/*.sty",
+                "xskak.sty","xskak-nagdef.sty","xskak-keys.sty"
                }  
                
 sourcefiles  = {
@@ -83,7 +83,7 @@ function update_tag (file,content,tagname,tagdate)
                          "Packageversion: %d%.%d+",
                          "Packageversion: " .. packageversion )
    content = string.gsub (content,  
-                         "Packagedate%: %d%d%d%d-%d%d-%d%d",
+                         "Packagedate: %d%d%d%d%-%d%d%-%d%d",
                          "Packagedate: " .. packagedate )                      
    return content                   
  elseif string.match (file, "%.tex$" ) then

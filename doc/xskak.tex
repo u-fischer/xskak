@@ -342,8 +342,7 @@ to patch some internal commands of \skaksty to save the data. At the
 same time I also tried to insert some code that allows the parsing of
 standard PGN-comment signs. Due to lack of time the whole project
 didn't got very far but I had a working beta. Then a new version of
-\skaksty came. It had even a -- sadly not fully working (as can be
-seen in example~\ref{ex:longmoves}) -- command \cs{longmoves}%
+\skaksty came. It had even a -- sadly at the time not fully working -- command \cs{longmoves}%
     \index{longmoves=\verb!*+\longmoves+>}%
     \index{shortmoves=\verb!*+\shortmoves+>}
 (and the counterpart \cs{shortmoves}) to switch to the long algebraic
@@ -351,14 +350,6 @@ notation. But I hadn't the time to test and adjust my package.
 
     \index{longmoves=\verb!*+\longmoves+>}%
     \index{shortmoves=\verb!*+\shortmoves+>}%
-\LTXinputExample[label=ex:longmoves,
-                   graphic={[trim=3cm 24cm 9cm
-                   4cm,clip]{skak-longmoves-test}},
-                   caption={Wrong pawn moves in the
-                            longmoves implementation of \skaksty version 1.4}]{skak-longmoves-test}
-
-
-
 
 Then in 2006 I wrote \pchessboard and during the tests also tried to
 make animated pdf's which show all positions of a game. That worked
@@ -415,9 +406,9 @@ option (and won't pass options to it). So, if you want to load
 \subsection{Adaption to \skaksty version 1.5}
 
 Above I warned that \xskak can break with newer versions of \skaksty.
-Some days ago the version 1.5 of \packagename{skak} appeared and
+When the version 1.5 of \packagename{skak} appeared 
 promptly a lot of things broke so I had to adapt and change my code.
-Version 1.2 of \xskak will hopefully work with both versions of
+Version 1.2 of \xskak will work with both versions of
 \skaksty.
 
 In version 1.5 of \skaksty some fundamental things have changed. At
@@ -447,7 +438,7 @@ possible:
 
 \begin{lstlisting}
  \documentclass{article}
- \usepackage{skak15}  %=skak version 1.5
+ \usepackage{skak}  %=skak version 1.5
  \begin{document}
  \newgame
  \mainline{1.e4 e5 2. Nf3}
@@ -3109,6 +3100,55 @@ with the addition that they change to italic in the third level.
 Style \texttt{UF} is my style and style \texttt{test} is a large
 container for all sorts of tests.
 
+
+\begin{LTXexample}[width=0.4\textwidth,varwidth=false]
+\minisec{style \enquote{styleA}}
+\newchessgame
+ \xskakset{style=styleA}
+ \mainline[level=1]{%
+  1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Qb6}
+  (\variation[invar]{4... Ne7 5. Nf3 Nec6}
+    (\variation[invar]{5... Nf5 6. h4 Be7
+      7. Bd3 cxd4 8. cxd4 Nc6 9. Bxf5 exf5 10. Bg5 $14})
+  \variation[outvar]{6. Bd3}
+    (\variation[invar]{6. h4 Nd7 7. h5 f6 $1 $132}))
+ \mainline[outvar,outvar]{ 5. Nf3 Bd7}
+
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=0.4\textwidth,varwidth=false]
+\minisec{style \enquote{styleB}}
+\newchessgame
+ \xskakset{style=styleB}
+ \mainline[level=1]{%
+  1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Qb6}
+  (\variation[invar]{4... Ne7 5. Nf3 Nec6}
+    (\variation[invar]{5... Nf5 6. h4 Be7
+      7. Bd3 cxd4 8. cxd4 Nc6 9. Bxf5 exf5 10. Bg5 $14})
+  \variation[outvar]{6. Bd3}
+    (\variation[invar]{6. h4 Nd7 7. h5 f6 $1 $132}))
+ \mainline[outvar,outvar]{ 5. Nf3 Bd7}
+
+\end{LTXexample}
+
+\begin{LTXexample}[width=0.4\textwidth,varwidth=false]
+\minisec{style \enquote{UF}}
+\newchessgame
+ \xskakset{style=UF}
+ \mainline[level=1]{%
+  1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Qb6}
+  (\variation[invar]{4... Ne7 5. Nf3 Nec6}
+    (\variation[invar]{5... Nf5 6. h4 Be7
+      7. Bd3 cxd4 8. cxd4 Nc6 9. Bxf5 exf5 10. Bg5 $14})
+  \variation[outvar]{6. Bd3}
+    (\variation[invar]{6. h4 Nd7 7. h5 f6 $1 $132}))
+ \mainline[outvar,outvar]{ 5. Nf3 Bd7}
+
+\end{LTXexample}
+
+\minisec{style \enquote{styleC}}
+styleC sets the moves in a tabbing and should be used only for the main moves.
 \begin{LTXexample}[width=0.4\textwidth,varwidth=false]
 \newchessgame
  \mainline[style=styleC,level=1]{%
