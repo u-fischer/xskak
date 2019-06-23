@@ -41,7 +41,10 @@ uploadconfig = {
   announcement_file="ctan.ann"             
 }
 
-docfiles = {"doc/UF-xskak-documentation.sty","doc/*.tex"}
+docfiledir="./doc"
+docfiles = {"UF-xskak-documentation.sty","xskakgames.xsk"}
+typesetdemofiles ={"skak-comment-test.tex","skak-longmoves-test-new.tex","xskak_and_beamer.tex"}
+
 textfiles= {"doc/CTANREADME.md"}
 ctanreadme= "CTANREADME.md"
 
@@ -57,7 +60,7 @@ sourcefiles  = {
                             
 typesetfiles = {"xskak.tex"}
 
-typesetruns = 4
+typesetruns = 2
 
 checkruns = 3
 checkengines = {"luatex","pdftex","xetex"}
