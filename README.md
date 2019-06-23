@@ -1,4 +1,4 @@
-# xskak --- An extention to the package skak for chess typesetting
+# xskak — An extention to the package skak for chess typesetting
 
 Ulrike Fischer 2006-2019
 
