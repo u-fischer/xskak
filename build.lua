@@ -3,8 +3,8 @@
 -- Build script for "xskak" bundle
 
 -- Identify the bundle and module
-packageversion= "1.5"
-packagedate   = "2019-06-23"
+packageversion= "1.6"
+packagedate   = "2019-07-20"
 
 module   = "xskak"
 ctanpkg  = "xskak"

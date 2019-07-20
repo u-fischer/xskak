@@ -1,6 +1,6 @@
 %<*xskak>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xskak}[2019/06/23 version v1.5 extended chess typesetting and parsing]
+\ProvidesPackage{xskak}[2019/07/20 version v1.6 extended chess typesetting and parsing]
 
 \newif\ifxskakpdfmatch
 
@@ -31,10 +31,8 @@
 %% Naming conventions
 %%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%
 %%%%% Initialisation
-
 
 \newcommand\xskak@val@gameid{game}
 \newcommand\xskak@val@movenr{1}
@@ -440,7 +438,6 @@
 
 %%% special fencalculate
 %%% Use only inside dothemove to get the correct color and movenumber!}
-%02.01.2015: Patching the promotionpieces in Rank 1 + 8
 \def\xskak@specialfencalculate{%
  %\expandafter\show\csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.promotionpiece\endcsname
   \Fen@Rank{8}%%
@@ -597,6 +594,9 @@
 
 %% save the original skak definition
 \let\xskak@oriDoTheMove\DoTheMove
+\newcommand\xskak@king@pos{e}
+\newcommand\xskak@rookshort@pos{h}
+\newcommand\xskak@rooklong@pos{a}
 
 %% define a new DoTheMove:
 \def\xskak@do@dothemove#1{% move the piece from #1 to \MoveToFile\MoveToRank
@@ -693,8 +693,8 @@
      \csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.movefrom\endcsname{%
       \Castling
         {\LongCastling%
-         {\WhiteToMove{e1,a1}{e8,a8}}%
-         {\WhiteToMove{e1,h1}{e8,h8}}}%
+         {\WhiteToMove{\xskak@king@pos 1,\xskak@rooklong@pos 1}{\xskak@king@pos 8,\xskak@rooklong@pos 8}}%
+         {\WhiteToMove{\xskak@king@pos 1,\xskak@rookshort@pos 1}{\xskak@king@pos 8,\xskak@rookshort@pos 8}}}%
         {#1}}%
   %\expandafter\show\csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.movefrom\endcsname
   %===========%
@@ -725,8 +725,8 @@
      \csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.move\endcsname{%
       \Castling
         {\LongCastling%
-         {\WhiteToMove{e1-c1,a1-d1}{e8-c8,a8-d8}}%
-         {\WhiteToMove{e1-g1,h1-f1}{e8-g8,h8-f8}}}%
+         {\WhiteToMove{\xskak@king@pos 1-c1,\xskak@rooklong@pos 1-d1}{\xskak@king@pos 8-c8,\xskak@rooklong@pos 8-d8}}%
+         {\WhiteToMove{\xskak@king@pos 1-g1,\xskak@rookshort@pos 1-f1}{\xskak@king@pos 8-g8,\xskak@rookshort@pos 8-f8}}}%
         {\csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.movefrom\endcsname
          -\csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.moveto\endcsname}}%
   %\expandafter\show\csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.move\endcsname
@@ -933,7 +933,7 @@
      \csname Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.addpieces\endcsname{%
        \Castling%
          {\LongCastling%
-           {\WhiteToMove{Kc1,Re1}{kc8,re8}}%
+           {\WhiteToMove{Kc1,Rd1}{kc8,rd8}}%
            {\WhiteToMove{Kg1,Rf1}{kg8,rf8}}}%
          {\Promotion%
            {\PromotionPieceName\MoveToFile\MoveToRank}%
@@ -988,8 +988,14 @@
    % Initialization of the nag-commands (are filled later by \Mainline)%
    \expandafter\xdef\csname
      Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.nag\endcsname{}%
+  \edef\xskak@tempfrommove{#1}%
   \edef\oldpiece{\Get{\MoveToFile\MoveToRank}}%
-  \Set{\MoveTo}{\Get{#1}}\Set{#1}{E}%
+  \Set{\MoveTo}{\Get{#1}}%
+  \edef\xskak@temptomove{\MoveTo}%
+  \ifx\xskak@tempfrommove\xskak@temptomove %don't delete piece if it doesn't move ...
+  \else
+  \Set{#1}{E}%
+  \fi
   \gdef\MoveFrom{#1}%
   %===========%
   %%fen position _after_ the move
@@ -1210,8 +1216,6 @@
  \setrmkeys[UFXS]{styleitem}}
 
 %%% styles
-
-
 
 \newcommand*\xskak@do@splitlevel[1]{%
      \def\xskak@temp@levelprefix{#1}%
@@ -1464,7 +1468,6 @@
 
 \newcommand\variationmovemode{\shortmoves}
 
-%added \shortmoves as \variation doesn't work in longmoves-mode
 \def\@variation#1{\endgroup\gdef\NumberNext{\True}%
   \gdef\AfterBlack{\False}%
   \gdef\PrintMoves{\True}%
@@ -1517,7 +1520,6 @@
         \ParseCastlingAA(#2#3)}%
        {\@setmoverestcastling(#1#2#3)}}}}
 
-
 %%%% ExecutePawnMove changed:
 %%%% moved \xdef of EnPassantSquare before DoTheMove
 %%%% I hope it doesn't break something
@@ -1563,7 +1565,7 @@
 
 %</xskak>
 %<*xskak-keys>
-\ProvidesFile{xskak-keys.sty}[2019/06/23 version v1.5 key definitions for xskak.sty]
+\ProvidesFile{xskak-keys.sty}[2019/07/20 version v1.6 key definitions for xskak.sty]
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -2327,7 +2329,7 @@
 
 %</xskak-keys>
 %<*xskak-nagdef>
-\ProvidesFile{xskak-nagdef.sty}[2019/06/23 version v1.5 nag definitions for xskak.sty]
+\ProvidesFile{xskak-nagdef.sty}[2019/07/20 version v1.6 nag definitions for xskak.sty]
 
 \expandafter\def\csname $1\endcsname{!}
 \expandafter\def\csname $2\endcsname{?}
