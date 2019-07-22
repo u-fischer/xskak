@@ -1,7 +1,7 @@
 # xskak --- An extention to the package skak for chess typesetting
 
-Packageversion: 1.6 
-Packagedate: 2019-07-20
+Packageversion: 1.61 
+Packagedate: 2019-07-22
 Ulrike Fischer 2006-2019
 
 ## LICENSE

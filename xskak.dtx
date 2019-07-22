@@ -1,6 +1,6 @@
 %<*xskak>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xskak}[2019/07/20 version v1.6 extended chess typesetting and parsing]
+\ProvidesPackage{xskak}[2019/07/22 version v1.6 extended chess typesetting and parsing]
 
 \newif\ifxskakpdfmatch
 
@@ -988,14 +988,20 @@
    % Initialization of the nag-commands (are filled later by \Mainline)%
    \expandafter\xdef\csname
      Xskak.\xskak@val@gameid.\the\c@move.\WhiteToMove{w}{b}.nag\endcsname{}%
-  \edef\xskak@tempfrommove{#1}%
-  \edef\oldpiece{\Get{\MoveToFile\MoveToRank}}%
-  \Set{\MoveTo}{\Get{#1}}%
-  \edef\xskak@temptomove{\MoveTo}%
-  \ifx\xskak@tempfrommove\xskak@temptomove %don't delete piece if it doesn't move ...
-  \else
-  \Set{#1}{E}%
-  \fi
+   \edef\xskak@tempfrommove{#1}%
+   \edef\oldpiece{\Get{\MoveToFile\MoveToRank}}%
+   \Set{\MoveTo}{\Get{#1}}%
+   \edef\xskak@temptomove{\MoveTo}%
+   \ifx\xskak@tempfrommove\xskak@temptomove %don't delete piece if it doesn't move ...
+   \else
+    \Set{#1}{E}%
+   \fi
+   \Castling%
+         {\LongCastling%
+           {\WhiteToMove{\Set{c1}{K}\Set{d1}{R}}{\Set{c8}{k}\Set{d8}{r}}}%
+           {\WhiteToMove{\Set{g1}{K}\Set{f1}{R}}{\Set{g8}{k}\Set{f8}{r}}}%
+         }%
+         {}%
   \gdef\MoveFrom{#1}%
   %===========%
   %%fen position _after_ the move
@@ -1565,7 +1571,7 @@
 
 %</xskak>
 %<*xskak-keys>
-\ProvidesFile{xskak-keys.sty}[2019/07/20 version v1.6 key definitions for xskak.sty]
+\ProvidesFile{xskak-keys.sty}[2019/07/22 version v1.61 key definitions for xskak.sty]
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -2329,7 +2335,7 @@
 
 %</xskak-keys>
 %<*xskak-nagdef>
-\ProvidesFile{xskak-nagdef.sty}[2019/07/20 version v1.6 nag definitions for xskak.sty]
+\ProvidesFile{xskak-nagdef.sty}[2019/07/22 version v1.61 nag definitions for xskak.sty]
 
 \expandafter\def\csname $1\endcsname{!}
 \expandafter\def\csname $2\endcsname{?}

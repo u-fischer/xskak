@@ -4,7 +4,7 @@
 
 -- Identify the bundle and module
 packageversion= "1.6"
-packagedate   = "2019-07-20"
+packagedate   = "2019-07-22"
 
 module   = "xskak"
 ctanpkg  = "xskak"
